@@ -1,0 +1,310 @@
+swagger: '2.0'
+info:
+  description: ''
+  version: 1.0.0
+  title: 'Swagger JsonApi'
+  termsOfService: 'http://swagger.io/terms/'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: localhost
+schemes:
+  - https
+  - http
+paths:
+  /events/:
+    get:
+      tags:
+        - events
+      summary: 'Event List'
+      operationId: listEvent
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/events?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/events?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/events?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: events
+                    attributes:
+                      $ref: '#/definitions/Event'
+                    relationships:
+                      properties: {  }
+    post:
+      tags:
+        - events
+      summary: 'Add Event'
+      operationId: addEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addEvent
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties: {  }
+  '/events/{Event_id}':
+    patch:
+      tags:
+        - events
+      summary: 'Edit Event'
+      operationId: editEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editEvent
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties: {  }
+        -
+          name: Event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties: {  }
+    delete:
+      tags:
+        - events
+      summary: 'Delete Event'
+      operationId: deleteEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties: {  }
+    get:
+      tags:
+        - events
+      summary: 'Get Event'
+      operationId: viewEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties: {  }
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  Event:
+    type: object
+    properties:
+      EventID:
+        type: string
+      Name:
+        type: string
+      nameShort:
+        type: string
+      Type:
+        type: string
+      Description:
+        type: text
+externalDocs:
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'

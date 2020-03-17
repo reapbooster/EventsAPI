@@ -1,0 +1,135 @@
+{
+    "info": {
+        "name": "json_api",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Event",
+            "description": "",
+            "item": [
+                {
+                    "name": "Event List",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/events\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/events",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Event",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"events\",\n        \"attributes\": {\n            \"EventID\": \"string\",\n            \"Name\": \"string\",\n            \"nameShort\": \"string\",\n            \"Type\": \"string\",\n            \"Description\": \"text\"\n        },\n        \"relationships\": []\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/events\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/events",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Edit Event",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"events\",\n        \"id\": \"1\",\n        \"attributes\": {\n            \"EventID\": \"string\",\n            \"Name\": \"string\",\n            \"nameShort\": \"string\",\n            \"Type\": \"string\",\n            \"Description\": \"text\"\n        },\n        \"relationships\": []\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/events\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/events",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Event",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/events\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/events",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Event",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/events\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/events",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
