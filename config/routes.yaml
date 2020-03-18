@@ -2,10 +2,4 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-index:
-  path: /
-  controller: App\Controller\EventController::jsonapi
 
-event:
-  path: /event
-  controller: App\Controller\EventController::index

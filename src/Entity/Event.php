@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
+ * @ORM\Table(name="Events")
  */
 class Event
 {
@@ -17,27 +18,27 @@ class Event
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="EventID", type="string", length=255, nullable=true)
      */
     private $EventID;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="Name", type="string", length=255, nullable=true)
      */
     private $Name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="nameShort", type="string", length=255, nullable=true)
      */
     private $nameShort;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="Type", type="string", length=255, nullable=true)
      */
     private $Type;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(name="Description", type="text", nullable=true)
      */
     private $Description;
 

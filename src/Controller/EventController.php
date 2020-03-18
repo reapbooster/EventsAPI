@@ -28,38 +28,13 @@ class EventController extends Controller
      */
     public function index(EventRepository $eventRepository, ResourceCollection $resourceCollection): ResponseInterface
     {
-        $resourceCollection->setRepository($eventRepository);
+      $resourceCollection->setRepository($eventRepository);
+      $resourceCollection->handleIndexRequest();
 
-        $resourceCollection->handleIndexRequest();
-
-        return $this->jsonApi()->respond()->ok(
-            new EventsDocument(new EventResourceTransformer()),
-            $resourceCollection
-        );
-    }
-
-    /**
-     * @Route("/", name="events_new", methods="POST")
-     */
-    public function new(ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $event = $this->jsonApi()->hydrate(new CreateEventHydrator($entityManager, $exceptionFactory), new Event());
-
-        /** @var ConstraintViolationList $errors */
-        $errors = $validator->validate($event);
-        if ($errors->count() > 0) {
-            return $this->validationErrorResponse($errors);
-        }
-
-        $entityManager->persist($event);
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->ok(
-            new EventDocument(new EventResourceTransformer()),
-            $event
-        );
+      return $this->jsonApi()->respond()->ok(
+          new EventsDocument(new EventResourceTransformer()),
+          $resourceCollection
+      );
     }
 
     /**
@@ -73,38 +48,4 @@ class EventController extends Controller
         );
     }
 
-    /**
-     * @Route("/{id}", name="events_edit", methods="PATCH")
-     */
-    public function edit(Event $event, ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $event = $this->jsonApi()->hydrate(new UpdateEventHydrator($entityManager, $exceptionFactory), $event);
-
-        /** @var ConstraintViolationList $errors */
-        $errors = $validator->validate($event);
-        if ($errors->count() > 0) {
-            return $this->validationErrorResponse($errors);
-        }
-
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->ok(
-            new EventDocument(new EventResourceTransformer()),
-            $event
-        );
-    }
-
-    /**
-     * @Route("/{id}", name="events_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Event $event): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($event);
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->genericSuccess(204);
-    }
 }
