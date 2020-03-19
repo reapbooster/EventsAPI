@@ -15,9 +15,6 @@ class CreateEventHydrator extends AbstractEventHydrator
     protected function getAttributeHydrator($event): array
     {
         return [
-            'EventID' => function (Event $event, $attribute, $data, $attributeName) {
-                $event->setEventID($attribute);
-            },
             'Name' => function (Event $event, $attribute, $data, $attributeName) {
                 $event->setName($attribute);
             },

@@ -50,8 +50,8 @@ class SpeakerResourceTransformer extends AbstractResource
     public function getAttributes($speaker): array
     {
         return [
-            'saluation' => function (Speaker $speaker) {
-                return $speaker->getSaluation();
+            'salutation' => function (Speaker $speaker) {
+                return $speaker->getSalutation();
             },
             'SpkrNm' => function (Speaker $speaker) {
                 return $speaker->getSpkrNm();
@@ -108,10 +108,10 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getNotes();
             },
             'datecreated' => function (Speaker $speaker) {
-                return $speaker->getDatecreated()->format(DATE_ATOM);
+                return ($speaker->getDatecreated()) ? $speaker->getDatecreated()->format(DATE_ATOM) : null;
             },
             'datemodified' => function (Speaker $speaker) {
-                return $speaker->getDatemodified()->format(DATE_ATOM);
+                return ($speaker->getDatemodified()) ? $speaker->getDatemodified()->format(DATE_ATOM) : null;
             },
             'createdbyID' => function (Speaker $speaker) {
                 return $speaker->getCreatedbyID();
@@ -135,7 +135,7 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getWhoEntered();
             },
             'dateSuggested' => function (Speaker $speaker) {
-                return $speaker->getDateSuggested()->format(DATE_ATOM);
+                return ($speaker->getDateSuggested()) ? $speaker->getDateSuggested()->format(DATE_ATOM) : null;
             },
             'recBio' => function (Speaker $speaker) {
                 return $speaker->getRecBio();
@@ -147,10 +147,10 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getRecPhoto();
             },
             'recPhotoDate' => function (Speaker $speaker) {
-                return $speaker->getRecPhotoDate()->format(DATE_ATOM);
+                return ($speaker->getRecPhotoDate()) ? $speaker->getRecPhotoDate()->format(DATE_ATOM) : null;
             },
             'recWaiverDate' => function (Speaker $speaker) {
-                return $speaker->getRecWaiverDate()->format(DATE_ATOM);
+                return ($speaker->getRecWaiverDate()) ? $speaker->getRecWaiverDate()->format(DATE_ATOM) : null;
             },
             'spkEmail' => function (Speaker $speaker) {
                 return $speaker->getSpkEmail();
@@ -170,8 +170,8 @@ class SpeakerResourceTransformer extends AbstractResource
             'invitationWhom' => function (Speaker $speaker) {
                 return $speaker->getInvitationWhom();
             },
-            'spidermaldate' => function (Speaker $speaker) {
-                return $speaker->getSpidermaldate()->format(DATE_ATOM);
+            'spideremaildate' => function (Speaker $speaker) {
+                return ($speaker->getSpideremaildate()) ? $speaker->getSpideremaildate()->format(DATE_ATOM) : null;
             },
             'whoconfirmed' => function (Speaker $speaker) {
                 return $speaker->getWhoconfirmed();
@@ -222,7 +222,7 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getDevOrganization();
             },
             'roleChangedate' => function (Speaker $speaker) {
-                return $speaker->getRoleChangedate()->format(DATE_ATOM);
+                return ($speaker->getRoleChangedate()) ? $speaker->getRoleChangedate()->format(DATE_ATOM) : null;
             },
             'cVentID' => function (Speaker $speaker) {
                 return $speaker->getCVentID();

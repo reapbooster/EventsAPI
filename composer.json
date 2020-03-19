@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "kint-php/kint": "^3.3",
         "paknahad/jsonapi-bundle": "^4.1",
         "phootwork/collection": "^2.0",
         "symfony/console": "5.0.*",

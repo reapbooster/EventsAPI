@@ -69,6 +69,7 @@
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-eventmanager" />
       <path value="$PROJECT_DIR$/vendor/woohoolabs/yin" />
       <path value="$PROJECT_DIR$/vendor/phootwork/lang" />
+      <path value="$PROJECT_DIR$/vendor/kint-php/kint" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

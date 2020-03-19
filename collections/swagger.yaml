@@ -12,280 +12,6 @@ schemes:
   - https
   - http
 paths:
-  /events/:
-    get:
-      tags:
-        - events
-      summary: 'Event List'
-      operationId: listEvent
-      produces:
-        - application/json
-      parameters: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: '/events?page[number]=1&page[size]=100'
-                  first:
-                    type: string
-                    example: '/events?page[number]=1&page[size]=100'
-                  last:
-                    type: string
-                    example: '/events?page[number]=1&page[size]=100'
-                  prev:
-                    type: string
-                    example: 'null'
-                  next:
-                    type: string
-                    example: 'null'
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                      example: 12
-                    type:
-                      type: string
-                      example: events
-                    attributes:
-                      $ref: '#/definitions/Event'
-                    relationships:
-                      properties: {  }
-    post:
-      tags:
-        - events
-      summary: 'Add Event'
-      operationId: addEvent
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: addEvent
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    example: events
-                  attributes:
-                    $ref: '#/definitions/Event'
-                  relationships:
-                    properties: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /events
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: events
-                  attributes:
-                    $ref: '#/definitions/Event'
-                  relationships:
-                    properties: {  }
-  '/events/{Event_id}':
-    patch:
-      tags:
-        - events
-      summary: 'Edit Event'
-      operationId: editEvent
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: editEvent
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: events
-                  attributes:
-                    $ref: '#/definitions/Event'
-                  relationships:
-                    properties: {  }
-        -
-          name: Event_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /events
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: events
-                  attributes:
-                    $ref: '#/definitions/Event'
-                  relationships:
-                    properties: {  }
-    delete:
-      tags:
-        - events
-      summary: 'Delete Event'
-      operationId: deleteEvent
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Event_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /events
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: events
-                  attributes:
-                    $ref: '#/definitions/Event'
-                  relationships:
-                    properties: {  }
-    get:
-      tags:
-        - events
-      summary: 'Get Event'
-      operationId: viewEvent
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Event_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /events
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: events
-                  attributes:
-                    $ref: '#/definitions/Event'
-                  relationships:
-                    properties: {  }
   /rooms/:
     get:
       tags:
@@ -558,554 +284,6 @@ paths:
                     example: rooms
                   attributes:
                     $ref: '#/definitions/Room'
-                  relationships:
-                    properties: {  }
-  /speakers/:
-    get:
-      tags:
-        - speakers
-      summary: 'Speaker List'
-      operationId: listSpeaker
-      produces:
-        - application/json
-      parameters: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: '/speakers?page[number]=1&page[size]=100'
-                  first:
-                    type: string
-                    example: '/speakers?page[number]=1&page[size]=100'
-                  last:
-                    type: string
-                    example: '/speakers?page[number]=1&page[size]=100'
-                  prev:
-                    type: string
-                    example: 'null'
-                  next:
-                    type: string
-                    example: 'null'
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                      example: 12
-                    type:
-                      type: string
-                      example: speakers
-                    attributes:
-                      $ref: '#/definitions/Speaker'
-                    relationships:
-                      properties: {  }
-    post:
-      tags:
-        - speakers
-      summary: 'Add Speaker'
-      operationId: addSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: addSpeaker
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-  '/speakers/{Speaker_id}':
-    patch:
-      tags:
-        - speakers
-      summary: 'Edit Speaker'
-      operationId: editSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: editSpeaker
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-        -
-          name: Speaker_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-    delete:
-      tags:
-        - speakers
-      summary: 'Delete Speaker'
-      operationId: deleteSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Speaker_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-    get:
-      tags:
-        - speakers
-      summary: 'Get Speaker'
-      operationId: viewSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Speaker_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-  /panels/:
-    get:
-      tags:
-        - panels
-      summary: 'Panel List'
-      operationId: listPanel
-      produces:
-        - application/json
-      parameters: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: '/panels?page[number]=1&page[size]=100'
-                  first:
-                    type: string
-                    example: '/panels?page[number]=1&page[size]=100'
-                  last:
-                    type: string
-                    example: '/panels?page[number]=1&page[size]=100'
-                  prev:
-                    type: string
-                    example: 'null'
-                  next:
-                    type: string
-                    example: 'null'
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                      example: 12
-                    type:
-                      type: string
-                      example: panels
-                    attributes:
-                      $ref: '#/definitions/Panel'
-                    relationships:
-                      properties: {  }
-    post:
-      tags:
-        - panels
-      summary: 'Add Panel'
-      operationId: addPanel
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: addPanel
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties: {  }
-  '/panels/{Panel_id}':
-    patch:
-      tags:
-        - panels
-      summary: 'Edit Panel'
-      operationId: editPanel
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: editPanel
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties: {  }
-        -
-          name: Panel_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties: {  }
-    delete:
-      tags:
-        - panels
-      summary: 'Delete Panel'
-      operationId: deletePanel
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Panel_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties: {  }
-    get:
-      tags:
-        - panels
-      summary: 'Get Panel'
-      operationId: viewPanel
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Panel_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
                   relationships:
                     properties: {  }
   /tracks/:
@@ -1382,25 +560,876 @@ paths:
                     $ref: '#/definitions/Track'
                   relationships:
                     properties: {  }
+  /speakers/:
+    get:
+      tags:
+        - speakers
+      summary: 'Speaker List'
+      operationId: listSpeaker
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/speakers?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/speakers?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/speakers?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: speakers
+                    attributes:
+                      $ref: '#/definitions/Speaker'
+                    relationships:
+                      properties: {  }
+    post:
+      tags:
+        - speakers
+      summary: 'Add Speaker'
+      operationId: addSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addSpeaker
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties: {  }
+  '/speakers/{Speaker_id}':
+    patch:
+      tags:
+        - speakers
+      summary: 'Edit Speaker'
+      operationId: editSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editSpeaker
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties: {  }
+        -
+          name: Speaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties: {  }
+    delete:
+      tags:
+        - speakers
+      summary: 'Delete Speaker'
+      operationId: deleteSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Speaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties: {  }
+    get:
+      tags:
+        - speakers
+      summary: 'Get Speaker'
+      operationId: viewSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Speaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties: {  }
+  /events/:
+    get:
+      tags:
+        - events
+      summary: 'Event List'
+      operationId: listEvent
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/events?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/events?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/events?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: events
+                    attributes:
+                      $ref: '#/definitions/Event'
+                    relationships:
+                      properties:
+                        panels:
+                          type: array
+                          items:
+                            $ref: '#/definitions/Panel_relation'
+    post:
+      tags:
+        - events
+      summary: 'Add Event'
+      operationId: addEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addEvent
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties:
+                      panels:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties:
+                      panels:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+  '/events/{Event_id}':
+    patch:
+      tags:
+        - events
+      summary: 'Edit Event'
+      operationId: editEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editEvent
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties:
+                      panels:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+        -
+          name: Event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties:
+                      panels:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+    delete:
+      tags:
+        - events
+      summary: 'Delete Event'
+      operationId: deleteEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties:
+                      panels:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+    get:
+      tags:
+        - events
+      summary: 'Get Event'
+      operationId: viewEvent
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /events
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: events
+                  attributes:
+                    $ref: '#/definitions/Event'
+                  relationships:
+                    properties:
+                      panels:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+  /panels/:
+    get:
+      tags:
+        - panels
+      summary: 'Panel List'
+      operationId: listPanel
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/panels?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/panels?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/panels?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: panels
+                    attributes:
+                      $ref: '#/definitions/Panel'
+                    relationships:
+                      properties:
+                        event:
+                          $ref: '#/definitions/Event_relation'
+    post:
+      tags:
+        - panels
+      summary: 'Add Panel'
+      operationId: addPanel
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addPanel
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+  '/panels/{Panel_id}':
+    patch:
+      tags:
+        - panels
+      summary: 'Edit Panel'
+      operationId: editPanel
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editPanel
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+        -
+          name: Panel_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+    delete:
+      tags:
+        - panels
+      summary: 'Delete Panel'
+      operationId: deletePanel
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Panel_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+    get:
+      tags:
+        - panels
+      summary: 'Get Panel'
+      operationId: viewPanel
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Panel_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
 securityDefinitions:
   api_key:
     type: apiKey
     name: api_key
     in: header
 definitions:
-  Event:
-    type: object
-    properties:
-      EventID:
-        type: string
-      Name:
-        type: string
-      nameShort:
-        type: string
-      Type:
-        type: string
-      Description:
-        type: text
   Rooms:
     type: object
     properties:
@@ -1475,10 +1504,28 @@ definitions:
         type: string
       uShape:
         type: string
+  Track:
+    type: object
+    properties:
+      trackName:
+        type: string
+      trackDescription:
+        type: string
+      event_ID:
+        type: integer
+        format: int32
+      datecreated:
+        type: string
+        format: date-time
+      datemodified:
+        type: string
+        format: date-time
+      tracktype:
+        type: string
   Speaker:
     type: object
     properties:
-      saluation:
+      salutation:
         type: string
       SpkrNm:
         type: string
@@ -1569,7 +1616,7 @@ definitions:
         type: boolean
       invitationWhom:
         type: string
-      spidermaldate:
+      spideremaildate:
         type: string
         format: date-time
       whoconfirmed:
@@ -1627,12 +1674,33 @@ definitions:
         type: string
       instaGram:
         type: string
+  Event:
+    type: object
+    properties:
+      Name:
+        type: string
+      nameShort:
+        type: string
+      Type:
+        type: string
+      Description:
+        type: text
+  Panel_relation:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - panels
+        example: panels
+      id:
+        type: integer
+        minimum: 1
+        description: 'Panel ID'
+        example: 69
   Panel:
     type: object
     properties:
-      PID:
-        type: integer
-        format: int32
       sess:
         type: string
       Description:
@@ -1829,24 +1897,19 @@ definitions:
         type: string
       adfile:
         type: string
-  Track:
+  Event_relation:
     type: object
     properties:
-      trackName:
+      type:
         type: string
-      trackDescription:
-        type: string
-      event_ID:
+        enum:
+          - events
+        example: events
+      id:
         type: integer
-        format: int32
-      datecreated:
-        type: string
-        format: date-time
-      datemodified:
-        type: string
-        format: date-time
-      tracktype:
-        type: string
+        minimum: 1
+        description: 'Event ID'
+        example: 69
 externalDocs:
   description: 'Find out more about Swagger'
   url: 'http://swagger.io'

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,9 +19,9 @@ class Speaker {
   private $id;
 
   /**
-   * @ORM\Column(name="saluation", type="string")
+   * @ORM\Column(name="salutation", type="string")
    */
-  private $saluation;
+  private $salutation;
 
   /**
    * @ORM\Column(name="SpkrNm", type="string")
@@ -113,12 +114,12 @@ class Speaker {
   private $notes;
 
   /**
-   * @ORM\Column(name="datecreated", type="datetime")
+   * @ORM\Column(name="datecreated", type="datetime", nullable=true)
    */
   private $datecreated;
 
   /**
-   * @ORM\Column(name="datemodified", type="datetime")
+   * @ORM\Column(name="datemodified", type="datetime", nullable=true)
    */
   private $datemodified;
 
@@ -218,9 +219,9 @@ class Speaker {
   private $invitationWhom;
 
   /**
-   * @ORM\Column(name="spidermaldate", type="datetime")
+   * @ORM\Column(name="spideremaildate", type="datetime")
    */
-  private $spidermaldate;
+  private $spideremaildate;
 
   /**
    * @ORM\Column(name="whoconfirmed", type="string")
@@ -357,6 +358,16 @@ class Speaker {
    */
   private $instaGram;
 
+  private $panels;
+
+  public function __construct()
+  {
+    $this->panels = new ArrayCollection();
+  }
+
+
+  /** get/set ************************************************************
+   */
 
   public function getId(): ?int {
     return $this->id;
@@ -365,15 +376,15 @@ class Speaker {
   /**
    * @return mixed
    */
-  public function getSaluation() {
-    return $this->saluation;
+  public function getSalutation() {
+    return $this->salutation;
   }
 
   /**
-   * @param mixed $saluation
+   * @param mixed $salutation
    */
-  public function setSaluation($saluation): void {
-    $this->saluation = $saluation;
+  public function setSalutation($salutation): void {
+    $this->salutation = $salutation;
   }
 
   /**
@@ -926,15 +937,15 @@ class Speaker {
   /**
    * @return mixed
    */
-  public function getSpidermaldate() {
-    return $this->spidermaldate;
+  public function getSpideremaildate() {
+    return $this->spideremaildate;
   }
 
   /**
-   * @param mixed $spidermaldate
+   * @param mixed $spideremaildate
    */
-  public function setSpidermaldate($spidermaldate): void {
-    $this->spidermaldate = $spidermaldate;
+  public function setSpideremaildate($spideremaildate): void {
+    $this->spideremaildate = $spideremaildate;
   }
 
   /**
@@ -1315,5 +1326,32 @@ class Speaker {
     $this->instaGram = $instaGram;
   }
 
+  /**
+   * @return mixed
+   */
+  public function getSpeakerId() : int {
+    return $this->speaker_id;
+  }
+
+  /**
+   * @param mixed $speaker_id
+   */
+  public function setSpeakerId($speaker_id): void {
+    $this->speaker_id = $speaker_id;
+  }
+
+  /**
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getPanels(): \Doctrine\Common\Collections\Collection {
+    return $this->panels;
+  }
+
+  /**
+   * @param \Doctrine\Common\Collections\Collection $panels
+   */
+  public function setPanels(\Doctrine\Common\Collections\Collection $panels): void {
+    $this->panels = $panels;
+  }
 
 }

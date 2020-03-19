@@ -5,6 +5,7 @@ namespace App\JsonApi\Transformer;
 use App\Entity\Event;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToManyRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -50,9 +51,6 @@ class EventResourceTransformer extends AbstractResource
     public function getAttributes($event): array
     {
         return [
-            'EventID' => function (Event $event) {
-                return $event->getEventID();
-            },
             'Name' => function (Event $event) {
                 return $event->getName();
             },
@@ -73,7 +71,7 @@ class EventResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($event): array
     {
-        return [];
+        return ['panels'];
     }
 
     /**
@@ -82,6 +80,16 @@ class EventResourceTransformer extends AbstractResource
     public function getRelationships($event): array
     {
         return [
+            'panels' => function (Event $event) {
+                return ToManyRelationship::create()
+                    ->setDataAsCallable(
+                        function () use ($event) {
+                            return $event->getPanels();
+                        },
+                        new PanelResourceTransformer()
+                    )
+                    ->omitDataWhenNotIncluded();
+            },
         ];
     }
 }

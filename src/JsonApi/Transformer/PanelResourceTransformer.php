@@ -5,6 +5,7 @@ namespace App\JsonApi\Transformer;
 use App\Entity\Panel;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -50,9 +51,6 @@ class PanelResourceTransformer extends AbstractResource
     public function getAttributes($panel): array
     {
         return [
-            'PID' => function (Panel $panel) {
-                return $panel->getPID();
-            },
             'sess' => function (Panel $panel) {
                 return $panel->getSess();
             },
@@ -105,13 +103,15 @@ class PanelResourceTransformer extends AbstractResource
                 return $panel->getSumm();
             },
             'startTimed' => function (Panel $panel) {
-                return $panel->getStartTimed()->format(DATE_ATOM);
+                return ($panel->getStartTimed())
+                  ? $panel->getStartTimed()->format(DATE_ATOM) : null;
             },
             'stafflinked' => function (Panel $panel) {
                 return $panel->getStafflinked();
             },
             'srrTime' => function (Panel $panel) {
-                return $panel->getSrrTime()->format(DATE_ATOM);
+                return ($panel->getSrrTime())
+                   ? $panel->getSrrTime()->format(DATE_ATOM) : null;
             },
             'spons' => function (Panel $panel) {
                 return $panel->getSpons();
@@ -309,10 +309,12 @@ class PanelResourceTransformer extends AbstractResource
                 return $panel->getDeptGroup();
             },
             'datemodified' => function (Panel $panel) {
-                return $panel->getDatemodified()->format(DATE_ATOM);
+                return ($panel->getDatemodified())
+                   ? $panel->getDatemodified()->format(DATE_ATOM) : null;
             },
             'datecreated' => function (Panel $panel) {
-                return $panel->getDatecreated()->format(DATE_ATOM);
+                return ($panel->getDatecreated())
+                  ? $panel->getDatecreated()->format(DATE_ATOM) : NULL;
             },
             'commNotes' => function (Panel $panel) {
                 return $panel->getCommNotes();
@@ -355,6 +357,16 @@ class PanelResourceTransformer extends AbstractResource
     public function getRelationships($panel): array
     {
         return [
+            'event' => function (Panel $panel) {
+                return ToOneRelationship::create()
+                    ->setDataAsCallable(
+                        function () use ($panel) {
+                            return $panel->getEvent();
+                        },
+                        new EventResourceTransformer()
+                    )
+                    ->omitDataWhenNotIncluded();
+            },
         ];
     }
 }

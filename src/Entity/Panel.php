@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanelRepository")
@@ -12,15 +15,10 @@ class Panel {
 
   /**
    * @ORM\Id()
-   * @ORM\GeneratedValue()
-   * @ORM\Column(name="ID", type="integer")
+   * @ORM\GeneratedValue(strategy="NONE")
+   * @ORM\Column(name="PID", type="integer", unique=false, nullable=true)
    */
   private $id;
-
-  /**
-   * @ORM\Column(name="PID", type="integer")
-   */
-  private $PID;
 
   /**
    * @ORM\Column(name="sess", type="string")
@@ -343,42 +341,42 @@ class Panel {
   private $link8;
 
   /**
-   * @ORM\Column(name="$link8", type="string")
+   * @ORM\Column(name="link7", type="string")
    */
   private $link7;
 
   /**
-   * @ORM\Column(name="link7", type="string")
+   * @ORM\Column(name="link6", type="string")
    */
   private $link6;
 
   /**
-   * @ORM\Column(name="link6", type="string")
+   * @ORM\Column(name="link5", type="string")
    */
   private $link5;
 
   /**
-   * @ORM\Column(name="link5", type="string")
+   * @ORM\Column(name="link4", type="string")
    */
   private $link4;
 
   /**
-   * @ORM\Column(name="link4", type="string")
+   * @ORM\Column(name="link3", type="string")
    */
   private $link3;
 
   /**
-   * @ORM\Column(name="link3", type="string")
+   * @ORM\Column(name="link2", type="string")
    */
   private $link2;
 
   /**
-   * @ORM\Column(name="link2", type="string")
+   * @ORM\Column(name="link1", type="string")
    */
   private $link1;
 
   /**
-   * @ORM\Column(name="link1", type="string")
+   * @ORM\Column(name="itinDescription", type="string")
    */
   private $itinDescription;
 
@@ -493,9 +491,25 @@ class Panel {
   private $assignedRA;
 
   /**
-   * @ORM\Column(name="dfile", type="string")
+   * @ORM\Column(name="adfile", type="string")
    */
   private $adfile;
+
+  /**
+   * @ORM\ManyToOne(targetEntity="Event", inversedBy="panels")
+   * @JoinColumn(name="EventID", referencedColumnName="EventID", nullable=true, fieldName="EventID")
+   */
+  private $event;
+
+  /**
+   *
+   */
+  private $speakers;
+
+  function __construct() {
+    $this->speakers = new ArrayCollection();
+    $this->event = new Event();
+  }
 
   public function getId(): ?int {
     return $this->id;
@@ -919,20 +933,6 @@ class Panel {
    */
   public function setPpsetup($ppsetup): void {
     $this->ppsetup = $ppsetup;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPID() {
-    return $this->PID;
-  }
-
-  /**
-   * @param mixed $PID
-   */
-  public function setPID($PID): void {
-    $this->PID = $PID;
   }
 
   /**
@@ -1845,6 +1845,34 @@ class Panel {
     $this->adfile = $adfile;
   }
 
-  
+  /**
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getSpeakers() : ? Collection {
+    return $this->speakers;
+  }
+
+  /**
+   * @param \Doctrine\Common\Collections\Collection $speakers
+   */
+  public function setSpeakers(Collection $speakers): void {
+    $this->speakers = $speakers;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getEvent() {
+    return $this->event;
+  }
+
+  /**
+   * @param mixed $event
+   */
+  public function setEvent($event) {
+    $this->event = $event;
+
+    return $this;
+  }
 
 }

@@ -28,17 +28,18 @@ class EventController extends Controller
      */
     public function index(EventRepository $eventRepository, ResourceCollection $resourceCollection): ResponseInterface
     {
-      $resourceCollection->setRepository($eventRepository);
-      $resourceCollection->handleIndexRequest();
+        $resourceCollection->setRepository($eventRepository);
 
-      return $this->jsonApi()->respond()->ok(
-          new EventsDocument(new EventResourceTransformer()),
-          $resourceCollection
-      );
+        $resourceCollection->handleIndexRequest();
+
+        return $this->jsonApi()->respond()->ok(
+            new EventsDocument(new EventResourceTransformer()),
+            $resourceCollection
+        );
     }
 
     /**
-     * @Route("/{id}", name="events_show", methods="GET")
+     * @Route("/{EventID}", name="events_show", methods="GET")
      */
     public function show(Event $event): ResponseInterface
     {
@@ -47,5 +48,4 @@ class EventController extends Controller
             $event
         );
     }
-
 }

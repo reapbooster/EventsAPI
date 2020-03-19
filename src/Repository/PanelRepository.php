@@ -19,6 +19,15 @@ class PanelRepository extends ServiceEntityRepository
         parent::__construct($registry, Panel::class);
     }
 
+    public function findByEventid($value) {
+      $this->createQueryBuilder('p')
+        ->andWhere('p.EventID = :val')
+        ->setParameter('val', $value)
+        ->setMaxResults(10)
+        ->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return Panel[] Returns an array of Panel objects
     //  */

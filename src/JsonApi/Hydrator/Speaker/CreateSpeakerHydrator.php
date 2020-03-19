@@ -15,8 +15,8 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
     protected function getAttributeHydrator($speaker): array
     {
         return [
-            'saluation' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSaluation($attribute);
+            'salutation' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSalutation($attribute);
             },
             'SpkrNm' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setSpkrNm($attribute);
@@ -135,8 +135,8 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'invitationWhom' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setInvitationWhom($attribute);
             },
-            'spidermaldate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpidermaldate(new \DateTime($attribute));
+            'spideremaildate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSpideremaildate(new \DateTime($attribute));
             },
             'whoconfirmed' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setWhoconfirmed($attribute);

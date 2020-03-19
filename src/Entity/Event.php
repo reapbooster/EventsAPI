@@ -2,109 +2,116 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
  * @ORM\Table(name="Events")
  */
-class Event
-{
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+class Event {
 
-    /**
-     * @ORM\Column(name="EventID", type="string", length=255, nullable=true)
-     */
-    private $EventID;
 
-    /**
-     * @ORM\Column(name="Name", type="string", length=255, nullable=true)
-     */
-    private $Name;
+  /**
+   * @ORM\Id()
+   * @ORM\GeneratedValue(strategy="NONE")
+   * @ORM\Column(name="EventID", type="string", nullable=true, unique=false)
+   */
+  private $EventID;
 
-    /**
-     * @ORM\Column(name="nameShort", type="string", length=255, nullable=true)
-     */
-    private $nameShort;
+  /**
+   * @ORM\Column(name="Name", type="string", length=255, nullable=true)
+   */
+  private $Name;
 
-    /**
-     * @ORM\Column(name="Type", type="string", length=255, nullable=true)
-     */
-    private $Type;
+  /**
+   * @ORM\Column(name="nameShort", type="string", length=255, nullable=true)
+   */
+  private $nameShort;
 
-    /**
-     * @ORM\Column(name="Description", type="text", nullable=true)
-     */
-    private $Description;
+  /**
+   * @ORM\Column(name="Type", type="string", length=255, nullable=true)
+   */
+  private $Type;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  /**
+   * @ORM\Column(name="Description", type="text", nullable=true)
+   */
+  private $Description;
 
-    public function getEventID(): ?string
-    {
-        return $this->EventID;
-    }
+  /**
+   * @ORM\OneToMany(targetEntity="Panel", mappedBy="event")
+   * @ORM\JoinColumn(name="EventID", fieldName="EventID")
+   */
+  private $panels;
 
-    public function setEventID(?string $EventID): self
-    {
-        $this->EventID = $EventID;
+  public function __construct() {
+    $this->panels = new ArrayCollection();
+  }
 
-        return $this;
-    }
+  public function getId(): ?string {
+    return $this->EventID;
+  }
 
-    public function getName(): ?string
-    {
-        return $this->Name;
-    }
+  public function getEventID(): ?string {
+    return $this->EventID;
+  }
 
-    public function setName(?string $Name): self
-    {
-        $this->Name = $Name;
 
-        return $this;
-    }
+  public function getName(): ?string {
+    return $this->Name;
+  }
 
-    public function getNameShort(): ?string
-    {
-        return $this->nameShort;
-    }
+  public function setName(?string $Name): self {
+    $this->Name = $Name;
 
-    public function setNameShort(?string $nameShort): self
-    {
-        $this->nameShort = $nameShort;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getNameShort(): ?string {
+    return $this->nameShort;
+  }
 
-    public function getType(): ?string
-    {
-        return $this->Type;
-    }
+  public function setNameShort(?string $nameShort): self {
+    $this->nameShort = $nameShort;
 
-    public function setType(?string $Type): self
-    {
-        $this->Type = $Type;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getType(): ?string {
+    return $this->Type;
+  }
 
-    public function getDescription(): ?string
-    {
-        return $this->Description;
-    }
+  public function setType(?string $Type): self {
+    $this->Type = $Type;
 
-    public function setDescription(?string $Description): self
-    {
-        $this->Description = $Description;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getDescription(): ?string {
+    return $this->Description;
+  }
+
+  public function setDescription(?string $Description): self {
+    $this->Description = $Description;
+
+    return $this;
+  }
+
+  /**
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getPanels(): ? Collection {
+    return $this->panels;
+  }
+
+  /**
+   * @param \Doctrine\Common\Collections\Collection $panels
+   */
+  public function setPanels(Collection $panels) {
+    $this->panels = $panels;
+    return $this;
+  }
 
 }

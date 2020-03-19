@@ -15,9 +15,6 @@ class UpdatePanelHydrator extends AbstractPanelHydrator
     protected function getAttributeHydrator($panel): array
     {
         return [
-            'PID' => function (Panel $panel, $attribute, $data, $attributeName) {
-                $panel->setPID($attribute);
-            },
             'sess' => function (Panel $panel, $attribute, $data, $attributeName) {
                 $panel->setSess($attribute);
             },
