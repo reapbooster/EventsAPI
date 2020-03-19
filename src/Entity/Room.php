@@ -2,20 +2,21 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
  * @ORM\Table(name="gcHiltonRooms")
  */
-class Room
-{
+class Room {
+
   /**
    * @ORM\Id()
    * @ORM\GeneratedValue()
    * @ORM\Column(name="room_id", type="integer")
    */
-  private $id;
+  private $room_id;
 
   /**
    * @ORM\Column(name="rName", type="string")
@@ -102,9 +103,22 @@ class Room
    */
   private $uShape;
 
+  /**
+   * @ORM\OneToMany(targetEntity="Panel", mappedBy="room")
+   * @ORM\JoinTable(name="gcroomlinks",
+   *  joinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")},
+   *  inverseJoinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")}
+   * )
+   */
+  private $panels;
+
+  function __construct() {
+    $this->panels = new ArrayCollection();
+  }
+
 
   public function getId(): ?int {
-    return $this->id;
+    return $this->room_id;
   }
 
 
@@ -345,4 +359,21 @@ class Room
   public function setUShape($uShape): void {
     $this->uShape = $uShape;
   }
+
+  /**
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getPanels(): \Doctrine\Common\Collections\Collection {
+    return $this->panels;
+  }
+
+  /**
+   * @param \Doctrine\Common\Collections\Collection $panels
+   */
+  public function setPanels(\Doctrine\Common\Collections\Collection $panels): void {
+    $this->panels = $panels;
+  }
+
+
+
 }

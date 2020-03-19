@@ -560,280 +560,6 @@ paths:
                     $ref: '#/definitions/Track'
                   relationships:
                     properties: {  }
-  /speakers/:
-    get:
-      tags:
-        - speakers
-      summary: 'Speaker List'
-      operationId: listSpeaker
-      produces:
-        - application/json
-      parameters: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: '/speakers?page[number]=1&page[size]=100'
-                  first:
-                    type: string
-                    example: '/speakers?page[number]=1&page[size]=100'
-                  last:
-                    type: string
-                    example: '/speakers?page[number]=1&page[size]=100'
-                  prev:
-                    type: string
-                    example: 'null'
-                  next:
-                    type: string
-                    example: 'null'
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                      example: 12
-                    type:
-                      type: string
-                      example: speakers
-                    attributes:
-                      $ref: '#/definitions/Speaker'
-                    relationships:
-                      properties: {  }
-    post:
-      tags:
-        - speakers
-      summary: 'Add Speaker'
-      operationId: addSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: addSpeaker
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-  '/speakers/{Speaker_id}':
-    patch:
-      tags:
-        - speakers
-      summary: 'Edit Speaker'
-      operationId: editSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: editSpeaker
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-        -
-          name: Speaker_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-    delete:
-      tags:
-        - speakers
-      summary: 'Delete Speaker'
-      operationId: deleteSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Speaker_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
-    get:
-      tags:
-        - speakers
-      summary: 'Get Speaker'
-      operationId: viewSpeaker
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Speaker_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /speakers
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: speakers
-                  attributes:
-                    $ref: '#/definitions/Speaker'
-                  relationships:
-                    properties: {  }
   /events/:
     get:
       tags:
@@ -1424,6 +1150,294 @@ paths:
                     properties:
                       event:
                         $ref: '#/definitions/Event_relation'
+  /speakers/:
+    get:
+      tags:
+        - speakers
+      summary: 'Speaker List'
+      operationId: listSpeaker
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/speakers?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/speakers?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/speakers?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: speakers
+                    attributes:
+                      $ref: '#/definitions/Speaker'
+                    relationships:
+                      properties:
+                        event:
+                          $ref: '#/definitions/Event_relation'
+    post:
+      tags:
+        - speakers
+      summary: 'Add Speaker'
+      operationId: addSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addSpeaker
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+  '/speakers/{Speaker_id}':
+    patch:
+      tags:
+        - speakers
+      summary: 'Edit Speaker'
+      operationId: editSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editSpeaker
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+        -
+          name: Speaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+    delete:
+      tags:
+        - speakers
+      summary: 'Delete Speaker'
+      operationId: deleteSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Speaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+    get:
+      tags:
+        - speakers
+      summary: 'Get Speaker'
+      operationId: viewSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Speaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: speakers
+                  attributes:
+                    $ref: '#/definitions/Speaker'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
 securityDefinitions:
   api_key:
     type: apiKey
@@ -1521,158 +1535,6 @@ definitions:
         type: string
         format: date-time
       tracktype:
-        type: string
-  Speaker:
-    type: object
-    properties:
-      salutation:
-        type: string
-      SpkrNm:
-        type: string
-      Mname:
-        type: string
-      Lname:
-        type: string
-      suffix:
-        type: string
-      Description:
-        type: string
-      BioLink:
-        type: string
-      bioPic:
-        type: string
-      BioText:
-        type: string
-      speakertype:
-        type: string
-      Status:
-        type: string
-      PgTitle:
-        type: string
-      EventID:
-        type: string
-      sortorder:
-        type: integer
-        format: int32
-      cancelled:
-        type: boolean
-      rawFileType:
-        type: string
-      printFileType:
-        type: string
-      WebFileType:
-        type: string
-      notes:
-        type: string
-      datecreated:
-        type: string
-        format: date-time
-      datemodified:
-        type: string
-        format: date-time
-      createdbyID:
-        type: integer
-        format: int32
-      modifiedbyID:
-        type: integer
-        format: int32
-      ipnum:
-        type: integer
-        format: int32
-      attendeeID:
-        type: integer
-        format: int32
-      panelID:
-        type: integer
-        format: int32
-      whoSuggested:
-        type: string
-      whoEntered:
-        type: string
-      dateSuggested:
-        type: string
-        format: date-time
-      recBio:
-        type: boolean
-      recBioDate:
-        type: string
-      recPhoto:
-        type: string
-      recPhotoDate:
-        type: string
-        format: date-time
-      recWaiverDate:
-        type: string
-        format: date-time
-      spkEmail:
-        type: string
-      twitter:
-        type: string
-      twitter2:
-        type: string
-      twitterNotes:
-        type: string
-      invitationextend:
-        type: boolean
-      invitationWhom:
-        type: string
-      spideremaildate:
-        type: string
-        format: date-time
-      whoconfirmed:
-        type: string
-      city:
-        type: string
-      developmentPriority:
-        type: string
-      speakerRole:
-        type: string
-      speakerTopics:
-        type: string
-      primaryTrack:
-        type: string
-      secondaryTrack:
-        type: string
-      topicNotes:
-        type: string
-      connections:
-        type: string
-      devRelationship:
-        type: string
-      devRelationContact:
-        type: string
-      womensreport:
-        type: boolean
-      location:
-        type: string
-      photoModDate:
-        type: string
-      displayChinese:
-        type: string
-      devOrganization:
-        type: string
-      roleChangedate:
-        type: string
-        format: date-time
-      cVentID:
-        type: string
-      phoneticName:
-        type: string
-      needsfinaledit:
-        type: string
-      scheduleNotes:
-        type: string
-      linkedin:
-        type: string
-      speakerLiaison:
-        type: string
-      Facebook:
-        type: string
-      FacebookFollowers:
-        type: string
-      salesForceID:
-        type: string
-      instaGram:
         type: string
   Event:
     type: object
@@ -1896,6 +1758,158 @@ definitions:
       assignedRA:
         type: string
       adfile:
+        type: string
+  Speaker:
+    type: object
+    properties:
+      salutation:
+        type: string
+      SpkrNm:
+        type: string
+      Mname:
+        type: string
+      Lname:
+        type: string
+      suffix:
+        type: string
+      Description:
+        type: string
+      BioLink:
+        type: string
+      bioPic:
+        type: string
+      BioText:
+        type: string
+      speakertype:
+        type: string
+      Status:
+        type: string
+      PgTitle:
+        type: string
+      EventID:
+        type: string
+      sortorder:
+        type: integer
+        format: int32
+      cancelled:
+        type: boolean
+      rawFileType:
+        type: string
+      printFileType:
+        type: string
+      WebFileType:
+        type: string
+      notes:
+        type: string
+      datecreated:
+        type: string
+        format: date-time
+      datemodified:
+        type: string
+        format: date-time
+      createdbyID:
+        type: integer
+        format: int32
+      modifiedbyID:
+        type: integer
+        format: int32
+      ipnum:
+        type: integer
+        format: int32
+      attendeeID:
+        type: integer
+        format: int32
+      panelID:
+        type: integer
+        format: int32
+      whoSuggested:
+        type: string
+      whoEntered:
+        type: string
+      dateSuggested:
+        type: string
+        format: date-time
+      recBio:
+        type: boolean
+      recBioDate:
+        type: string
+      recPhoto:
+        type: string
+      recPhotoDate:
+        type: string
+        format: date-time
+      recWaiverDate:
+        type: string
+        format: date-time
+      spkEmail:
+        type: string
+      twitter:
+        type: string
+      twitter2:
+        type: string
+      twitterNotes:
+        type: string
+      invitationextend:
+        type: boolean
+      invitationWhom:
+        type: string
+      spideremaildate:
+        type: string
+        format: date-time
+      whoconfirmed:
+        type: string
+      city:
+        type: string
+      developmentPriority:
+        type: string
+      speakerRole:
+        type: string
+      speakerTopics:
+        type: string
+      primaryTrack:
+        type: string
+      secondaryTrack:
+        type: string
+      topicNotes:
+        type: string
+      connections:
+        type: string
+      devRelationship:
+        type: string
+      devRelationContact:
+        type: string
+      womensreport:
+        type: boolean
+      location:
+        type: string
+      photoModDate:
+        type: string
+      displayChinese:
+        type: string
+      devOrganization:
+        type: string
+      roleChangedate:
+        type: string
+        format: date-time
+      cVentID:
+        type: string
+      phoneticName:
+        type: string
+      needsfinaledit:
+        type: string
+      scheduleNotes:
+        type: string
+      linkedin:
+        type: string
+      speakerLiaison:
+        type: string
+      Facebook:
+        type: string
+      FacebookFollowers:
+        type: string
+      salesForceID:
+        type: string
+      instaGram:
         type: string
   Event_relation:
     type: object

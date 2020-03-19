@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SpeakerRepository")
@@ -13,10 +14,10 @@ class Speaker {
 
   /**
    * @ORM\Id()
-   * @ORM\GeneratedValue()
-   * @ORM\Column(name="SpkrID", type="integer")
+   * @ORM\GeneratedValue(strategy="NONE")
+   * @ORM\Column(name="SpkrID", type="integer", nullable=false)
    */
-  private $id;
+  private $SpkrID;
 
   /**
    * @ORM\Column(name="salutation", type="string")
@@ -159,7 +160,7 @@ class Speaker {
   private $whoEntered;
 
   /**
-   * @ORM\Column(name="dateSuggested", type="datetime")
+   * @ORM\Column(name="dateSuggested", type="datetime", nullable=true)
    */
   private $dateSuggested;
 
@@ -169,7 +170,7 @@ class Speaker {
   private $recBio;
 
   /**
-   * @ORM\Column(name="recBioDate", type="string")
+   * @ORM\Column(name="recBioDate", type="string", nullable=true)
    */
   private $recBioDate;
 
@@ -358,19 +359,21 @@ class Speaker {
    */
   private $instaGram;
 
-  private $panels;
+  /**
+   * @ORM\ManyToOne(targetEntity="Event", inversedBy="speakers")
+   * @JoinColumn(name="EventID", referencedColumnName="EventID", nullable=true, fieldName="EventID")
+   */
+  private $event;
 
   public function __construct()
   {
     $this->panels = new ArrayCollection();
+    $this->event = new Event();
   }
 
 
-  /** get/set ************************************************************
-   */
-
   public function getId(): ?int {
-    return $this->id;
+    return $this->SpkrID;
   }
 
   /**
@@ -1330,14 +1333,28 @@ class Speaker {
    * @return mixed
    */
   public function getSpeakerId() : int {
-    return $this->speaker_id;
+    return $this->SpkrID;
   }
 
   /**
    * @param mixed $speaker_id
    */
   public function setSpeakerId($speaker_id): void {
-    $this->speaker_id = $speaker_id;
+    $this->SpkrID = $speaker_id;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getEvent() {
+    return $this->event;
+  }
+
+  /**
+   * @param mixed $event
+   */
+  public function setEvent($event): void {
+    $this->event = $event;
   }
 
   /**
@@ -1353,5 +1370,7 @@ class Speaker {
   public function setPanels(\Doctrine\Common\Collections\Collection $panels): void {
     $this->panels = $panels;
   }
+
+
 
 }

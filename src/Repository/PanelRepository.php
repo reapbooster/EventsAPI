@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Panel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Kint\Kint;
 
 /**
  * @method Panel|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,6 +27,24 @@ class PanelRepository extends ServiceEntityRepository
         ->setMaxResults(10)
         ->getQuery()
         ->getResult();
+    }
+
+    public function find($id, $lockMode = null, $lockVersion = null): Panel {
+      [$EventID, $PID] = explode("::", $id);
+      $toReturn = $this->createQueryBuilder('p')
+        ->andWhere('p.EventID = :EventID')
+        ->andWhere('p.PID = :PID')
+        ->setParameter("EventID", $EventID)
+        ->setParameter('PID', $PID)
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getResult();
+      if (!empty($toReturn) && is_array($toReturn)) {
+        $toReturn = array_shift($toReturn);
+      }
+      if ($toReturn instanceof Panel) {
+        return $toReturn;
+      }
     }
 
     // /**

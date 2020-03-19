@@ -12,10 +12,10 @@ class Track {
 
   /**
    * @ORM\Id()
-   * @ORM\GeneratedValue()
-   * @ORM\Column(name="track_ID", type="integer")
+   * @ORM\GeneratedValue(strategy="NONE")
+   * @ORM\Column(name="track_ID", type="integer", nullable=false)
    */
-  private $id;
+  private $track_ID;
 
   /**
    * @ORM\Column(name="trackName", type="string")
@@ -28,17 +28,17 @@ class Track {
   private $trackDescription;
 
   /**
-   * @ORM\Column(name="event_ID", type="integer")
+   * @ORM\Column(name="event_ID", type="string", nullable=true)
    */
   private $event_ID;
 
   /**
-   * @ORM\Column(name="datecreated", type="datetime")
+   * @ORM\Column(name="datecreated", type="datetime", nullable=true)
    */
   private $datecreated;
 
   /**
-   * @ORM\Column(name="datemodified", type="datetime")
+   * @ORM\Column(name="datemodified", type="datetime", nullable=true)
    */
   private $datemodified;
 
@@ -47,8 +47,19 @@ class Track {
    */
   private $tracktype;
 
+  /**
+   * @ORM\ManyToOne(targetEntity="Event", inversedBy="tracks")
+   * @ORM\JoinColumn(name="event_ID", referencedColumnName="EventID")
+   */
+  private $event;
+
+  function __construct() {
+    $this->event = new Event();
+  }
+
+
   public function getId(): ?int {
-    return $this->id;
+    return $this->track_ID;
   }
 
   /**
@@ -133,6 +144,20 @@ class Track {
    */
   public function setTracktype($tracktype): void {
     $this->tracktype = $tracktype;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getEvent() {
+    return $this->event;
+  }
+
+  /**
+   * @param mixed $event
+   */
+  public function setEvent($event): void {
+    $this->event = $event;
   }
 
 

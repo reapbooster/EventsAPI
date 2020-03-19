@@ -16,9 +16,14 @@ class Panel {
   /**
    * @ORM\Id()
    * @ORM\GeneratedValue(strategy="NONE")
-   * @ORM\Column(name="PID", type="integer", unique=false, nullable=true)
+   * @ORM\Column(name="ID", type="integer", unique=false, nullable=true)
    */
   private $id;
+
+  /**
+   * @ORM\Column(name="PID", type="integer", unique=false, nullable=true)
+   */
+  private $PID;
 
   /**
    * @ORM\Column(name="sess", type="string")
@@ -502,18 +507,43 @@ class Panel {
   private $event;
 
   /**
-   *
+   * @ORM\OneToMany(targetEntity="Speaker", mappedBy="panels")
+   * @ORM\JoinTable(name="gcspakerlinks",
+   *   joinColumns={@JoinColumn(name="panel_id", referencedColumnName="SpkrID")})
    */
   private $speakers;
 
-  function __construct() {
+  /**
+   * @ORM\OneToOne(targetEntity="Room", mappedBy="panels")
+   */
+  private $room;
+
+  function __construct($EventID = null, $PID = null) {
+    $this->setEventID($EventID);
+    $this->setPid($PID);
     $this->speakers = new ArrayCollection();
     $this->event = new Event();
   }
 
-  public function getId(): ?int {
-    return $this->id;
+  public function getId(): string {
+    return $this->EventID . "::" . $this->PID;
   }
+
+  /**
+   * @return mixed
+   */
+  public function getPID() {
+    return $this->PID;
+  }
+
+  /**
+   * @param mixed $PID
+   */
+  public function setPID($PID): void {
+    $this->PID = $PID;
+  }
+
+
 
   /**
    * @return mixed
@@ -1874,5 +1904,21 @@ class Panel {
 
     return $this;
   }
+
+  /**
+   * @return mixed
+   */
+  public function getRoom() {
+    return $this->room;
+  }
+
+  /**
+   * @param mixed $room
+   */
+  public function setRoom($room): void {
+    $this->room = $room;
+  }
+
+
 
 }

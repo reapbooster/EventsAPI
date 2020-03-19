@@ -46,8 +46,22 @@ class Event {
    */
   private $panels;
 
+  /**
+   * @ORM\OneToMany(targetEntity="Speaker", mappedBy="event")
+   * @ORM\JoinColumn(name="EventID", fieldName="EventID")
+   */
+  private $speakers;
+
+  /**
+   * @ORM\OneToMany(targetEntity="Track", mappedBy="event")
+   * @ORM\JoinColumn(name="EventID", fieldName="EventID", referencedColumnName="event_ID")
+   */
+  private $tracks;
+
   public function __construct() {
     $this->panels = new ArrayCollection();
+    $this->speakers = new ArrayCollection();
+    $this->tracks = new ArrayCollection();
   }
 
   public function getId(): ?string {
@@ -113,5 +127,35 @@ class Event {
     $this->panels = $panels;
     return $this;
   }
+
+  /**
+   * @return mixed
+   */
+  public function getSpeakers() {
+    return $this->speakers;
+  }
+
+  /**
+   * @param mixed $speakers
+   */
+  public function setSpeakers($speakers): void {
+    $this->speakers = $speakers;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getTracks() {
+    return $this->tracks;
+  }
+
+  /**
+   * @param mixed $tracks
+   */
+  public function setTracks($tracks): void {
+    $this->tracks = $tracks;
+  }
+
+
 
 }

@@ -2,9 +2,11 @@
 
 namespace App\JsonApi\Transformer;
 
+use App\Entity\Panel;
 use App\Entity\Track;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -85,6 +87,15 @@ class TrackResourceTransformer extends AbstractResource
     public function getRelationships($track): array
     {
         return [
+          'event' => function (Track $track) {
+            return ToOneRelationship::create()
+              ->setDataAsCallable(
+                function () use ($track) {
+                  return $track->getEvent();
+                },
+                new EventResourceTransformer()
+              );
+          },
         ];
     }
 }

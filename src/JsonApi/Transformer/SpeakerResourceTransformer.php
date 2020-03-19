@@ -5,6 +5,7 @@ namespace App\JsonApi\Transformer;
 use App\Entity\Speaker;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -108,10 +109,12 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getNotes();
             },
             'datecreated' => function (Speaker $speaker) {
-                return ($speaker->getDatecreated()) ? $speaker->getDatecreated()->format(DATE_ATOM) : null;
+                return ($speaker->getDatecreated())
+                  ? $speaker->getDatecreated()->format(DATE_ATOM) : NULL;
             },
             'datemodified' => function (Speaker $speaker) {
-                return ($speaker->getDatemodified()) ? $speaker->getDatemodified()->format(DATE_ATOM) : null;
+                return ($speaker->getDatemodified())
+                  ? $speaker->getDatemodified()->format(DATE_ATOM) : NULL;
             },
             'createdbyID' => function (Speaker $speaker) {
                 return $speaker->getCreatedbyID();
@@ -135,7 +138,8 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getWhoEntered();
             },
             'dateSuggested' => function (Speaker $speaker) {
-                return ($speaker->getDateSuggested()) ? $speaker->getDateSuggested()->format(DATE_ATOM) : null;
+                return ($speaker->getDateSuggested()) ?
+                  $speaker->getDateSuggested()->format(DATE_ATOM) : NULL;
             },
             'recBio' => function (Speaker $speaker) {
                 return $speaker->getRecBio();
@@ -147,10 +151,12 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getRecPhoto();
             },
             'recPhotoDate' => function (Speaker $speaker) {
-                return ($speaker->getRecPhotoDate()) ? $speaker->getRecPhotoDate()->format(DATE_ATOM) : null;
+                return ($speaker->getRecPhotoDate())
+                  ? $speaker->getRecPhotoDate()->format(DATE_ATOM) : NULL;
             },
             'recWaiverDate' => function (Speaker $speaker) {
-                return ($speaker->getRecWaiverDate()) ? $speaker->getRecWaiverDate()->format(DATE_ATOM) : null;
+                return ($speaker->getRecWaiverDate())
+                  ? $speaker->getRecWaiverDate()->format(DATE_ATOM) : NULL;
             },
             'spkEmail' => function (Speaker $speaker) {
                 return $speaker->getSpkEmail();
@@ -171,7 +177,8 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getInvitationWhom();
             },
             'spideremaildate' => function (Speaker $speaker) {
-                return ($speaker->getSpideremaildate()) ? $speaker->getSpideremaildate()->format(DATE_ATOM) : null;
+                return ($speaker->getSpideremaildate())
+                  ? $speaker->getSpideremaildate()->format(DATE_ATOM) : NULL;
             },
             'whoconfirmed' => function (Speaker $speaker) {
                 return $speaker->getWhoconfirmed();
@@ -222,7 +229,8 @@ class SpeakerResourceTransformer extends AbstractResource
                 return $speaker->getDevOrganization();
             },
             'roleChangedate' => function (Speaker $speaker) {
-                return ($speaker->getRoleChangedate()) ? $speaker->getRoleChangedate()->format(DATE_ATOM) : null;
+                return $speaker->getRoleChangedate()
+                  ? $speaker->getRoleChangedate()->format(DATE_ATOM) : NULL;
             },
             'cVentID' => function (Speaker $speaker) {
                 return $speaker->getCVentID();
@@ -262,7 +270,7 @@ class SpeakerResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($speaker): array
     {
-        return [];
+        return ['event'];
     }
 
     /**
@@ -271,6 +279,15 @@ class SpeakerResourceTransformer extends AbstractResource
     public function getRelationships($speaker): array
     {
         return [
+            'event' => function (Speaker $speaker) {
+                return ToOneRelationship::create()
+                    ->setDataAsCallable(
+                        function () use ($speaker) {
+                            return $speaker->getEvent();
+                        },
+                        new EventResourceTransformer()
+                    );
+            },
         ];
     }
 }

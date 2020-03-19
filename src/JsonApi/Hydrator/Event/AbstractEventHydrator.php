@@ -88,8 +88,6 @@ abstract class AbstractEventHydrator extends AbstractHydrator
                         ->setParameter("val", $event->getId())
                         ->getQuery()
                         ->getResult();
-                    print_r($association);
-                    exit();
                     $this->validateRelationValues($association, $panels->getResourceIdentifierIds(), $relationshipName);
                 } else {
                     $association = [];

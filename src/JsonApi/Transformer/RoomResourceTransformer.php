@@ -2,9 +2,11 @@
 
 namespace App\JsonApi\Transformer;
 
+use App\Entity\Panel;
 use App\Entity\Room;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToManyRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -109,7 +111,7 @@ class RoomResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($room): array
     {
-        return [];
+        return ['panels'];
     }
 
     /**
@@ -118,6 +120,15 @@ class RoomResourceTransformer extends AbstractResource
     public function getRelationships($room): array
     {
         return [
+          'panels' => function (Room $room) {
+            return ToManyRelationship::create()
+              ->setDataAsCallable(
+                function () use ($room) {
+                  return $room->getPanels();
+                },
+                new PanelResourceTransformer()
+              );
+          },
         ];
     }
 }

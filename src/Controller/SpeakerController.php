@@ -38,9 +38,8 @@ class SpeakerController extends Controller
         );
     }
 
-
     /**
-     * @Route("/{id}", name="speakers_show", methods="GET")
+     * @Route("/{SpkrID}", name="speakers_show", methods="GET")
      */
     public function show(Speaker $speaker): ResponseInterface
     {
