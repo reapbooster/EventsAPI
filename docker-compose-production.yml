@@ -47,10 +47,10 @@ services:
   #    env_file:
   #      - .env
 
-  #  redis:
-  #    image: redis
-  #    expose:
-  #      - '6379'
+    redis:
+      image: redis
+      expose:
+        - '6379'
 
   # grid:
   #  image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu

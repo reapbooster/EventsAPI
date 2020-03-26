@@ -3,6 +3,7 @@
 namespace App\JsonApi\Hydrator\Panel;
 
 use App\Entity\Panel;
+use Doctrine\Common\Collections\ArrayCollection;
 use Paknahad\JsonApiBundle\Hydrator\AbstractHydrator;
 use Paknahad\JsonApiBundle\Hydrator\ValidatorTrait;
 use Paknahad\JsonApiBundle\Exception\InvalidRelationshipValueException;
@@ -14,88 +15,94 @@ use WoohooLabs\Yin\JsonApi\Request\JsonApiRequestInterface;
 /**
  * Abstract Panel Hydrator.
  */
-abstract class AbstractPanelHydrator extends AbstractHydrator
-{
-    use ValidatorTrait;
+abstract class AbstractPanelHydrator extends AbstractHydrator {
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function validateClientGeneratedId(
-        string $clientGeneratedId,
-        JsonApiRequestInterface $request,
-        ExceptionFactoryInterface $exceptionFactory
-    ): void {
-        if (!empty($clientGeneratedId)) {
-            throw $exceptionFactory->createClientGeneratedIdNotSupportedException($request, $clientGeneratedId);
+  use ValidatorTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function validateClientGeneratedId(
+    string $clientGeneratedId,
+    JsonApiRequestInterface $request,
+    ExceptionFactoryInterface $exceptionFactory
+  ): void {
+    if (!empty($clientGeneratedId)) {
+      throw $exceptionFactory->createClientGeneratedIdNotSupportedException($request, $clientGeneratedId);
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function generateId(): string {
+    return '';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getAcceptedTypes(): array {
+    return ['panels'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getAttributeHydrator($panel): array {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function validateRequest(JsonApiRequestInterface $request): void {
+    $this->validateFields($this->objectManager->getClassMetadata(Panel::class), $request);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setId($panel, string $id): void {
+    if ($id && (string) $panel->getId() !== $id) {
+      throw new NotFoundHttpException('both ids in url & body must be the same');
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getRelationshipHydrator($panel): array {
+    return [
+      'event' => function (Panel $panel, ToOneRelationship $event, $data, $relationshipName) {
+        $this->validateRelationType($event, ['events']);
+        $association = NULL;
+        $identifier = $event->getResourceIdentifier();
+        if ($identifier) {
+          $association = $this->objectManager->getRepository('App\Entity\Event')
+            ->find($identifier->getId());
+
+          if (is_null($association)) {
+            throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
+          }
         }
-    }
+        return $association;
+      },
+      'room' => function (Panel $panel, ToOneRelationship $event, $data, $relationshipName) {
+        $this->validateRelationType($event, ['room']);
+        $association = NULL;
+        $identifier = $event->getResourceIdentifier();
+        if ($identifier) {
+          $association = $this->objectManager->getRepository('App\Entity\Room')
+            ->find($identifier->getId());
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function generateId(): string
-    {
-        return '';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getAcceptedTypes(): array
-    {
-        return ['panels'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getAttributeHydrator($panel): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function validateRequest(JsonApiRequestInterface $request): void
-    {
-        $this->validateFields($this->objectManager->getClassMetadata(Panel::class), $request);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setId($panel, string $id): void
-    {
-        if ($id && (string) $panel->getId() !== $id) {
-            throw new NotFoundHttpException('both ids in url & body must be the same');
+          if (is_null($association)) {
+            throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
+          }
         }
-    }
+        return $association;
+      },
+    ];
+  }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getRelationshipHydrator($panel): array
-    {
-        return [
-            'event' => function (Panel $panel, ToOneRelationship $event, $data, $relationshipName) {
-                $this->validateRelationType($event, ['events']);
-
-
-                $association = null;
-                $identifier = $event->getResourceIdentifier();
-                if ($identifier) {
-                    $association = $this->objectManager->getRepository('App\Entity\Event')
-                        ->find($identifier->getId());
-
-                    if (is_null($association)) {
-                        throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
-                    }
-                }
-
-                $panel->setEvent($association);
-            },
-        ];
-    }
 }

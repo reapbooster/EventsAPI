@@ -10,13 +10,14 @@ use Doctrine\ORM\Mapping\JoinColumn;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanelRepository")
  * @ORM\Table(name="panel")
+ *
  */
 class Panel {
 
   /**
    * @ORM\Id()
    * @ORM\GeneratedValue(strategy="NONE")
-   * @ORM\Column(name="ID", type="integer", unique=false, nullable=true)
+   * @ORM\Column(name="ID", type="integer", unique=true, nullable=false)
    */
   private $id;
 
@@ -500,22 +501,10 @@ class Panel {
    */
   private $adfile;
 
-  /**
-   * @ORM\ManyToOne(targetEntity="Event", inversedBy="panels")
-   * @JoinColumn(name="EventID", referencedColumnName="EventID", nullable=true, fieldName="EventID")
-   */
   private $event;
 
-  /**
-   * @ORM\OneToMany(targetEntity="Speaker", mappedBy="panels")
-   * @ORM\JoinTable(name="gcspakerlinks",
-   *   joinColumns={@JoinColumn(name="panel_id", referencedColumnName="SpkrID")})
-   */
   private $speakers;
 
-  /**
-   * @ORM\OneToOne(targetEntity="Room", mappedBy="panels")
-   */
   private $room;
 
   function __construct($EventID = null, $PID = null) {
@@ -523,10 +512,11 @@ class Panel {
     $this->setPid($PID);
     $this->speakers = new ArrayCollection();
     $this->event = new Event();
+    $this->room = new Room();
   }
 
   public function getId(): string {
-    return $this->EventID . "::" . $this->PID;
+    return $this->id;
   }
 
   /**

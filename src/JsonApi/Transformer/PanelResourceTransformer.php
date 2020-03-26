@@ -341,7 +341,7 @@ class PanelResourceTransformer extends AbstractResource {
    * {@inheritdoc}
    */
   public function getDefaultIncludedRelationships($panel): array {
-    return ['event', 'speakers'];
+    return ['event', 'speakers', 'room'];
   }
 
   /**
@@ -367,6 +367,11 @@ class PanelResourceTransformer extends AbstractResource {
             new SpeakerResourceTransformer()
           );
       },
+      'room' => ToOneRelationship::create()
+      ->setDataAsCallable(function () use ($panel) {
+        return $panel->getRoom();
+      }
+      , new RoomResourceTransformer() ),
     ];
   }
 

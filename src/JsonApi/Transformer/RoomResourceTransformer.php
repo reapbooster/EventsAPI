@@ -111,7 +111,7 @@ class RoomResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($room): array
     {
-        return ['panels'];
+        return [];
     }
 
     /**

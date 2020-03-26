@@ -1,8 +1,9 @@
 doctrine:
     dbal:
-        driver: 'pdo_sqlsrv'
+        driver: pdo_sqlsrv
         url: '%env(resolve:DATABASE_URL)%'
         charset: UTF-8
+        port: 1433
 
     orm:
         auto_generate_proxy_classes: true

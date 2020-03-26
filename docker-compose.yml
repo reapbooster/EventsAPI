@@ -22,8 +22,9 @@ services:
     expose:
       - '9000'
       - '4444'
-    external_links:
-      - solr-ssl_solr-network:milkensolr-nginx
+    environment:
+      - DATABASE_URL=sqlsrv://sa:drupal^99^DRUPAL@grid:1433/mishop?CharacterSet=UTF-8
+      - APP_DEBUG=true
     volumes:
       - ".:/var/www"
       - type: bind
@@ -34,6 +35,7 @@ services:
       - grid
     env_file:
       - .env
+
 
 #  mysql:
 #    build: docker/mysql-container
@@ -47,10 +49,10 @@ services:
 #    env_file:
 #      - .env
 
-#  redis:
-#    image: redis
-#    expose:
-#      - '6379'
+  redis:
+    image: redis
+    expose:
+      - '6379'
 
   grid:
     image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu

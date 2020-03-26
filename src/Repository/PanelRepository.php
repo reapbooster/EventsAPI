@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Event;
 use App\Entity\Panel;
+use App\Entity\Room;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Kint\Kint;
@@ -29,21 +31,33 @@ class PanelRepository extends ServiceEntityRepository
         ->getResult();
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): Panel {
-      [$EventID, $PID] = explode("::", $id);
-      $toReturn = $this->createQueryBuilder('p')
-        ->andWhere('p.EventID = :EventID')
-        ->andWhere('p.PID = :PID')
-        ->setParameter("EventID", $EventID)
-        ->setParameter('PID', $PID)
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getResult();
-      if (!empty($toReturn) && is_array($toReturn)) {
-        $toReturn = array_shift($toReturn);
+    public function find($id, $lockMode = null, $lockVersion = null): ?Panel {
+      if (strpos($id, "::") !== false) {
+        [$EventID, $PID] = explode("::", $id);
+      } else {
+        $PANEL_ID = $id;
       }
-      if ($toReturn instanceof Panel) {
-        return $toReturn;
+
+      $qb = $this->createQueryBuilder('p')
+        ->andWhere('p.id = :PANELID')
+        ->setParameter('PANELID', $PANEL_ID)
+        ->setMaxResults(1);
+
+      if (isset($EventID)) {
+        $qb->andWhere('p.EventID = :EVENTID')
+          ->setParameter("EVENTID", $EventID);
+      }
+      $panel = $qb->getQuery()
+        ->getSingleResult();
+
+      if ($panel instanceof Panel) {
+        $room = $this->getEntityManager()
+          ->getRepository("App\Entity\Room")
+          ->findRoomForPanel($panel);
+        if ($room instanceof Room) {
+          $panel->setRoom($room);
+        }
+        return $panel;
       }
     }
 
@@ -62,9 +76,20 @@ class PanelRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    **/
 
-    /*
+    public function findPanelsForRoom(Room $room, Event $event = null) {
+      $toReturn = $this->createQueryBuilder('p')
+        ->join('gcRoomLinks', "rl", "WITH", "p.ID = rl.panel_id and rl.room_id = :ROOM")
+        ->setParameter("ROOM", $room->getId());
+      if ($event instanceof Event) {
+        $toReturn->andWhere('p.EventID = :EVENTID')
+          ->setParameter('EVENTID', $event->getId());
+      }
+      return $toReturn->getQuery()->getResult();
+    }
+
+    /**
     public function findOneBySomeField($value): ?Panel
     {
         return $this->createQueryBuilder('p')

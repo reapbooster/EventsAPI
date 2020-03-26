@@ -103,13 +103,6 @@ class Room {
    */
   private $uShape;
 
-  /**
-   * @ORM\OneToMany(targetEntity="Panel", mappedBy="room")
-   * @ORM\JoinTable(name="gcroomlinks",
-   *  joinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")},
-   *  inverseJoinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")}
-   * )
-   */
   private $panels;
 
   function __construct() {
@@ -363,7 +356,7 @@ class Room {
   /**
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getPanels(): \Doctrine\Common\Collections\Collection {
+  public function getPanels(): ?\Doctrine\Common\Collections\Collection {
     return $this->panels;
   }
 
