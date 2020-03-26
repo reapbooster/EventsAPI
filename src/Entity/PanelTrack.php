@@ -6,13 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanelTrackRepository", readOnly=TRUE)
- * @ORM\Table(name="gctracklinks",
- *   indexes={
- *      @ORM\Index(name="id", columns={"id"}),
- *      @ORM\Index(name="panel_id", columns={"panel_id"}),
- *      @ORM\Index(name="track_id", columns={"track_id"}),
- *   }
- * )
+ * @ORM\Table(name="gctracklinks")
  * @property int $id
  * @property int $panel_id
  * @property int $track_id
@@ -22,7 +16,7 @@ class PanelTrack {
   /**
    * @ORM\Id()
    * @ORM\GeneratedValue()
-   * @ORM\Column( type="integer")
+   * @ORM\Column(name="id", type="integer")
    */
   private $id;
 
@@ -44,6 +38,7 @@ class PanelTrack {
 
   /**
    * @ORM\ManyToMany(targetEntity="Panel", mappedBy="id" )
+   * @ORM\JoinColumn(name="panel_id", referencedColumnName="ID")
    * @var \App\Entity\Panel
    */
   private $panel;

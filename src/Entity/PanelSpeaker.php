@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\PanelSpeakerRepository", readOnly=TRUE)
  * @ORM\Table(name="gcspeakerlinks",
  *   indexes={
- *      @ORM\Index(name="id", columns={"id"}),
  *      @ORM\Index(name="panel_id", columns={"panel_id"}),
  *      @ORM\Index(name="speaker_id", columns={"speaker_id"}),
  *   }

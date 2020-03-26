@@ -39,7 +39,7 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/{EventID}", name="events_show", methods="GET")
+     * @Route("/{eventid}", name="events_show", methods="GET")
      */
     public function show(Event $event): ResponseInterface
     {

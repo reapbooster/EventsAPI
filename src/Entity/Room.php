@@ -9,110 +9,148 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository", readOnly=TRUE)
  * @ORM\Table(name="gcHiltonRooms",
  *   indexes={
- *     @ORM\Index(name="id", columns={"room_id"}),
+ *     @ORM\Index(name="primary", columns={"room_id"}),
  *   }
  * )
- * @property int $room_id
- * @property string $rName
+ * @property int $roomId
+ * @property string $rname
  */
 class Room {
 
   /**
-   * @ORM\GeneratedValue(strategy="NONE")
-   * @ORM\Column(name="room_id", type="integer")
+   * @var int
+   *
+   * @ORM\Column(name="room_id", type="integer", nullable=false)
    * @ORM\Id
+   * @ORM\GeneratedValue(strategy="IDENTITY")
    */
-  private $room_id;
+  private $roomId;
 
   /**
-   * @ORM\Column(name="rName", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="rName", type="string", length=250, nullable=true)
    */
-  private $rName;
+  private $rname;
 
   /**
-   * @ORM\Column(name="schoolhousecap", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="schoolhousecap", type="integer", nullable=true)
    */
   private $schoolhousecap;
 
   /**
-   * @ORM\Column(name="roundscap",type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="roundscap", type="integer", nullable=true)
    */
   private $roundscap;
 
   /**
-   * @ORM\Column(name="theatercap", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="theatercap", type="integer", nullable=true)
    */
   private $theatercap;
 
   /**
-   * @ORM\Column(name="hollowSquare", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="hollowSquare", type="integer", nullable=true)
    */
-  private $hollowSquare;
+  private $hollowsquare;
 
   /**
-   * @ORM\Column(name="conference", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="conference", type="integer", nullable=true)
    */
   private $conference;
 
   /**
-   * @ORM\Column(name="notes", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="notes", type="string", length=0, nullable=true)
    */
   private $notes;
 
   /**
-   * @ORM\Column(name="sortOrder", type="integer")
+   * @var int|null
+   *
+   * @ORM\Column(name="sortorder", type="integer", nullable=true)
    */
-  private $sortOrder;
+  private $sortorder;
 
   /**
-   * @ORM\Column(name="roomGroup", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="roomGroup", type="string", length=50, nullable=true)
    */
-  private $roomGroup;
+  private $roomgroup;
 
   /**
-   * @ORM\Column(name="datecreated", type="datetime")
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="datecreated", type="datetime", nullable=true)
    */
   private $datecreated;
 
   /**
-   * @ORM\Column(name="datemodified", type="datetime")
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="datemodified", type="datetime", nullable=true)
    */
   private $datemodified;
 
   /**
-   * @ORM\Column(name="eventType", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="eventType", type="string", length=50, nullable=true)
    */
-  private $eventType;
+  private $eventtype;
 
   /**
-   * @ORM\Column(name="lounge", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="lounge", type="integer", nullable=true)
    */
   private $lounge;
 
   /**
-   * @ORM\Column(name="reception", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="reception", type="integer", nullable=true)
    */
   private $reception;
 
   /**
-   * @ORM\Column(name="tour", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="tour", type="integer", nullable=true)
    */
   private $tour;
 
   /**
-   * @ORM\Column(name="hollowCircle", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="hollowCircle", type="integer", nullable=true)
    */
-  private $hollowCircle;
+  private $hollowcircle;
 
   /**
-   * @ORM\Column(name="uShape", type="string")
+   * @var int|null
+   *
+   * @ORM\Column(name="uShape", type="integer", nullable=true)
    */
-  private $uShape;
+  private $ushape;
+
+
 
   /**
-   * @ORM\ManyToOne(targetEntity="Panel", inversedBy="room")
+   * @ORM\OneToMany(targetEntity="Panel", mappedBy="room")
    * @ORM\JoinTable(name="gcroomlinks",
-   *  joinColumns={@ORM\JoinColumn(name="panel_id", referencedColumnName="ID", fieldName="id")},
+   *  joinColumns={@ORM\JoinColumn(name="panel_id", referencedColumnName="ID", fieldName="ID")},
    *  inverseJoinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")}
    * )
    * @var \Doctrine\Common\Collections\Collection
@@ -125,252 +163,265 @@ class Room {
 
 
   public function getId(): ?int {
-    return $this->room_id;
-  }
-
-
-  /**
-   * @return mixed
-   */
-  public function getRName() {
-    return $this->rName;
+    return $this->roomId;
   }
 
   /**
-   * @param mixed $rName
+   * @return int
    */
-  public function setRName($rName): void {
-    $this->rName = $rName;
+  public function getRoomId(): int {
+    return $this->roomId;
   }
 
   /**
-   * @return mixed
+   * @param int $roomId
    */
-  public function getSchoolhousecap() {
+  public function setRoomId(int $roomId): void {
+    $this->roomId = $roomId;
+  }
+
+  /**
+   * @return string
+   */
+  public function getRname(): string {
+    return $this->rname;
+  }
+
+  /**
+   * @param string $rname
+   */
+  public function setRname(string $rname): void {
+    $this->rname = $rname;
+  }
+
+  /**
+   * @return int|null
+   */
+  public function getSchoolhousecap(): ?int {
     return $this->schoolhousecap;
   }
 
   /**
-   * @param mixed $schoolhousecap
+   * @param int|null $schoolhousecap
    */
-  public function setSchoolhousecap($schoolhousecap): void {
+  public function setSchoolhousecap(?int $schoolhousecap): void {
     $this->schoolhousecap = $schoolhousecap;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getRoundscap() {
+  public function getRoundscap(): ?int {
     return $this->roundscap;
   }
 
   /**
-   * @param mixed $roundscap
+   * @param int|null $roundscap
    */
-  public function setRoundscap($roundscap): void {
+  public function setRoundscap(?int $roundscap): void {
     $this->roundscap = $roundscap;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getTheatercap() {
+  public function getTheatercap(): ?int {
     return $this->theatercap;
   }
 
   /**
-   * @param mixed $theatercap
+   * @param int|null $theatercap
    */
-  public function setTheatercap($theatercap): void {
+  public function setTheatercap(?int $theatercap): void {
     $this->theatercap = $theatercap;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getHollowSquare() {
-    return $this->hollowSquare;
+  public function getHollowsquare(): ?int {
+    return $this->hollowsquare;
   }
 
   /**
-   * @param mixed $hollowSquare
+   * @param int|null $hollowsquare
    */
-  public function setHollowSquare($hollowSquare): void {
-    $this->hollowSquare = $hollowSquare;
+  public function setHollowsquare(?int $hollowsquare): void {
+    $this->hollowsquare = $hollowsquare;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getConference() {
+  public function getConference(): ?int {
     return $this->conference;
   }
 
   /**
-   * @param mixed $conference
+   * @param int|null $conference
    */
-  public function setConference($conference): void {
+  public function setConference(?int $conference): void {
     $this->conference = $conference;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getNotes() {
+  public function getNotes(): ?string {
     return $this->notes;
   }
 
   /**
-   * @param mixed $notes
+   * @param string|null $notes
    */
-  public function setNotes($notes): void {
+  public function setNotes(?string $notes): void {
     $this->notes = $notes;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getSortOrder() {
-    return $this->sortOrder;
+  public function getSortorder(): ?int {
+    return $this->sortorder;
   }
 
   /**
-   * @param mixed $sortOrder
+   * @param int|null $sortorder
    */
-  public function setSortOrder($sortOrder): void {
-    $this->sortOrder = $sortOrder;
+  public function setSortorder(?int $sortorder): void {
+    $this->sortorder = $sortorder;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getRoomGroup() {
-    return $this->roomGroup;
+  public function getRoomgroup(): ?string {
+    return $this->roomgroup;
   }
 
   /**
-   * @param mixed $roomGroup
+   * @param string|null $roomgroup
    */
-  public function setRoomGroup($roomGroup): void {
-    $this->roomGroup = $roomGroup;
+  public function setRoomgroup(?string $roomgroup): void {
+    $this->roomgroup = $roomgroup;
   }
 
   /**
-   * @return mixed
+   * @return \DateTime|null
    */
-  public function getDatecreated() {
+  public function getDatecreated(): ?\DateTime {
     return $this->datecreated;
   }
 
   /**
-   * @param mixed $datecreated
+   * @param \DateTime|null $datecreated
    */
-  public function setDatecreated($datecreated): void {
+  public function setDatecreated(?\DateTime $datecreated): void {
     $this->datecreated = $datecreated;
   }
 
   /**
-   * @return mixed
+   * @return \DateTime|null
    */
-  public function getDatemodified() {
+  public function getDatemodified(): ?\DateTime {
     return $this->datemodified;
   }
 
   /**
-   * @param mixed $datemodified
+   * @param \DateTime|null $datemodified
    */
-  public function setDatemodified($datemodified): void {
+  public function setDatemodified(?\DateTime $datemodified): void {
     $this->datemodified = $datemodified;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getEventType() {
-    return $this->eventType;
+  public function getEventtype(): ?string {
+    return $this->eventtype;
   }
 
   /**
-   * @param mixed $eventType
+   * @param string|null $eventtype
    */
-  public function setEventType($eventType): void {
-    $this->eventType = $eventType;
+  public function setEventtype(?string $eventtype): void {
+    $this->eventtype = $eventtype;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getLounge() {
+  public function getLounge(): ?int {
     return $this->lounge;
   }
 
   /**
-   * @param mixed $lounge
+   * @param int|null $lounge
    */
-  public function setLounge($lounge): void {
+  public function setLounge(?int $lounge): void {
     $this->lounge = $lounge;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getReception() {
+  public function getReception(): ?int {
     return $this->reception;
   }
 
   /**
-   * @param mixed $reception
+   * @param int|null $reception
    */
-  public function setReception($reception): void {
+  public function setReception(?int $reception): void {
     $this->reception = $reception;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getTour() {
+  public function getTour(): ?int {
     return $this->tour;
   }
 
   /**
-   * @param mixed $tour
+   * @param int|null $tour
    */
-  public function setTour($tour): void {
+  public function setTour(?int $tour): void {
     $this->tour = $tour;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getHollowCircle() {
-    return $this->hollowCircle;
+  public function getHollowcircle(): ?int {
+    return $this->hollowcircle;
   }
 
   /**
-   * @param mixed $hollowCircle
+   * @param int|null $hollowcircle
    */
-  public function setHollowCircle($hollowCircle): void {
-    $this->hollowCircle = $hollowCircle;
+  public function setHollowcircle(?int $hollowcircle): void {
+    $this->hollowcircle = $hollowcircle;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getUShape() {
-    return $this->uShape;
+  public function getUshape(): ?int {
+    return $this->ushape;
   }
 
   /**
-   * @param mixed $uShape
+   * @param int|null $ushape
    */
-  public function setUShape($uShape): void {
-    $this->uShape = $uShape;
+  public function setUshape(?int $ushape): void {
+    $this->ushape = $ushape;
   }
 
   /**
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getPanels(): ?\Doctrine\Common\Collections\Collection {
+  public function getPanels(): \Doctrine\Common\Collections\Collection {
     return $this->panels;
   }
 
@@ -380,6 +431,11 @@ class Room {
   public function setPanels(\Doctrine\Common\Collections\Collection $panels): void {
     $this->panels = $panels;
   }
+
+
+
+
+
 
 
 

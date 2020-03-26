@@ -2,1925 +2,2081 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Panel
+ *
+ * @ORM\Table(name="panel")
  * @ORM\Entity(repositoryClass="App\Repository\PanelRepository", readOnly=TRUE)
- * @ORM\Table(name="panel",
- *   indexes={
- *      @ORM\Index(name="ID", columns={"ID"}),
- *   }
- * )
- * @property int $ID
+ * @property int $id
  */
 class Panel {
 
   /**
+   * @var int
+   *
+   * @ORM\Column(name="ID", type="integer", nullable=false)
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="IDENTITY")
+   */
+  private $id;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="panel", type="string", length=0, nullable=true)
    * @ORM\GeneratedValue(strategy="NONE")
-   * @ORM\Column(name="ID", type="integer", unique=true, nullable=false)
-   * @ORM\Id()
-   */
-  private $ID;
-
-  /**
-   * @ORM\Column(name="PID", type="integer", unique=false, nullable=true)
-   */
-  private $PID;
-
-  /**
-   * @ORM\Column(name="sess", type="string")
-   */
-  private $sess;
-
-  /**
-   * @ORM\Column(name="Description", type="string")
-   */
-  private $Description;
-
-  /**
-   * @ORM\Column(name="pDate", type="string")
-   */
-  private $pDate;
-
-  /**
-   * @ORM\Column(name="pTime", type="string")
-   */
-  private $pTime;
-
-  /**
-   * @ORM\Column(name="Pday", type="string")
-   */
-  private $Pday;
-
-  /**
-   * @ORM\Column(name="youTubeURL", type="string")
-   */
-  private $youTubeURL;
-
-  /**
-   * @ORM\Column(name="why", type="string")
-   */
-  private $why;
-
-  /**
-   * @ORM\Column(name="VOG", type="string")
-   */
-  private $VOG;
-
-  /**
-   * @ORM\Column(name="video", type="boolean")
-   */
-  private $video;
-
-  /**
-   * @ORM\Column(name="vdfile4", type="string")
-   */
-  private $vdfile4;
-
-  /**
-   * @ORM\Column(name="vdfile3", type="string")
-   */
-  private $vdfile3;
-
-  /**
-   * @ORM\Column(name="vdfile2", type="string")
-   */
-  private $vdfile2;
-
-  /**
-   * @ORM\Column(name="vdfile1", type="string")
-   */
-  private $vdfile1;
-
-  /**
-   * @ORM\Column(name="twitterHandle", type="string")
-   */
-  private $twitterHandle;
-
-  /**
-   * @ORM\Column(name="tweeter", type="string")
-   */
-  private $tweeter;
-
-  /**
-   * @ORM\Column(name="tumblr", type="string")
-   */
-  private $tumblr;
-
-  /**
-   * @ORM\Column(name="summ", type="string")
-   */
-  private $summ;
-
-  /**
-   * @ORM\Column(name="startTimed", type="datetime")
-   */
-  private $startTimed;
-
-  /**
-   * @ORM\Column(name="stafflinked", type="string")
-   */
-  private $stafflinked;
-
-  /**
-   * @ORM\Column(name="srrTime", type="datetime")
-   */
-  private $srrTime;
-
-  /**
-   * @ORM\Column(name="spons", type="string")
-   */
-  private $spons;
-
-  /**
-   * @ORM\Column(name="slide", type="string")
-   */
-  private $slide;
-
-  /**
-   * @ORM\Column(name="showTimeline", type="string")
-   */
-  private $showTimeline;
-
-  /**
-   * @ORM\Column(name="showNotes", type="string")
-   */
-  private $showNotes;
-
-  /**
-   * @ORM\Column(name="showflownotes", type="string")
-   */
-  private $showflownotes;
-
-  /**
-   * @ORM\Column(name="shorturl", type="string")
-   */
-  private $shorturl;
-
-  /**
-   * @ORM\Column(name="shortTitle", type="string")
-   */
-  private $shortTitle;
-
-  /**
-   * @ORM\Column(name="seniorStaff", type="string")
-   */
-  private $seniorStaff;
-
-  /**
-   * @ORM\Column(name="publish", type="boolean")
-   */
-  private $publish;
-
-  /**
-   * @ORM\Column(name="progNotes", type="string")
-   */
-  private $progNotes;
-
-  /**
-   * @ORM\Column(name="private", type="boolean")
-   */
-  private $private;
-
-  /**
-   * @ORM\Column(name="printedProgram", type="integer")
-   */
-  private $printedProgram;
-
-  /**
-   * @ORM\Column(name="ppsetup", type="string")
-   */
-  private $ppsetup;
-
-  /**
-   * @ORM\Column(name="pic2", type="string")
-   */
-  private $pic2;
-
-  /**
-   * @ORM\Column(name="pic1", type="string")
-   */
-  private $pic1;
-
-  /**
-   * @ORM\Column(name="pFinal", type="boolean")
-   */
-  private $pFinal;
-
-  /**
-   * @ORM\Column(name="paneltypeid", type="integer")
-   */
-  private $paneltypeid;
-
-  /**
-   * @ORM\Column(name="paneltxt", type="string")
-   */
-  private $paneltxt;
-
-  /**
-   * @ORM\Column(name="PanelSeating", type="string")
-   */
-  private $PanelSeating;
-
-  /**
-   * @ORM\Column(name="panel", type="string")
    */
   private $panel;
 
   /**
-   * @ORM\Column(name="onStage", type="string")
+   * @var int|null
+   * @ORM\Id
+   * @ORM\Column(name="PID", type="integer", nullable=true)
+   * @ORM\GeneratedValue(strategy="NONE")
    */
-  private $onStage;
+  private $pid;
 
   /**
-   * @ORM\Column(name="onSreens", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="sess", type="string", length=255, nullable=true)
    */
-  private $onSreens;
+  private $sess;
 
   /**
-   * @ORM\Column(name="nonMI", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="Description", type="string", length=0, nullable=true)
    */
-  private $nonMI;
+  private $description;
 
   /**
-   * @ORM\Column(name="microphones", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="pDate", type="string", length=255, nullable=true)
    */
-  private $microphones;
+  private $pdate;
 
   /**
-   * @ORM\Column(name="md5", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="pTime", type="string", length=50, nullable=true)
    */
-  private $md5;
+  private $ptime;
 
   /**
-   * @ORM\Column(name="md4", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="Pday", type="string", length=50, nullable=true)
    */
-  private $md4;
+  private $pday;
 
   /**
-   * @ORM\Column(name="md3", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="Etime", type="string", length=50, nullable=true)
    */
-  private $md3;
+  private $etime;
 
   /**
-   * @ORM\Column(name="md2", type="string")
-   */
-  private $md2;
-
-  /**
-   * @ORM\Column(name="md1", type="string")
-   */
-  private $md1;
-
-  /**
-   * @ORM\Column(name="lktxt10", type="string")
-   */
-  private $lktxt10;
-
-  /**
-   * @ORM\Column(name="lktxt9", type="string")
-   */
-  private $lktxt9;
-
-  /**
-   * @ORM\Column(name="lktxt8", type="string")
-   */
-  private $lktxt8;
-
-  /**
-   * @ORM\Column(name="lktxt7", type="string")
-   */
-  private $lktxt7;
-
-  /**
-   * @ORM\Column(name="lktxt6", type="string")
-   */
-  private $lktxt6;
-
-  /**
-   * @ORM\Column(name="lktxt5", type="string")
-   */
-  private $lktxt5;
-
-  /**
-   * @ORM\Column(name="lktxt4", type="string")
-   */
-  private $lktxt4;
-
-  /**
-   * @ORM\Column(name="lktxt3", type="string")
-   */
-  private $lktxt3;
-
-  /**
-   * @ORM\Column(name="lktxt2", type="string")
-   */
-  private $lktxt2;
-
-  /**
-   * @ORM\Column(name="lktxt1", type="string")
-   */
-  private $lktxt1;
-
-  /**
-   * @ORM\Column(name="livetweet", type="string")
-   */
-  private $livetweet;
-
-  /**
-   * @ORM\Column(name="liveStream", type="string")
-   */
-  private $liveStream;
-
-  /**
-   * @ORM\Column(name="link10", type="string")
-   */
-  private $link10;
-
-  /**
-   * @ORM\Column(name="link9", type="string")
-   */
-  private $link9;
-
-  /**
-   * @ORM\Column(name="link8", type="string")
-   */
-  private $link8;
-
-  /**
-   * @ORM\Column(name="link7", type="string")
-   */
-  private $link7;
-
-  /**
-   * @ORM\Column(name="link6", type="string")
-   */
-  private $link6;
-
-  /**
-   * @ORM\Column(name="link5", type="string")
-   */
-  private $link5;
-
-  /**
-   * @ORM\Column(name="link4", type="string")
-   */
-  private $link4;
-
-  /**
-   * @ORM\Column(name="link3", type="string")
-   */
-  private $link3;
-
-  /**
-   * @ORM\Column(name="link2", type="string")
-   */
-  private $link2;
-
-  /**
-   * @ORM\Column(name="link1", type="string")
-   */
-  private $link1;
-
-  /**
-   * @ORM\Column(name="itinDescription", type="string")
-   */
-  private $itinDescription;
-
-  /**
-   * @ORM\Column(name="hideDescSF", type="string")
-   */
-  private $hideDescSF;
-
-  /**
-   * @ORM\Column(name="hideDesc", type="string")
-   */
-  private $hideDesc;
-
-  /**
-   * @ORM\Column(name="hashtags", type="string")
-   */
-  private $hashtags;
-
-  /**
-   * @ORM\Column(name="EventIDnum", type="string")
-   */
-  private $EventIDnum;
-
-  /**
-   * @ORM\Column(name="EventID", type="string")
-   */
-  private $EventID;
-
-  /**
-   * @ORM\Column(name="Etime", type="string")
-   */
-  private $Etime;
-
-  /**
-   * @ORM\Column(name="epday", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="epday", type="string", length=50, nullable=true)
    */
   private $epday;
 
   /**
-   * @ORM\Column(name="endTimed", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt1", type="string", length=255, nullable=true)
    */
-  private $endTimed;
+  private $lktxt1;
 
   /**
-   * @ORM\Column(name="DVDset", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="link1", type="string", length=255, nullable=true)
    */
-  private $DVDset;
+  private $link1;
 
   /**
-   * @ORM\Column(name="descStatusTS", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt2", type="string", length=255, nullable=true)
    */
-  private $descStatusTS;
+  private $lktxt2;
 
   /**
-   * @ORM\Column(name="descStatus", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="link2", type="string", length=255, nullable=true)
    */
-  private $descStatus;
+  private $link2;
 
   /**
-   * @ORM\Column(name="descFinal", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt3", type="string", length=255, nullable=true)
    */
-  private $descFinal;
+  private $lktxt3;
 
   /**
-   * @ORM\Column(name="deptGroup", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="link3", type="string", length=255, nullable=true)
    */
-  private $deptGroup;
+  private $link3;
 
   /**
-   * @ORM\Column(name="datemodified", type="datetime")
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt4", type="string", length=255, nullable=true)
    */
-  private $datemodified;
+  private $lktxt4;
 
   /**
-   * @ORM\Column(name="datecreated", type="datetime")
+   * @var string|null
+   *
+   * @ORM\Column(name="link4", type="string", length=255, nullable=true)
    */
-  private $datecreated;
+  private $link4;
 
   /**
-   * @ORM\Column(name="commNotes", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt5", type="string", length=255, nullable=true)
    */
-  private $commNotes;
+  private $lktxt5;
 
   /**
-   * @ORM\Column(name="CameraType", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="link5", type="string", length=255, nullable=true)
    */
-  private $CameraType;
+  private $link5;
 
   /**
-   * @ORM\Column(name="audioRecording", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt6", type="string", length=255, nullable=true)
    */
-  private $audioRecording;
+  private $lktxt6;
 
   /**
-   * @ORM\Column(name="audio", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="link6", type="string", length=255, nullable=true)
+   */
+  private $link6;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt7", type="string", length=255, nullable=true)
+   */
+  private $lktxt7;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="link7", type="string", length=255, nullable=true)
+   */
+  private $link7;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt8", type="string", length=255, nullable=true)
+   */
+  private $lktxt8;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="link8", type="string", length=255, nullable=true)
+   */
+  private $link8;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt9", type="string", length=255, nullable=true)
+   */
+  private $lktxt9;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="link9", type="string", length=255, nullable=true)
+   */
+  private $link9;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="lktxt10", type="string", length=255, nullable=true)
+   */
+  private $lktxt10;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="link10", type="string", length=255, nullable=true)
+   */
+  private $link10;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="video", type="boolean", nullable=true)
+   */
+  private $video;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="vdfile1", type="string", length=255, nullable=true)
+   */
+  private $vdfile1;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="vdfile2", type="string", length=255, nullable=true)
+   */
+  private $vdfile2;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="vdfile3", type="string", length=255, nullable=true)
+   */
+  private $vdfile3;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="vdfile4", type="string", length=255, nullable=true)
+   */
+  private $vdfile4;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="audio", type="boolean", nullable=true)
    */
   private $audio;
 
   /**
-   * @ORM\Column(name="AttendeePCT", type="string")
-   */
-  private $AttendeePCT;
-
-  /**
-   * @ORM\Column(name="AttendeeCount", type="string")
-   */
-  private $AttendeeCount;
-
-  /**
-   * @ORM\Column(name="assignedRA", type="string")
-   */
-  private $assignedRA;
-
-  /**
-   * @ORM\Column(name="adfile", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="adfile", type="string", length=255, nullable=true)
    */
   private $adfile;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Event", inversedBy="panels")
-   * @ORM\JoinColumn(name="EventID", referencedColumnName="EventID")
-   * @var \App\Entity\Event
+   * @var string|null
+   *
+   * @ORM\Column(name="why", type="string", length=0, nullable=true)
    */
-  private $event;
+  private $why;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Room", inversedBy="room_id")
+   * @var string|null
+   *
+   * @ORM\Column(name="summ", type="string", length=0, nullable=true)
+   */
+  private $summ;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="pic1", type="string", length=255, nullable=true)
+   */
+  private $pic1;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="pic2", type="string", length=255, nullable=true)
+   */
+  private $pic2;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="spons", type="string", length=0, nullable=true)
+   */
+  private $spons;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="slide", type="string", length=255, nullable=true)
+   */
+  private $slide;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Id
+   * @ORM\Column(name="EventID", type="string", length=255, nullable=true)
+   */
+  private $eventid;
+
+  /**
+   * @var int|null
+   *
+   * @ORM\Column(name="EventIDnum", type="integer", nullable=true)
+   */
+  private $eventidnum;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="md1", type="string", length=50, nullable=true)
+   */
+  private $md1;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="md2", type="string", length=50, nullable=true)
+   */
+  private $md2;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="md3", type="string", length=50, nullable=true)
+   */
+  private $md3;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="md4", type="string", length=50, nullable=true)
+   */
+  private $md4;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="md5", type="string", length=50, nullable=true)
+   */
+  private $md5;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="publish", type="boolean", nullable=true)
+   */
+  private $publish;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="private", type="boolean", nullable=true)
+   */
+  private $private;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="paneltxt", type="string", length=255, nullable=true)
+   */
+  private $paneltxt;
+
+  /**
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="startTimed", type="datetime", nullable=true)
+   */
+  private $starttimed;
+
+  /**
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="endTimed", type="datetime", nullable=true)
+   */
+  private $endtimed;
+
+  /**
+   * @var int|null
+   *
+   * @ORM\Column(name="paneltypeid", type="integer", nullable=true)
+   */
+  private $paneltypeid;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="progNotes", type="string", length=0, nullable=true)
+   */
+  private $prognotes;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="shortTitle", type="string", length=250, nullable=true)
+   */
+  private $shorttitle;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="PanelSeating", type="string", length=0, nullable=true)
+   */
+  private $panelseating;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="microphones", type="string", length=0, nullable=true)
+   */
+  private $microphones;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="assignedRA", type="string", length=0, nullable=true)
+   */
+  private $assignedra;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="CameraType", type="string", length=0, nullable=true)
+   */
+  private $cameratype;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="DVDset", type="string", length=100, nullable=true)
+   */
+  private $dvdset;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="audioRecording", type="string", length=100,
+   *   nullable=true)
+   */
+  private $audiorecording;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="ppsetup", type="string", length=100, nullable=true)
+   */
+  private $ppsetup;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="stafflinked", type="string", length=50, nullable=true)
+   */
+  private $stafflinked;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="seniorStaff", type="string", length=100, nullable=true)
+   */
+  private $seniorstaff;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="deptGroup", type="string", length=100, nullable=true,
+   *   options={"fixed"=true})
+   */
+  private $deptgroup;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="showflownotes", type="string", length=0, nullable=true)
+   */
+  private $showflownotes;
+
+  /**
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="datecreated", type="datetime", nullable=true)
+   */
+  private $datecreated;
+
+  /**
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="datemodified", type="datetime", nullable=true)
+   */
+  private $datemodified;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="youTubeURL", type="string", length=500, nullable=true)
+   */
+  private $youtubeurl;
+
+  /**
+   * @var int|null
+   *
+   * @ORM\Column(name="printedProgram", type="integer", nullable=true)
+   */
+  private $printedprogram;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="tumblr", type="string", length=250, nullable=true)
+   */
+  private $tumblr;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="livetweet", type="string", length=50, nullable=true)
+   */
+  private $livetweet;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="tweeter", type="string", length=50, nullable=true)
+   */
+  private $tweeter;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="twitterHandle", type="string", length=50, nullable=true)
+   */
+  private $twitterhandle;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="shorturl", type="string", length=50, nullable=true)
+   */
+  private $shorturl;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="hashtags", type="string", length=0, nullable=true)
+   */
+  private $hashtags;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="commNotes", type="string", length=0, nullable=true)
+   */
+  private $commnotes;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="itinDescription", type="string", length=0, nullable=true)
+   */
+  private $itindescription;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="pFinal", type="boolean", nullable=true)
+   */
+  private $pfinal;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="descFinal", type="boolean", nullable=true)
+   */
+  private $descfinal;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="descStatus", type="string", length=50, nullable=true)
+   */
+  private $descstatus;
+
+  /**
+   * @var \DateTime|null
+   *
+   * @ORM\Column(name="descStatusTS", type="datetime", nullable=true)
+   */
+  private $descstatusts;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="hideDesc", type="boolean", nullable=true)
+   */
+  private $hidedesc;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="hideDescSF", type="boolean", nullable=true)
+   */
+  private $hidedescsf;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="srrTime", type="string", length=50, nullable=true)
+   */
+  private $srrtime;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="onSreens", type="string", length=255, nullable=true)
+   */
+  private $onsreens;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="VOG", type="string", length=255, nullable=true)
+   */
+  private $vog;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="onStage", type="string", length=255, nullable=true)
+   */
+  private $onstage;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="showTimeline", type="string", length=0, nullable=true)
+   */
+  private $showtimeline;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="showNotes", type="string", length=0, nullable=true)
+   */
+  private $shownotes;
+
+  /**
+   * @var int|null
+   *
+   * @ORM\Column(name="AttendeeCount", type="integer", nullable=true)
+   */
+  private $attendeecount;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="AttendeePCT", type="decimal", precision=5, scale=2,
+   *   nullable=true)
+   */
+  private $attendeepct;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="nonMI", type="boolean", nullable=true)
+   */
+  private $nonmi;
+
+  /**
+   * @var bool|null
+   *
+   * @ORM\Column(name="liveStream", type="boolean", nullable=true)
+   */
+  private $livestream;
+
+  /**
+   * @var \App\Entity\Room
+   *
+   * @ORM\ManyToOne(targetEntity="Room")
    * @ORM\JoinTable(name="gcroomlinks",
    *  joinColumns={
    *    @ORM\JoinColumn(name="room_id", referencedColumnName="room_id", fieldName="room_id")
    *  }
    * )
-   * @var \App\Entity\Room
    */
   private $room;
 
-  function __construct() {
-    $this->speakers = new ArrayCollection();
-    $this->event = new Event();
-    $this->room = new Room();
-  }
-
-  public function getId(): string {
-    return $this->ID;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPID() {
-    return $this->PID;
-  }
-
-  /**
-   * @param mixed $PID
-   */
-  public function setPID($PID): void {
-    $this->PID = $PID;
-  }
-
-
-
-  /**
-   * @return mixed
-   */
-  public function getYouTubeURL() {
-    return $this->youTubeURL;
-  }
-
-  /**
-   * @param mixed $youTubeURL
-   */
-  public function setYouTubeURL($youTubeURL): void {
-    $this->youTubeURL = $youTubeURL;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getWhy() {
-    return $this->why;
-  }
-
-  /**
-   * @param mixed $why
-   */
-  public function setWhy($why): void {
-    $this->why = $why;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getVOG() {
-    return $this->VOG;
-  }
-
-  /**
-   * @param mixed $VOG
-   */
-  public function setVOG($VOG): void {
-    $this->VOG = $VOG;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getVideo() {
-    return $this->video;
-  }
-
-  /**
-   * @param mixed $video
-   */
-  public function setVideo($video): void {
-    $this->video = $video;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getVdfile4() {
-    return $this->vdfile4;
-  }
-
-  /**
-   * @param mixed $vdfile4
-   */
-  public function setVdfile4($vdfile4): void {
-    $this->vdfile4 = $vdfile4;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getVdfile3() {
-    return $this->vdfile3;
-  }
-
-  /**
-   * @param mixed $vdfile3
-   */
-  public function setVdfile3($vdfile3): void {
-    $this->vdfile3 = $vdfile3;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getVdfile2() {
-    return $this->vdfile2;
-  }
-
-  /**
-   * @param mixed $vdfile2
-   */
-  public function setVdfile2($vdfile2): void {
-    $this->vdfile2 = $vdfile2;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getVdfile1() {
-    return $this->vdfile1;
-  }
-
-  /**
-   * @param mixed $vdfile1
-   */
-  public function setVdfile1($vdfile1): void {
-    $this->vdfile1 = $vdfile1;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getTwitterHandle() {
-    return $this->twitterHandle;
-  }
-
-  /**
-   * @param mixed $twitterHandle
-   */
-  public function setTwitterHandle($twitterHandle): void {
-    $this->twitterHandle = $twitterHandle;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getTweeter() {
-    return $this->tweeter;
-  }
-
-  /**
-   * @param mixed $tweeter
-   */
-  public function setTweeter($tweeter): void {
-    $this->tweeter = $tweeter;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getTumblr() {
-    return $this->tumblr;
-  }
-
-  /**
-   * @param mixed $tumblr
-   */
-  public function setTumblr($tumblr): void {
-    $this->tumblr = $tumblr;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getSumm() {
-    return $this->summ;
-  }
-
-  /**
-   * @param mixed $summ
-   */
-  public function setSumm($summ): void {
-    $this->summ = $summ;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getStartTimed() {
-    return $this->startTimed;
-  }
-
-  /**
-   * @param mixed $startTimed
-   */
-  public function setStartTimed($startTimed): void {
-    $this->startTimed = $startTimed;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getStafflinked() {
-    return $this->stafflinked;
-  }
-
-  /**
-   * @param mixed $stafflinked
-   */
-  public function setStafflinked($stafflinked): void {
-    $this->stafflinked = $stafflinked;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getSrrTime() {
-    return $this->srrTime;
-  }
-
-  /**
-   * @param mixed $srrTime
-   */
-  public function setSrrTime($srrTime): void {
-    $this->srrTime = $srrTime;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getSpons() {
-    return $this->spons;
-  }
-
-  /**
-   * @param mixed $spons
-   */
-  public function setSpons($spons): void {
-    $this->spons = $spons;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getSlide() {
-    return $this->slide;
-  }
-
-  /**
-   * @param mixed $slide
-   */
-  public function setSlide($slide): void {
-    $this->slide = $slide;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getShowTimeline() {
-    return $this->showTimeline;
-  }
-
-  /**
-   * @param mixed $showTimeline
-   */
-  public function setShowTimeline($showTimeline): void {
-    $this->showTimeline = $showTimeline;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getShowNotes() {
-    return $this->showNotes;
-  }
-
-  /**
-   * @param mixed $showNotes
-   */
-  public function setShowNotes($showNotes): void {
-    $this->showNotes = $showNotes;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getShowflownotes() {
-    return $this->showflownotes;
-  }
-
-  /**
-   * @param mixed $showflownotes
-   */
-  public function setShowflownotes($showflownotes): void {
-    $this->showflownotes = $showflownotes;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getShorturl() {
-    return $this->shorturl;
-  }
-
-  /**
-   * @param mixed $shorturl
-   */
-  public function setShorturl($shorturl): void {
-    $this->shorturl = $shorturl;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getShortTitle() {
-    return $this->shortTitle;
-  }
-
-  /**
-   * @param mixed $shortTitle
-   */
-  public function setShortTitle($shortTitle): void {
-    $this->shortTitle = $shortTitle;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getSess() {
-    return $this->sess;
-  }
-
-  /**
-   * @param mixed $sess
-   */
-  public function setSess($sess): void {
-    $this->sess = $sess;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getSeniorStaff() {
-    return $this->seniorStaff;
-  }
-
-  /**
-   * @param mixed $seniorStaff
-   */
-  public function setSeniorStaff($seniorStaff): void {
-    $this->seniorStaff = $seniorStaff;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPublish() {
-    return $this->publish;
-  }
-
-  /**
-   * @param mixed $publish
-   */
-  public function setPublish($publish): void {
-    $this->publish = $publish;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPTime() {
-    return $this->pTime;
-  }
-
-  /**
-   * @param mixed $pTime
-   */
-  public function setPTime($pTime): void {
-    $this->pTime = $pTime;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getProgNotes() {
-    return $this->progNotes;
-  }
-
-  /**
-   * @param mixed $progNotes
-   */
-  public function setProgNotes($progNotes): void {
-    $this->progNotes = $progNotes;
-  }
-
   /**
-   * @return mixed
+   * @var \App\Entity\Event
+   *
+   * @ORM\ManyToOne(targetEntity="Event", inversedBy="panels")
+   * @ORM\JoinColumn(name="EventID", referencedColumnName="EventID")
    */
-  public function getPrivate() {
-    return $this->private;
-  }
-
-  /**
-   * @param mixed $private
-   */
-  public function setPrivate($private): void {
-    $this->private = $private;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPrintedProgram() {
-    return $this->printedProgram;
-  }
-
-  /**
-   * @param mixed $printedProgram
-   */
-  public function setPrintedProgram($printedProgram): void {
-    $this->printedProgram = $printedProgram;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPpsetup() {
-    return $this->ppsetup;
-  }
-
-  /**
-   * @param mixed $ppsetup
-   */
-  public function setPpsetup($ppsetup): void {
-    $this->ppsetup = $ppsetup;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPic2() {
-    return $this->pic2;
-  }
-
-  /**
-   * @param mixed $pic2
-   */
-  public function setPic2($pic2): void {
-    $this->pic2 = $pic2;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPic1() {
-    return $this->pic1;
-  }
-
-  /**
-   * @param mixed $pic1
-   */
-  public function setPic1($pic1): void {
-    $this->pic1 = $pic1;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPFinal() {
-    return $this->pFinal;
-  }
-
-  /**
-   * @param mixed $pFinal
-   */
-  public function setPFinal($pFinal): void {
-    $this->pFinal = $pFinal;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPday() {
-    return $this->Pday;
-  }
-
-  /**
-   * @param mixed $Pday
-   */
-  public function setPday($Pday): void {
-    $this->Pday = $Pday;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPDate() {
-    return $this->pDate;
-  }
-
-  /**
-   * @param mixed $pDate
-   */
-  public function setPDate($pDate): void {
-    $this->pDate = $pDate;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPaneltypeid() {
-    return $this->paneltypeid;
-  }
-
-  /**
-   * @param mixed $paneltypeid
-   */
-  public function setPaneltypeid($paneltypeid): void {
-    $this->paneltypeid = $paneltypeid;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPaneltxt() {
-    return $this->paneltxt;
-  }
-
-  /**
-   * @param mixed $paneltxt
-   */
-  public function setPaneltxt($paneltxt): void {
-    $this->paneltxt = $paneltxt;
-  }
+  private $event;
 
   /**
-   * @return mixed
+   * @return int
    */
-  public function getPanelSeating() {
-    return $this->PanelSeating;
+  public function getId(): int {
+    return $this->id;
   }
 
   /**
-   * @param mixed $PanelSeating
+   * @param int $id
    */
-  public function setPanelSeating($PanelSeating): void {
-    $this->PanelSeating = $PanelSeating;
+  public function setId(int $id): void {
+    $this->id = $id;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getPanel() {
+  public function getPanel(): ?string {
     return $this->panel;
   }
 
   /**
-   * @param mixed $panel
+   * @param string|null $panel
    */
-  public function setPanel($panel): void {
+  public function setPanel(?string $panel): void {
     $this->panel = $panel;
   }
 
   /**
-   * @return mixed
+   * @return int|null
    */
-  public function getOnStage() {
-    return $this->onStage;
+  public function getPid(): ?int {
+    return $this->pid;
   }
 
   /**
-   * @param mixed $onStage
+   * @param int|null $pid
    */
-  public function setOnStage($onStage): void {
-    $this->onStage = $onStage;
+  public function setPid(?int $pid): void {
+    $this->pid = $pid;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getOnSreens() {
-    return $this->onSreens;
+  public function getSess(): ?string {
+    return $this->sess;
   }
 
   /**
-   * @param mixed $onSreens
+   * @param string|null $sess
    */
-  public function setOnSreens($onSreens): void {
-    $this->onSreens = $onSreens;
+  public function setSess(?string $sess): void {
+    $this->sess = $sess;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getNonMI() {
-    return $this->nonMI;
+  public function getDescription(): ?string {
+    return $this->description;
   }
 
   /**
-   * @param mixed $nonMI
+   * @param string|null $description
    */
-  public function setNonMI($nonMI): void {
-    $this->nonMI = $nonMI;
+  public function setDescription(?string $description): void {
+    $this->description = $description;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getMicrophones() {
-    return $this->microphones;
+  public function getPdate(): ?string {
+    return $this->pdate;
   }
 
   /**
-   * @param mixed $microphones
+   * @param string|null $pdate
    */
-  public function setMicrophones($microphones): void {
-    $this->microphones = $microphones;
+  public function setPdate(?string $pdate): void {
+    $this->pdate = $pdate;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getMd5() {
-    return $this->md5;
+  public function getPtime(): ?string {
+    return $this->ptime;
   }
 
   /**
-   * @param mixed $md5
+   * @param string|null $ptime
    */
-  public function setMd5($md5): void {
-    $this->md5 = $md5;
+  public function setPtime(?string $ptime): void {
+    $this->ptime = $ptime;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getMd4() {
-    return $this->md4;
+  public function getPday(): ?string {
+    return $this->pday;
   }
 
   /**
-   * @param mixed $md4
+   * @param string|null $pday
    */
-  public function setMd4($md4): void {
-    $this->md4 = $md4;
+  public function setPday(?string $pday): void {
+    $this->pday = $pday;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getMd3() {
-    return $this->md3;
+  public function getEtime(): ?string {
+    return $this->etime;
   }
 
   /**
-   * @param mixed $md3
+   * @param string|null $etime
    */
-  public function setMd3($md3): void {
-    $this->md3 = $md3;
+  public function setEtime(?string $etime): void {
+    $this->etime = $etime;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getMd2() {
-    return $this->md2;
-  }
-
-  /**
-   * @param mixed $md2
-   */
-  public function setMd2($md2): void {
-    $this->md2 = $md2;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getMd1() {
-    return $this->md1;
-  }
-
-  /**
-   * @param mixed $md1
-   */
-  public function setMd1($md1): void {
-    $this->md1 = $md1;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt10() {
-    return $this->lktxt10;
-  }
-
-  /**
-   * @param mixed $lktxt10
-   */
-  public function setLktxt10($lktxt10): void {
-    $this->lktxt10 = $lktxt10;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt9() {
-    return $this->lktxt9;
-  }
-
-  /**
-   * @param mixed $lktxt9
-   */
-  public function setLktxt9($lktxt9): void {
-    $this->lktxt9 = $lktxt9;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt8() {
-    return $this->lktxt8;
-  }
-
-  /**
-   * @param mixed $lktxt8
-   */
-  public function setLktxt8($lktxt8): void {
-    $this->lktxt8 = $lktxt8;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt7() {
-    return $this->lktxt7;
-  }
-
-  /**
-   * @param mixed $lktxt7
-   */
-  public function setLktxt7($lktxt7): void {
-    $this->lktxt7 = $lktxt7;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt6() {
-    return $this->lktxt6;
-  }
-
-  /**
-   * @param mixed $lktxt6
-   */
-  public function setLktxt6($lktxt6): void {
-    $this->lktxt6 = $lktxt6;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt5() {
-    return $this->lktxt5;
-  }
-
-  /**
-   * @param mixed $lktxt5
-   */
-  public function setLktxt5($lktxt5): void {
-    $this->lktxt5 = $lktxt5;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt4() {
-    return $this->lktxt4;
-  }
-
-  /**
-   * @param mixed $lktxt4
-   */
-  public function setLktxt4($lktxt4): void {
-    $this->lktxt4 = $lktxt4;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt3() {
-    return $this->lktxt3;
-  }
-
-  /**
-   * @param mixed $lktxt3
-   */
-  public function setLktxt3($lktxt3): void {
-    $this->lktxt3 = $lktxt3;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt2() {
-    return $this->lktxt2;
-  }
-
-  /**
-   * @param mixed $lktxt2
-   */
-  public function setLktxt2($lktxt2): void {
-    $this->lktxt2 = $lktxt2;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLktxt1() {
-    return $this->lktxt1;
-  }
-
-  /**
-   * @param mixed $lktxt1
-   */
-  public function setLktxt1($lktxt1): void {
-    $this->lktxt1 = $lktxt1;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLivetweet() {
-    return $this->livetweet;
-  }
-
-  /**
-   * @param mixed $livetweet
-   */
-  public function setLivetweet($livetweet): void {
-    $this->livetweet = $livetweet;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLiveStream() {
-    return $this->liveStream;
-  }
-
-  /**
-   * @param mixed $liveStream
-   */
-  public function setLiveStream($liveStream): void {
-    $this->liveStream = $liveStream;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink10() {
-    return $this->link10;
-  }
-
-  /**
-   * @param mixed $link10
-   */
-  public function setLink10($link10): void {
-    $this->link10 = $link10;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink9() {
-    return $this->link9;
-  }
-
-  /**
-   * @param mixed $link9
-   */
-  public function setLink9($link9): void {
-    $this->link9 = $link9;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink8() {
-    return $this->link8;
-  }
-
-  /**
-   * @param mixed $link8
-   */
-  public function setLink8($link8): void {
-    $this->link8 = $link8;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink7() {
-    return $this->link7;
-  }
-
-  /**
-   * @param mixed $link7
-   */
-  public function setLink7($link7): void {
-    $this->link7 = $link7;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink6() {
-    return $this->link6;
-  }
-
-  /**
-   * @param mixed $link6
-   */
-  public function setLink6($link6): void {
-    $this->link6 = $link6;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink5() {
-    return $this->link5;
-  }
-
-  /**
-   * @param mixed $link5
-   */
-  public function setLink5($link5): void {
-    $this->link5 = $link5;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink4() {
-    return $this->link4;
-  }
-
-  /**
-   * @param mixed $link4
-   */
-  public function setLink4($link4): void {
-    $this->link4 = $link4;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink3() {
-    return $this->link3;
-  }
-
-  /**
-   * @param mixed $link3
-   */
-  public function setLink3($link3): void {
-    $this->link3 = $link3;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink2() {
-    return $this->link2;
-  }
-
-  /**
-   * @param mixed $link2
-   */
-  public function setLink2($link2): void {
-    $this->link2 = $link2;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink1() {
-    return $this->link1;
-  }
-
-  /**
-   * @param mixed $link1
-   */
-  public function setLink1($link1): void {
-    $this->link1 = $link1;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getItinDescription() {
-    return $this->itinDescription;
-  }
-
-  /**
-   * @param mixed $itinDescription
-   */
-  public function setItinDescription($itinDescription): void {
-    $this->itinDescription = $itinDescription;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getHideDescSF() {
-    return $this->hideDescSF;
-  }
-
-  /**
-   * @param mixed $hideDescSF
-   */
-  public function setHideDescSF($hideDescSF): void {
-    $this->hideDescSF = $hideDescSF;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getHideDesc() {
-    return $this->hideDesc;
-  }
-
-  /**
-   * @param mixed $hideDesc
-   */
-  public function setHideDesc($hideDesc): void {
-    $this->hideDesc = $hideDesc;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getHashtags() {
-    return $this->hashtags;
-  }
-
-  /**
-   * @param mixed $hashtags
-   */
-  public function setHashtags($hashtags): void {
-    $this->hashtags = $hashtags;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getEventIDnum() {
-    return $this->EventIDnum;
-  }
-
-  /**
-   * @param mixed $EventIDnum
-   */
-  public function setEventIDnum($EventIDnum): void {
-    $this->EventIDnum = $EventIDnum;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getEventID() {
-    return $this->EventID;
-  }
-
-  /**
-   * @param mixed $EventID
-   */
-  public function setEventID($EventID): void {
-    $this->EventID = $EventID;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getEtime() {
-    return $this->Etime;
-  }
-
-  /**
-   * @param mixed $Etime
-   */
-  public function setEtime($Etime): void {
-    $this->Etime = $Etime;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getEpday() {
+  public function getEpday(): ?string {
     return $this->epday;
   }
 
   /**
-   * @param mixed $epday
+   * @param string|null $epday
    */
-  public function setEpday($epday): void {
+  public function setEpday(?string $epday): void {
     $this->epday = $epday;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getEndTimed() {
-    return $this->endTimed;
+  public function getLktxt1(): ?string {
+    return $this->lktxt1;
   }
 
   /**
-   * @param mixed $endTimed
+   * @param string|null $lktxt1
    */
-  public function setEndTimed($endTimed): void {
-    $this->endTimed = $endTimed;
+  public function setLktxt1(?string $lktxt1): void {
+    $this->lktxt1 = $lktxt1;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDVDset() {
-    return $this->DVDset;
+  public function getLink1(): ?string {
+    return $this->link1;
   }
 
   /**
-   * @param mixed $DVDset
+   * @param string|null $link1
    */
-  public function setDVDset($DVDset): void {
-    $this->DVDset = $DVDset;
+  public function setLink1(?string $link1): void {
+    $this->link1 = $link1;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDescStatusTS() {
-    return $this->descStatusTS;
+  public function getLktxt2(): ?string {
+    return $this->lktxt2;
   }
 
   /**
-   * @param mixed $descStatusTS
+   * @param string|null $lktxt2
    */
-  public function setDescStatusTS($descStatusTS): void {
-    $this->descStatusTS = $descStatusTS;
+  public function setLktxt2(?string $lktxt2): void {
+    $this->lktxt2 = $lktxt2;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDescStatus() {
-    return $this->descStatus;
+  public function getLink2(): ?string {
+    return $this->link2;
   }
 
   /**
-   * @param mixed $descStatus
+   * @param string|null $link2
    */
-  public function setDescStatus($descStatus): void {
-    $this->descStatus = $descStatus;
+  public function setLink2(?string $link2): void {
+    $this->link2 = $link2;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDescription() {
-    return $this->Description;
+  public function getLktxt3(): ?string {
+    return $this->lktxt3;
   }
 
   /**
-   * @param mixed $Description
+   * @param string|null $lktxt3
    */
-  public function setDescription($Description): void {
-    $this->Description = $Description;
+  public function setLktxt3(?string $lktxt3): void {
+    $this->lktxt3 = $lktxt3;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDescFinal() {
-    return $this->descFinal;
+  public function getLink3(): ?string {
+    return $this->link3;
   }
 
   /**
-   * @param mixed $descFinal
+   * @param string|null $link3
    */
-  public function setDescFinal($descFinal): void {
-    $this->descFinal = $descFinal;
+  public function setLink3(?string $link3): void {
+    $this->link3 = $link3;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDeptGroup() {
-    return $this->deptGroup;
+  public function getLktxt4(): ?string {
+    return $this->lktxt4;
   }
 
   /**
-   * @param mixed $deptGroup
+   * @param string|null $lktxt4
    */
-  public function setDeptGroup($deptGroup): void {
-    $this->deptGroup = $deptGroup;
+  public function setLktxt4(?string $lktxt4): void {
+    $this->lktxt4 = $lktxt4;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDatemodified() {
-    return $this->datemodified;
+  public function getLink4(): ?string {
+    return $this->link4;
   }
 
   /**
-   * @param mixed $datemodified
+   * @param string|null $link4
    */
-  public function setDatemodified($datemodified): void {
-    $this->datemodified = $datemodified;
+  public function setLink4(?string $link4): void {
+    $this->link4 = $link4;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDatecreated() {
-    return $this->datecreated;
+  public function getLktxt5(): ?string {
+    return $this->lktxt5;
   }
 
   /**
-   * @param mixed $datecreated
+   * @param string|null $lktxt5
    */
-  public function setDatecreated($datecreated): void {
-    $this->datecreated = $datecreated;
+  public function setLktxt5(?string $lktxt5): void {
+    $this->lktxt5 = $lktxt5;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getCommNotes() {
-    return $this->commNotes;
+  public function getLink5(): ?string {
+    return $this->link5;
   }
 
   /**
-   * @param mixed $commNotes
+   * @param string|null $link5
    */
-  public function setCommNotes($commNotes): void {
-    $this->commNotes = $commNotes;
+  public function setLink5(?string $link5): void {
+    $this->link5 = $link5;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getCameraType() {
-    return $this->CameraType;
+  public function getLktxt6(): ?string {
+    return $this->lktxt6;
   }
 
   /**
-   * @param mixed $CameraType
+   * @param string|null $lktxt6
    */
-  public function setCameraType($CameraType): void {
-    $this->CameraType = $CameraType;
+  public function setLktxt6(?string $lktxt6): void {
+    $this->lktxt6 = $lktxt6;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getAudioRecording() {
-    return $this->audioRecording;
+  public function getLink6(): ?string {
+    return $this->link6;
   }
 
   /**
-   * @param mixed $audioRecording
+   * @param string|null $link6
    */
-  public function setAudioRecording($audioRecording): void {
-    $this->audioRecording = $audioRecording;
+  public function setLink6(?string $link6): void {
+    $this->link6 = $link6;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getAudio() {
+  public function getLktxt7(): ?string {
+    return $this->lktxt7;
+  }
+
+  /**
+   * @param string|null $lktxt7
+   */
+  public function setLktxt7(?string $lktxt7): void {
+    $this->lktxt7 = $lktxt7;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLink7(): ?string {
+    return $this->link7;
+  }
+
+  /**
+   * @param string|null $link7
+   */
+  public function setLink7(?string $link7): void {
+    $this->link7 = $link7;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLktxt8(): ?string {
+    return $this->lktxt8;
+  }
+
+  /**
+   * @param string|null $lktxt8
+   */
+  public function setLktxt8(?string $lktxt8): void {
+    $this->lktxt8 = $lktxt8;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLink8(): ?string {
+    return $this->link8;
+  }
+
+  /**
+   * @param string|null $link8
+   */
+  public function setLink8(?string $link8): void {
+    $this->link8 = $link8;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLktxt9(): ?string {
+    return $this->lktxt9;
+  }
+
+  /**
+   * @param string|null $lktxt9
+   */
+  public function setLktxt9(?string $lktxt9): void {
+    $this->lktxt9 = $lktxt9;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLink9(): ?string {
+    return $this->link9;
+  }
+
+  /**
+   * @param string|null $link9
+   */
+  public function setLink9(?string $link9): void {
+    $this->link9 = $link9;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLktxt10(): ?string {
+    return $this->lktxt10;
+  }
+
+  /**
+   * @param string|null $lktxt10
+   */
+  public function setLktxt10(?string $lktxt10): void {
+    $this->lktxt10 = $lktxt10;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLink10(): ?string {
+    return $this->link10;
+  }
+
+  /**
+   * @param string|null $link10
+   */
+  public function setLink10(?string $link10): void {
+    $this->link10 = $link10;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getVideo(): ?bool {
+    return $this->video;
+  }
+
+  /**
+   * @param bool|null $video
+   */
+  public function setVideo(?bool $video): void {
+    $this->video = $video;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getVdfile1(): ?string {
+    return $this->vdfile1;
+  }
+
+  /**
+   * @param string|null $vdfile1
+   */
+  public function setVdfile1(?string $vdfile1): void {
+    $this->vdfile1 = $vdfile1;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getVdfile2(): ?string {
+    return $this->vdfile2;
+  }
+
+  /**
+   * @param string|null $vdfile2
+   */
+  public function setVdfile2(?string $vdfile2): void {
+    $this->vdfile2 = $vdfile2;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getVdfile3(): ?string {
+    return $this->vdfile3;
+  }
+
+  /**
+   * @param string|null $vdfile3
+   */
+  public function setVdfile3(?string $vdfile3): void {
+    $this->vdfile3 = $vdfile3;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getVdfile4(): ?string {
+    return $this->vdfile4;
+  }
+
+  /**
+   * @param string|null $vdfile4
+   */
+  public function setVdfile4(?string $vdfile4): void {
+    $this->vdfile4 = $vdfile4;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getAudio(): ?bool {
     return $this->audio;
   }
 
   /**
-   * @param mixed $audio
+   * @param bool|null $audio
    */
-  public function setAudio($audio): void {
+  public function setAudio(?bool $audio): void {
     $this->audio = $audio;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getAttendeePCT() {
-    return $this->AttendeePCT;
-  }
-
-  /**
-   * @param mixed $AttendeePCT
-   */
-  public function setAttendeePCT($AttendeePCT): void {
-    $this->AttendeePCT = $AttendeePCT;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getAttendeeCount() {
-    return $this->AttendeeCount;
-  }
-
-  /**
-   * @param mixed $AttendeeCount
-   */
-  public function setAttendeeCount($AttendeeCount): void {
-    $this->AttendeeCount = $AttendeeCount;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getAssignedRA() {
-    return $this->assignedRA;
-  }
-
-  /**
-   * @param mixed $assignedRA
-   */
-  public function setAssignedRA($assignedRA): void {
-    $this->assignedRA = $assignedRA;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getAdfile() {
+  public function getAdfile(): ?string {
     return $this->adfile;
   }
 
   /**
-   * @param mixed $adfile
+   * @param string|null $adfile
    */
-  public function setAdfile($adfile): void {
+  public function setAdfile(?string $adfile): void {
     $this->adfile = $adfile;
   }
 
   /**
-   * @return \Doctrine\Common\Collections\Collection
+   * @return string|null
    */
-  public function getSpeakers() : ? Collection {
-    return $this->speakers;
+  public function getWhy(): ?string {
+    return $this->why;
   }
 
   /**
-   * @param \Doctrine\Common\Collections\Collection $speakers
+   * @param string|null $why
    */
-  public function setSpeakers(Collection $speakers): void {
-    $this->speakers = $speakers;
+  public function setWhy(?string $why): void {
+    $this->why = $why;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getEvent() : ? Event {
-    return $this->event;
+  public function getSumm(): ?string {
+    return $this->summ;
   }
 
   /**
-   * @param mixed $event
+   * @param string|null $summ
    */
-  public function setEvent($event) {
-    $this->event = $event;
-    return $this;
+  public function setSumm(?string $summ): void {
+    $this->summ = $summ;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getRoom() {
-    return $this->room;
+  public function getPic1(): ?string {
+    return $this->pic1;
   }
 
   /**
-   * @param mixed $room
+   * @param string|null $pic1
    */
-  public function setRoom($room): void {
-    $this->room = $room;
+  public function setPic1(?string $pic1): void {
+    $this->pic1 = $pic1;
   }
 
+  /**
+   * @return string|null
+   */
+  public function getPic2(): ?string {
+    return $this->pic2;
+  }
+
+  /**
+   * @param string|null $pic2
+   */
+  public function setPic2(?string $pic2): void {
+    $this->pic2 = $pic2;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getSpons(): ?string {
+    return $this->spons;
+  }
+
+  /**
+   * @param string|null $spons
+   */
+  public function setSpons(?string $spons): void {
+    $this->spons = $spons;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getSlide(): ?string {
+    return $this->slide;
+  }
+
+  /**
+   * @param string|null $slide
+   */
+  public function setSlide(?string $slide): void {
+    $this->slide = $slide;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getEventid(): ?string {
+    return $this->eventid;
+  }
+
+  /**
+   * @param string|null $eventid
+   */
+  public function setEventid(?string $eventid): void {
+    $this->eventid = $eventid;
+  }
+
+  /**
+   * @return int|null
+   */
+  public function getEventidnum(): ?int {
+    return $this->eventidnum;
+  }
+
+  /**
+   * @param int|null $eventidnum
+   */
+  public function setEventidnum(?int $eventidnum): void {
+    $this->eventidnum = $eventidnum;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMd1(): ?string {
+    return $this->md1;
+  }
+
+  /**
+   * @param string|null $md1
+   */
+  public function setMd1(?string $md1): void {
+    $this->md1 = $md1;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMd2(): ?string {
+    return $this->md2;
+  }
+
+  /**
+   * @param string|null $md2
+   */
+  public function setMd2(?string $md2): void {
+    $this->md2 = $md2;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMd3(): ?string {
+    return $this->md3;
+  }
+
+  /**
+   * @param string|null $md3
+   */
+  public function setMd3(?string $md3): void {
+    $this->md3 = $md3;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMd4(): ?string {
+    return $this->md4;
+  }
+
+  /**
+   * @param string|null $md4
+   */
+  public function setMd4(?string $md4): void {
+    $this->md4 = $md4;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMd5(): ?string {
+    return $this->md5;
+  }
+
+  /**
+   * @param string|null $md5
+   */
+  public function setMd5(?string $md5): void {
+    $this->md5 = $md5;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getPublish(): ?bool {
+    return $this->publish;
+  }
+
+  /**
+   * @param bool|null $publish
+   */
+  public function setPublish(?bool $publish): void {
+    $this->publish = $publish;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getPrivate(): ?bool {
+    return $this->private;
+  }
+
+  /**
+   * @param bool|null $private
+   */
+  public function setPrivate(?bool $private): void {
+    $this->private = $private;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getPaneltxt(): ?string {
+    return $this->paneltxt;
+  }
+
+  /**
+   * @param string|null $paneltxt
+   */
+  public function setPaneltxt(?string $paneltxt): void {
+    $this->paneltxt = $paneltxt;
+  }
+
+  /**
+   * @return \DateTime|null
+   */
+  public function getStarttimed(): ?\DateTime {
+    return $this->starttimed;
+  }
+
+  /**
+   * @param \DateTime|null $starttimed
+   */
+  public function setStarttimed(?\DateTime $starttimed): void {
+    $this->starttimed = $starttimed;
+  }
+
+  /**
+   * @return \DateTime|null
+   */
+  public function getEndtimed(): ?\DateTime {
+    return $this->endtimed;
+  }
+
+  /**
+   * @param \DateTime|null $endtimed
+   */
+  public function setEndtimed(?\DateTime $endtimed): void {
+    $this->endtimed = $endtimed;
+  }
+
+  /**
+   * @return int|null
+   */
+  public function getPaneltypeid(): ?int {
+    return $this->paneltypeid;
+  }
+
+  /**
+   * @param int|null $paneltypeid
+   */
+  public function setPaneltypeid(?int $paneltypeid): void {
+    $this->paneltypeid = $paneltypeid;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getPrognotes(): ?string {
+    return $this->prognotes;
+  }
+
+  /**
+   * @param string|null $prognotes
+   */
+  public function setPrognotes(?string $prognotes): void {
+    $this->prognotes = $prognotes;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getShorttitle(): ?string {
+    return $this->shorttitle;
+  }
+
+  /**
+   * @param string|null $shorttitle
+   */
+  public function setShorttitle(?string $shorttitle): void {
+    $this->shorttitle = $shorttitle;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getPanelseating(): ?string {
+    return $this->panelseating;
+  }
+
+  /**
+   * @param string|null $panelseating
+   */
+  public function setPanelseating(?string $panelseating): void {
+    $this->panelseating = $panelseating;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMicrophones(): ?string {
+    return $this->microphones;
+  }
+
+  /**
+   * @param string|null $microphones
+   */
+  public function setMicrophones(?string $microphones): void {
+    $this->microphones = $microphones;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getAssignedra(): ?string {
+    return $this->assignedra;
+  }
+
+  /**
+   * @param string|null $assignedra
+   */
+  public function setAssignedra(?string $assignedra): void {
+    $this->assignedra = $assignedra;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getCameratype(): ?string {
+    return $this->cameratype;
+  }
+
+  /**
+   * @param string|null $cameratype
+   */
+  public function setCameratype(?string $cameratype): void {
+    $this->cameratype = $cameratype;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getDvdset(): ?string {
+    return $this->dvdset;
+  }
+
+  /**
+   * @param string|null $dvdset
+   */
+  public function setDvdset(?string $dvdset): void {
+    $this->dvdset = $dvdset;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getAudiorecording(): ?string {
+    return $this->audiorecording;
+  }
+
+  /**
+   * @param string|null $audiorecording
+   */
+  public function setAudiorecording(?string $audiorecording): void {
+    $this->audiorecording = $audiorecording;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getPpsetup(): ?string {
+    return $this->ppsetup;
+  }
+
+  /**
+   * @param string|null $ppsetup
+   */
+  public function setPpsetup(?string $ppsetup): void {
+    $this->ppsetup = $ppsetup;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getStafflinked(): ?string {
+    return $this->stafflinked;
+  }
+
+  /**
+   * @param string|null $stafflinked
+   */
+  public function setStafflinked(?string $stafflinked): void {
+    $this->stafflinked = $stafflinked;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getSeniorstaff(): ?string {
+    return $this->seniorstaff;
+  }
+
+  /**
+   * @param string|null $seniorstaff
+   */
+  public function setSeniorstaff(?string $seniorstaff): void {
+    $this->seniorstaff = $seniorstaff;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getDeptgroup(): ?string {
+    return $this->deptgroup;
+  }
+
+  /**
+   * @param string|null $deptgroup
+   */
+  public function setDeptgroup(?string $deptgroup): void {
+    $this->deptgroup = $deptgroup;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getShowflownotes(): ?string {
+    return $this->showflownotes;
+  }
+
+  /**
+   * @param string|null $showflownotes
+   */
+  public function setShowflownotes(?string $showflownotes): void {
+    $this->showflownotes = $showflownotes;
+  }
+
+  /**
+   * @return \DateTime|null
+   */
+  public function getDatecreated(): ?\DateTime {
+    return $this->datecreated;
+  }
+
+  /**
+   * @param \DateTime|null $datecreated
+   */
+  public function setDatecreated(?\DateTime $datecreated): void {
+    $this->datecreated = $datecreated;
+  }
+
+  /**
+   * @return \DateTime|null
+   */
+  public function getDatemodified(): ?\DateTime {
+    return $this->datemodified;
+  }
+
+  /**
+   * @param \DateTime|null $datemodified
+   */
+  public function setDatemodified(?\DateTime $datemodified): void {
+    $this->datemodified = $datemodified;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getYoutubeurl(): ?string {
+    return $this->youtubeurl;
+  }
+
+  /**
+   * @param string|null $youtubeurl
+   */
+  public function setYoutubeurl(?string $youtubeurl): void {
+    $this->youtubeurl = $youtubeurl;
+  }
+
+  /**
+   * @return int|null
+   */
+  public function getPrintedprogram(): ?int {
+    return $this->printedprogram;
+  }
+
+  /**
+   * @param int|null $printedprogram
+   */
+  public function setPrintedprogram(?int $printedprogram): void {
+    $this->printedprogram = $printedprogram;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getTumblr(): ?string {
+    return $this->tumblr;
+  }
+
+  /**
+   * @param string|null $tumblr
+   */
+  public function setTumblr(?string $tumblr): void {
+    $this->tumblr = $tumblr;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getLivetweet(): ?string {
+    return $this->livetweet;
+  }
+
+  /**
+   * @param string|null $livetweet
+   */
+  public function setLivetweet(?string $livetweet): void {
+    $this->livetweet = $livetweet;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getTweeter(): ?string {
+    return $this->tweeter;
+  }
+
+  /**
+   * @param string|null $tweeter
+   */
+  public function setTweeter(?string $tweeter): void {
+    $this->tweeter = $tweeter;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getTwitterhandle(): ?string {
+    return $this->twitterhandle;
+  }
+
+  /**
+   * @param string|null $twitterhandle
+   */
+  public function setTwitterhandle(?string $twitterhandle): void {
+    $this->twitterhandle = $twitterhandle;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getShorturl(): ?string {
+    return $this->shorturl;
+  }
+
+  /**
+   * @param string|null $shorturl
+   */
+  public function setShorturl(?string $shorturl): void {
+    $this->shorturl = $shorturl;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getHashtags(): ?string {
+    return $this->hashtags;
+  }
+
+  /**
+   * @param string|null $hashtags
+   */
+  public function setHashtags(?string $hashtags): void {
+    $this->hashtags = $hashtags;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getCommnotes(): ?string {
+    return $this->commnotes;
+  }
+
+  /**
+   * @param string|null $commnotes
+   */
+  public function setCommnotes(?string $commnotes): void {
+    $this->commnotes = $commnotes;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getItindescription(): ?string {
+    return $this->itindescription;
+  }
+
+  /**
+   * @param string|null $itindescription
+   */
+  public function setItindescription(?string $itindescription): void {
+    $this->itindescription = $itindescription;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getPfinal(): ?bool {
+    return $this->pfinal;
+  }
+
+  /**
+   * @param bool|null $pfinal
+   */
+  public function setPfinal(?bool $pfinal): void {
+    $this->pfinal = $pfinal;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getDescfinal(): ?bool {
+    return $this->descfinal;
+  }
+
+  /**
+   * @param bool|null $descfinal
+   */
+  public function setDescfinal(?bool $descfinal): void {
+    $this->descfinal = $descfinal;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getDescstatus(): ?string {
+    return $this->descstatus;
+  }
+
+  /**
+   * @param string|null $descstatus
+   */
+  public function setDescstatus(?string $descstatus): void {
+    $this->descstatus = $descstatus;
+  }
+
+  /**
+   * @return \DateTime|null
+   */
+  public function getDescstatusts(): ?\DateTime {
+    return $this->descstatusts;
+  }
+
+  /**
+   * @param \DateTime|null $descstatusts
+   */
+  public function setDescstatusts(?\DateTime $descstatusts): void {
+    $this->descstatusts = $descstatusts;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getHidedesc(): ?bool {
+    return $this->hidedesc;
+  }
+
+  /**
+   * @param bool|null $hidedesc
+   */
+  public function setHidedesc(?bool $hidedesc): void {
+    $this->hidedesc = $hidedesc;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getHidedescsf(): ?bool {
+    return $this->hidedescsf;
+  }
+
+  /**
+   * @param bool|null $hidedescsf
+   */
+  public function setHidedescsf(?bool $hidedescsf): void {
+    $this->hidedescsf = $hidedescsf;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getSrrtime(): ?string {
+    return $this->srrtime;
+  }
+
+  /**
+   * @param string|null $srrtime
+   */
+  public function setSrrtime(?string $srrtime): void {
+    $this->srrtime = $srrtime;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getOnsreens(): ?string {
+    return $this->onsreens;
+  }
+
+  /**
+   * @param string|null $onsreens
+   */
+  public function setOnsreens(?string $onsreens): void {
+    $this->onsreens = $onsreens;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getVog(): ?string {
+    return $this->vog;
+  }
+
+  /**
+   * @param string|null $vog
+   */
+  public function setVog(?string $vog): void {
+    $this->vog = $vog;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getOnstage(): ?string {
+    return $this->onstage;
+  }
+
+  /**
+   * @param string|null $onstage
+   */
+  public function setOnstage(?string $onstage): void {
+    $this->onstage = $onstage;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getShowtimeline(): ?string {
+    return $this->showtimeline;
+  }
+
+  /**
+   * @param string|null $showtimeline
+   */
+  public function setShowtimeline(?string $showtimeline): void {
+    $this->showtimeline = $showtimeline;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getShownotes(): ?string {
+    return $this->shownotes;
+  }
+
+  /**
+   * @param string|null $shownotes
+   */
+  public function setShownotes(?string $shownotes): void {
+    $this->shownotes = $shownotes;
+  }
+
+  /**
+   * @return int|null
+   */
+  public function getAttendeecount(): ?int {
+    return $this->attendeecount;
+  }
+
+  /**
+   * @param int|null $attendeecount
+   */
+  public function setAttendeecount(?int $attendeecount): void {
+    $this->attendeecount = $attendeecount;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getAttendeepct(): ?string {
+    return $this->attendeepct;
+  }
+
+  /**
+   * @param string|null $attendeepct
+   */
+  public function setAttendeepct(?string $attendeepct): void {
+    $this->attendeepct = $attendeepct;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getNonmi(): ?bool {
+    return $this->nonmi;
+  }
+
+  /**
+   * @param bool|null $nonmi
+   */
+  public function setNonmi(?bool $nonmi): void {
+    $this->nonmi = $nonmi;
+  }
+
+  /**
+   * @return bool|null
+   */
+  public function getLivestream(): ?bool {
+    return $this->livestream;
+  }
+
+  /**
+   * @param bool|null $livestream
+   */
+  public function setLivestream(?bool $livestream): void {
+    $this->livestream = $livestream;
+  }
 
 
 }

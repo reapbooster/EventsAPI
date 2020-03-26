@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\PanelRoomRepository", readOnly=TRUE)
  * @ORM\Table(name="gcroomlinks",
  *   indexes={
- *      @ORM\Index(name="id", columns={"id"}),
  *      @ORM\Index(name="panel_id", columns={"panel_id"}),
  *      @ORM\Index(name="room_id", columns={"room_id"}),
  *   }

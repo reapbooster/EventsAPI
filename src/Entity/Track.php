@@ -9,45 +9,59 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="gcTracks",
  *   indexes={@ORM\Index(name="track_ID", columns={"track_ID"})}
  * )
- * @property int $track_ID
+ * @property int $trackId
  * @property int $trackName
  */
 class Track {
 
   /**
-   * @ORM\Id()
-   * @ORM\GeneratedValue(strategy="NONE")
+   * @var int
+   *
    * @ORM\Column(name="track_ID", type="integer", nullable=false)
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="IDENTITY")
    */
-  private $track_ID;
+  private $trackId;
 
   /**
-   * @ORM\Column(name="trackName", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="trackName", type="string", length=250, nullable=true)
    */
-  private $trackName;
+  private $trackname;
 
   /**
-   * @ORM\Column(name="trackDescription", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="trackDescription", type="string", length=0, nullable=true)
    */
-  private $trackDescription;
+  private $trackdescription;
 
   /**
-   * @ORM\Column(name="event_ID", type="string", nullable=true)
+   * @var string|null
+   *
+   * @ORM\Column(name="event_ID", type="string", length=50, nullable=true)
    */
-  private $event_ID;
+  private $eventId;
 
   /**
+   * @var \DateTime|null
+   *
    * @ORM\Column(name="datecreated", type="datetime", nullable=true)
    */
   private $datecreated;
 
   /**
+   * @var \DateTime|null
+   *
    * @ORM\Column(name="datemodified", type="datetime", nullable=true)
    */
   private $datemodified;
 
   /**
-   * @ORM\Column(name="tracktype", type="string")
+   * @var string|null
+   *
+   * @ORM\Column(name="tracktype", type="string", length=250, nullable=true)
    */
   private $tracktype;
 
@@ -66,7 +80,7 @@ class Track {
 
 
   public function getId(): ?int {
-    return $this->track_ID;
+    return $this->trackId;
   }
 
   /**
