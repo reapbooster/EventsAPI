@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SpeakerRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SpeakerRepository", readOnly=TRUE)
  * @ORM\Table(name="speak")
+ * @property int $SpkrID
  */
 class Speaker {
 
@@ -359,10 +360,6 @@ class Speaker {
    */
   private $instaGram;
 
-  /**
-   * @ORM\ManyToOne(targetEntity="Event", inversedBy="speakers")
-   * @JoinColumn(name="EventID", referencedColumnName="EventID", nullable=true, fieldName="EventID")
-   */
   private $event;
 
   public function __construct()

@@ -1,20 +1,22 @@
 <?php
 
-namespace App\JsonApi\Hydrator\Panel;
+namespace App\JsonApi\Hydrator\PanelRoom;
 
-use App\Entity\Panel;
+use App\Entity\PanelRoom;
+use Doctrine\ORM\Query\Expr;
 use Paknahad\JsonApiBundle\Hydrator\AbstractHydrator;
 use Paknahad\JsonApiBundle\Hydrator\ValidatorTrait;
 use Paknahad\JsonApiBundle\Exception\InvalidRelationshipValueException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WoohooLabs\Yin\JsonApi\Exception\ExceptionFactoryInterface;
+use WoohooLabs\Yin\JsonApi\Hydrator\Relationship\ToManyRelationship;
 use WoohooLabs\Yin\JsonApi\Hydrator\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Request\JsonApiRequestInterface;
 
 /**
- * Abstract Panel Hydrator.
+ * Abstract PanelRoom Hydrator.
  */
-abstract class AbstractPanelHydrator extends AbstractHydrator
+abstract class AbstractPanelRoomHydrator extends AbstractHydrator
 {
     use ValidatorTrait;
 
@@ -44,13 +46,13 @@ abstract class AbstractPanelHydrator extends AbstractHydrator
      */
     protected function getAcceptedTypes(): array
     {
-        return ['panels'];
+        return ['panel_rooms'];
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getAttributeHydrator($panel): array
+    protected function getAttributeHydrator($panelRoom): array
     {
         return [];
     }
@@ -60,15 +62,15 @@ abstract class AbstractPanelHydrator extends AbstractHydrator
      */
     protected function validateRequest(JsonApiRequestInterface $request): void
     {
-        $this->validateFields($this->objectManager->getClassMetadata(Panel::class), $request);
+        $this->validateFields($this->objectManager->getClassMetadata(PanelRoom::class), $request);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function setId($panel, string $id): void
+    protected function setId($panelRoom, string $id): void
     {
-        if ($id && (string) $panel->getId() !== $id) {
+        if ($id && (string) $panelRoom->getId() !== $id) {
             throw new NotFoundHttpException('both ids in url & body must be the same');
         }
     }
@@ -76,17 +78,17 @@ abstract class AbstractPanelHydrator extends AbstractHydrator
     /**
      * {@inheritdoc}
      */
-    protected function getRelationshipHydrator($panel): array
+    protected function getRelationshipHydrator($panelRoom): array
     {
         return [
-            'event' => function (Panel $panel, ToOneRelationship $event, $data, $relationshipName) {
-                $this->validateRelationType($event, ['events']);
+            'panels' => function (PanelRoom $panelRoom, ToOneRelationship $panels, $data, $relationshipName) {
+                $this->validateRelationType($panels, ['panels']);
 
 
                 $association = null;
-                $identifier = $event->getResourceIdentifier();
+                $identifier = $panels->getResourceIdentifier();
                 if ($identifier) {
-                    $association = $this->objectManager->getRepository('App\Entity\Event')
+                    $association = $this->objectManager->getRepository('App\Entity\Panel')
                         ->find($identifier->getId());
 
                     if (is_null($association)) {
@@ -94,24 +96,32 @@ abstract class AbstractPanelHydrator extends AbstractHydrator
                     }
                 }
 
-                $panel->setEvent($association);
+                $panelRoom->setPanels($association);
             },
-            'room' => function (Panel $panel, ToOneRelationship $room, $data, $relationshipName) {
+            'room' => function (PanelRoom $panelRoom, ToManyRelationship $room, $data, $relationshipName) {
                 $this->validateRelationType($room, ['rooms']);
 
-
-                $association = null;
-                $identifier = $room->getResourceIdentifier();
-                if ($identifier) {
+                if (count($room->getResourceIdentifierIds()) > 0) {
                     $association = $this->objectManager->getRepository('App\Entity\Room')
-                        ->find($identifier->getId());
+                        ->createQueryBuilder('r')
+                        ->where((new Expr())->in('r.id', $room->getResourceIdentifierIds()))
+                        ->getQuery()
+                        ->getResult();
 
-                    if (is_null($association)) {
-                        throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
+                    $this->validateRelationValues($association, $room->getResourceIdentifierIds(), $relationshipName);
+                } else {
+                    $association = [];
+                }
+
+                if ($panelRoom->getRoom()->count() > 0) {
+                    foreach ($panelRoom->getRoom() as $room) {
+                        $panelRoom->removeRoom($room);
                     }
                 }
 
-                $panel->setRoom($association);
+                foreach ($association as $room) {
+                    $panelRoom->addRoom($room);
+                }
             },
         ];
     }

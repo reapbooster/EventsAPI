@@ -50,5 +50,4 @@ class PanelController extends Controller
         );
     }
 
-
 }

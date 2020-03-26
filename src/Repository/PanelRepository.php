@@ -31,36 +31,6 @@ class PanelRepository extends ServiceEntityRepository
         ->getResult();
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): ?Panel {
-      if (strpos($id, "::") !== false) {
-        [$EventID, $PID] = explode("::", $id);
-      } else {
-        $PANEL_ID = $id;
-      }
-
-      $qb = $this->createQueryBuilder('p')
-        ->andWhere('p.id = :PANELID')
-        ->setParameter('PANELID', $PANEL_ID)
-        ->setMaxResults(1);
-
-      if (isset($EventID)) {
-        $qb->andWhere('p.EventID = :EVENTID')
-          ->setParameter("EVENTID", $EventID);
-      }
-      $panel = $qb->getQuery()
-        ->getSingleResult();
-
-      if ($panel instanceof Panel) {
-        $room = $this->getEntityManager()
-          ->getRepository("App\Entity\Room")
-          ->findRoomForPanel($panel);
-        if ($room instanceof Room) {
-          $panel->setRoom($room);
-        }
-        return $panel;
-      }
-    }
-
     // /**
     //  * @return Panel[] Returns an array of Panel objects
     //  */

@@ -5,8 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TrackRepository")
- * @ORM\Table(name="gcTracks")
+ * @ORM\Entity(repositoryClass="App\Repository\TrackRepository", readOnly=true)
+ * @ORM\Table(name="gcTracks",
+ *   indexes={@ORM\Index(name="track_ID", columns={"track_ID"})}
+ * )
+ * @property int $track_ID
+ * @property int $trackName
  */
 class Track {
 
@@ -48,10 +52,13 @@ class Track {
   private $tracktype;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Event", inversedBy="tracks")
-   * @ORM\JoinColumn(name="event_ID", referencedColumnName="EventID")
+   * @ORM\OneToOne(targetEntity="Event", mappedBy="EventID")
+   * @ORM\JoinColumn(name="EventID", referencedColumnName="EventID")
+   * @var \App\Entity\Event
    */
   private $event;
+
+  private $panels;
 
   function __construct() {
     $this->event = new Event();

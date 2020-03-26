@@ -862,294 +862,6 @@ paths:
                         type: array
                         items:
                           $ref: '#/definitions/Panel_relation'
-  /panels/:
-    get:
-      tags:
-        - panels
-      summary: 'Panel List'
-      operationId: listPanel
-      produces:
-        - application/json
-      parameters: {  }
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: '/panels?page[number]=1&page[size]=100'
-                  first:
-                    type: string
-                    example: '/panels?page[number]=1&page[size]=100'
-                  last:
-                    type: string
-                    example: '/panels?page[number]=1&page[size]=100'
-                  prev:
-                    type: string
-                    example: 'null'
-                  next:
-                    type: string
-                    example: 'null'
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                      example: 12
-                    type:
-                      type: string
-                      example: panels
-                    attributes:
-                      $ref: '#/definitions/Panel'
-                    relationships:
-                      properties:
-                        event:
-                          $ref: '#/definitions/Event_relation'
-    post:
-      tags:
-        - panels
-      summary: 'Add Panel'
-      operationId: addPanel
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: addPanel
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties:
-                      event:
-                        $ref: '#/definitions/Event_relation'
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties:
-                      event:
-                        $ref: '#/definitions/Event_relation'
-  '/panels/{Panel_id}':
-    patch:
-      tags:
-        - panels
-      summary: 'Edit Panel'
-      operationId: editPanel
-      produces:
-        - application/json
-      parameters:
-        -
-          in: body
-          name: body
-          description: editPanel
-          required: true
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties:
-                      event:
-                        $ref: '#/definitions/Event_relation'
-        -
-          name: Panel_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties:
-                      event:
-                        $ref: '#/definitions/Event_relation'
-    delete:
-      tags:
-        - panels
-      summary: 'Delete Panel'
-      operationId: deletePanel
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Panel_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties:
-                      event:
-                        $ref: '#/definitions/Event_relation'
-    get:
-      tags:
-        - panels
-      summary: 'Get Panel'
-      operationId: viewPanel
-      produces:
-        - application/json
-      parameters:
-        -
-          name: Panel_id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: 'successful operation'
-          schema:
-            type: object
-            properties:
-              jsonapi:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    example: '1.0'
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: /panels
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 12
-                  type:
-                    type: string
-                    example: panels
-                  attributes:
-                    $ref: '#/definitions/Panel'
-                  relationships:
-                    properties:
-                      event:
-                        $ref: '#/definitions/Event_relation'
   /speakers/:
     get:
       tags:
@@ -1438,6 +1150,1214 @@ paths:
                     properties:
                       event:
                         $ref: '#/definitions/Event_relation'
+  /panels/:
+    get:
+      tags:
+        - panels
+      summary: 'Panel List'
+      operationId: listPanel
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/panels?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/panels?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/panels?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: panels
+                    attributes:
+                      $ref: '#/definitions/Panel'
+                    relationships:
+                      properties:
+                        event:
+                          $ref: '#/definitions/Event_relation'
+                        room:
+                          $ref: '#/definitions/Room_relation'
+    post:
+      tags:
+        - panels
+      summary: 'Add Panel'
+      operationId: addPanel
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addPanel
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+                      room:
+                        $ref: '#/definitions/Room_relation'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+                      room:
+                        $ref: '#/definitions/Room_relation'
+  '/panels/{Panel_id}':
+    patch:
+      tags:
+        - panels
+      summary: 'Edit Panel'
+      operationId: editPanel
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editPanel
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+                      room:
+                        $ref: '#/definitions/Room_relation'
+        -
+          name: Panel_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+                      room:
+                        $ref: '#/definitions/Room_relation'
+    delete:
+      tags:
+        - panels
+      summary: 'Delete Panel'
+      operationId: deletePanel
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Panel_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+                      room:
+                        $ref: '#/definitions/Room_relation'
+    get:
+      tags:
+        - panels
+      summary: 'Get Panel'
+      operationId: viewPanel
+      produces:
+        - application/json
+      parameters:
+        -
+          name: Panel_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panels
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panels
+                  attributes:
+                    $ref: '#/definitions/Panel'
+                  relationships:
+                    properties:
+                      event:
+                        $ref: '#/definitions/Event_relation'
+                      room:
+                        $ref: '#/definitions/Room_relation'
+  /panel/rooms/:
+    get:
+      tags:
+        - panel_rooms
+      summary: 'PanelRoom List'
+      operationId: listPanelRoom
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/panel/rooms?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/panel/rooms?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/panel/rooms?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: panel_rooms
+                    attributes:
+                      $ref: '#/definitions/PanelRoom'
+                    relationships:
+                      properties:
+                        panels:
+                          $ref: '#/definitions/Panel_relation'
+                        room:
+                          type: array
+                          items:
+                            $ref: '#/definitions/Room_relation'
+    post:
+      tags:
+        - panel_rooms
+      summary: 'Add PanelRoom'
+      operationId: addPanelRoom
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addPanelRoom
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: panel_rooms
+                  attributes:
+                    $ref: '#/definitions/PanelRoom'
+                  relationships:
+                    properties:
+                      panels:
+                        $ref: '#/definitions/Panel_relation'
+                      room:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Room_relation'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/rooms
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_rooms
+                  attributes:
+                    $ref: '#/definitions/PanelRoom'
+                  relationships:
+                    properties:
+                      panels:
+                        $ref: '#/definitions/Panel_relation'
+                      room:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Room_relation'
+  '/panel/rooms/{PanelRoom_id}':
+    patch:
+      tags:
+        - panel_rooms
+      summary: 'Edit PanelRoom'
+      operationId: editPanelRoom
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editPanelRoom
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_rooms
+                  attributes:
+                    $ref: '#/definitions/PanelRoom'
+                  relationships:
+                    properties:
+                      panels:
+                        $ref: '#/definitions/Panel_relation'
+                      room:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Room_relation'
+        -
+          name: PanelRoom_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/rooms
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_rooms
+                  attributes:
+                    $ref: '#/definitions/PanelRoom'
+                  relationships:
+                    properties:
+                      panels:
+                        $ref: '#/definitions/Panel_relation'
+                      room:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Room_relation'
+    delete:
+      tags:
+        - panel_rooms
+      summary: 'Delete PanelRoom'
+      operationId: deletePanelRoom
+      produces:
+        - application/json
+      parameters:
+        -
+          name: PanelRoom_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/rooms
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_rooms
+                  attributes:
+                    $ref: '#/definitions/PanelRoom'
+                  relationships:
+                    properties:
+                      panels:
+                        $ref: '#/definitions/Panel_relation'
+                      room:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Room_relation'
+    get:
+      tags:
+        - panel_rooms
+      summary: 'Get PanelRoom'
+      operationId: viewPanelRoom
+      produces:
+        - application/json
+      parameters:
+        -
+          name: PanelRoom_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/rooms
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_rooms
+                  attributes:
+                    $ref: '#/definitions/PanelRoom'
+                  relationships:
+                    properties:
+                      panels:
+                        $ref: '#/definitions/Panel_relation'
+                      room:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Room_relation'
+  /panel/speakers/:
+    get:
+      tags:
+        - panel_speakers
+      summary: 'PanelSpeaker List'
+      operationId: listPanelSpeaker
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/panel/speakers?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/panel/speakers?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/panel/speakers?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: panel_speakers
+                    attributes:
+                      $ref: '#/definitions/PanelSpeaker'
+                    relationships:
+                      properties: {  }
+    post:
+      tags:
+        - panel_speakers
+      summary: 'Add PanelSpeaker'
+      operationId: addPanelSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addPanelSpeaker
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: panel_speakers
+                  attributes:
+                    $ref: '#/definitions/PanelSpeaker'
+                  relationships:
+                    properties: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_speakers
+                  attributes:
+                    $ref: '#/definitions/PanelSpeaker'
+                  relationships:
+                    properties: {  }
+  '/panel/speakers/{PanelSpeaker_id}':
+    patch:
+      tags:
+        - panel_speakers
+      summary: 'Edit PanelSpeaker'
+      operationId: editPanelSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editPanelSpeaker
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_speakers
+                  attributes:
+                    $ref: '#/definitions/PanelSpeaker'
+                  relationships:
+                    properties: {  }
+        -
+          name: PanelSpeaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_speakers
+                  attributes:
+                    $ref: '#/definitions/PanelSpeaker'
+                  relationships:
+                    properties: {  }
+    delete:
+      tags:
+        - panel_speakers
+      summary: 'Delete PanelSpeaker'
+      operationId: deletePanelSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          name: PanelSpeaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_speakers
+                  attributes:
+                    $ref: '#/definitions/PanelSpeaker'
+                  relationships:
+                    properties: {  }
+    get:
+      tags:
+        - panel_speakers
+      summary: 'Get PanelSpeaker'
+      operationId: viewPanelSpeaker
+      produces:
+        - application/json
+      parameters:
+        -
+          name: PanelSpeaker_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/speakers
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_speakers
+                  attributes:
+                    $ref: '#/definitions/PanelSpeaker'
+                  relationships:
+                    properties: {  }
+  /panel/tracks/:
+    get:
+      tags:
+        - panel_tracks
+      summary: 'PanelTrack List'
+      operationId: listPanelTrack
+      produces:
+        - application/json
+      parameters: {  }
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: '/panel/tracks?page[number]=1&page[size]=100'
+                  first:
+                    type: string
+                    example: '/panel/tracks?page[number]=1&page[size]=100'
+                  last:
+                    type: string
+                    example: '/panel/tracks?page[number]=1&page[size]=100'
+                  prev:
+                    type: string
+                    example: 'null'
+                  next:
+                    type: string
+                    example: 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 12
+                    type:
+                      type: string
+                      example: panel_tracks
+                    attributes:
+                      $ref: '#/definitions/PanelTrack'
+                    relationships:
+                      properties:
+                        panel:
+                          type: array
+                          items:
+                            $ref: '#/definitions/Panel_relation'
+                        track:
+                          $ref: '#/definitions/Track_relation'
+    post:
+      tags:
+        - panel_tracks
+      summary: 'Add PanelTrack'
+      operationId: addPanelTrack
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: addPanelTrack
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: panel_tracks
+                  attributes:
+                    $ref: '#/definitions/PanelTrack'
+                  relationships:
+                    properties:
+                      panel:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+                      track:
+                        $ref: '#/definitions/Track_relation'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/tracks
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_tracks
+                  attributes:
+                    $ref: '#/definitions/PanelTrack'
+                  relationships:
+                    properties:
+                      panel:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+                      track:
+                        $ref: '#/definitions/Track_relation'
+  '/panel/tracks/{PanelTrack_id}':
+    patch:
+      tags:
+        - panel_tracks
+      summary: 'Edit PanelTrack'
+      operationId: editPanelTrack
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: editPanelTrack
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_tracks
+                  attributes:
+                    $ref: '#/definitions/PanelTrack'
+                  relationships:
+                    properties:
+                      panel:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+                      track:
+                        $ref: '#/definitions/Track_relation'
+        -
+          name: PanelTrack_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/tracks
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_tracks
+                  attributes:
+                    $ref: '#/definitions/PanelTrack'
+                  relationships:
+                    properties:
+                      panel:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+                      track:
+                        $ref: '#/definitions/Track_relation'
+    delete:
+      tags:
+        - panel_tracks
+      summary: 'Delete PanelTrack'
+      operationId: deletePanelTrack
+      produces:
+        - application/json
+      parameters:
+        -
+          name: PanelTrack_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/tracks
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_tracks
+                  attributes:
+                    $ref: '#/definitions/PanelTrack'
+                  relationships:
+                    properties:
+                      panel:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+                      track:
+                        $ref: '#/definitions/Track_relation'
+    get:
+      tags:
+        - panel_tracks
+      summary: 'Get PanelTrack'
+      operationId: viewPanelTrack
+      produces:
+        - application/json
+      parameters:
+        -
+          name: PanelTrack_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: object
+            properties:
+              jsonapi:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: '1.0'
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: /panel/tracks
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 12
+                  type:
+                    type: string
+                    example: panel_tracks
+                  attributes:
+                    $ref: '#/definitions/PanelTrack'
+                  relationships:
+                    properties:
+                      panel:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Panel_relation'
+                      track:
+                        $ref: '#/definitions/Track_relation'
 securityDefinitions:
   api_key:
     type: apiKey
@@ -1547,22 +2467,164 @@ definitions:
         type: string
       Description:
         type: text
-  Panel_relation:
+  Speaker:
     type: object
     properties:
-      type:
+      salutation:
         type: string
-        enum:
-          - panels
-        example: panels
-      id:
+      SpkrNm:
+        type: string
+      Mname:
+        type: string
+      Lname:
+        type: string
+      suffix:
+        type: string
+      Description:
+        type: string
+      BioLink:
+        type: string
+      bioPic:
+        type: string
+      BioText:
+        type: string
+      speakertype:
+        type: string
+      Status:
+        type: string
+      PgTitle:
+        type: string
+      EventID:
+        type: string
+      sortorder:
         type: integer
-        minimum: 1
-        description: 'Panel ID'
-        example: 69
+        format: int32
+      cancelled:
+        type: boolean
+      rawFileType:
+        type: string
+      printFileType:
+        type: string
+      WebFileType:
+        type: string
+      notes:
+        type: string
+      datecreated:
+        type: string
+        format: date-time
+      datemodified:
+        type: string
+        format: date-time
+      createdbyID:
+        type: integer
+        format: int32
+      modifiedbyID:
+        type: integer
+        format: int32
+      ipnum:
+        type: integer
+        format: int32
+      attendeeID:
+        type: integer
+        format: int32
+      panelID:
+        type: integer
+        format: int32
+      whoSuggested:
+        type: string
+      whoEntered:
+        type: string
+      dateSuggested:
+        type: string
+        format: date-time
+      recBio:
+        type: boolean
+      recBioDate:
+        type: string
+      recPhoto:
+        type: string
+      recPhotoDate:
+        type: string
+        format: date-time
+      recWaiverDate:
+        type: string
+        format: date-time
+      spkEmail:
+        type: string
+      twitter:
+        type: string
+      twitter2:
+        type: string
+      twitterNotes:
+        type: string
+      invitationextend:
+        type: boolean
+      invitationWhom:
+        type: string
+      spideremaildate:
+        type: string
+        format: date-time
+      whoconfirmed:
+        type: string
+      city:
+        type: string
+      developmentPriority:
+        type: string
+      speakerRole:
+        type: string
+      speakerTopics:
+        type: string
+      primaryTrack:
+        type: string
+      secondaryTrack:
+        type: string
+      topicNotes:
+        type: string
+      connections:
+        type: string
+      devRelationship:
+        type: string
+      devRelationContact:
+        type: string
+      womensreport:
+        type: boolean
+      location:
+        type: string
+      photoModDate:
+        type: string
+      displayChinese:
+        type: string
+      devOrganization:
+        type: string
+      roleChangedate:
+        type: string
+        format: date-time
+      cVentID:
+        type: string
+      phoneticName:
+        type: string
+      needsfinaledit:
+        type: string
+      scheduleNotes:
+        type: string
+      linkedin:
+        type: string
+      speakerLiaison:
+        type: string
+      Facebook:
+        type: string
+      FacebookFollowers:
+        type: string
+      salesForceID:
+        type: string
+      instaGram:
+        type: string
   Panel:
     type: object
     properties:
+      PID:
+        type: integer
+        format: int32
       sess:
         type: string
       Description:
@@ -1759,158 +2821,6 @@ definitions:
         type: string
       adfile:
         type: string
-  Speaker:
-    type: object
-    properties:
-      salutation:
-        type: string
-      SpkrNm:
-        type: string
-      Mname:
-        type: string
-      Lname:
-        type: string
-      suffix:
-        type: string
-      Description:
-        type: string
-      BioLink:
-        type: string
-      bioPic:
-        type: string
-      BioText:
-        type: string
-      speakertype:
-        type: string
-      Status:
-        type: string
-      PgTitle:
-        type: string
-      EventID:
-        type: string
-      sortorder:
-        type: integer
-        format: int32
-      cancelled:
-        type: boolean
-      rawFileType:
-        type: string
-      printFileType:
-        type: string
-      WebFileType:
-        type: string
-      notes:
-        type: string
-      datecreated:
-        type: string
-        format: date-time
-      datemodified:
-        type: string
-        format: date-time
-      createdbyID:
-        type: integer
-        format: int32
-      modifiedbyID:
-        type: integer
-        format: int32
-      ipnum:
-        type: integer
-        format: int32
-      attendeeID:
-        type: integer
-        format: int32
-      panelID:
-        type: integer
-        format: int32
-      whoSuggested:
-        type: string
-      whoEntered:
-        type: string
-      dateSuggested:
-        type: string
-        format: date-time
-      recBio:
-        type: boolean
-      recBioDate:
-        type: string
-      recPhoto:
-        type: string
-      recPhotoDate:
-        type: string
-        format: date-time
-      recWaiverDate:
-        type: string
-        format: date-time
-      spkEmail:
-        type: string
-      twitter:
-        type: string
-      twitter2:
-        type: string
-      twitterNotes:
-        type: string
-      invitationextend:
-        type: boolean
-      invitationWhom:
-        type: string
-      spideremaildate:
-        type: string
-        format: date-time
-      whoconfirmed:
-        type: string
-      city:
-        type: string
-      developmentPriority:
-        type: string
-      speakerRole:
-        type: string
-      speakerTopics:
-        type: string
-      primaryTrack:
-        type: string
-      secondaryTrack:
-        type: string
-      topicNotes:
-        type: string
-      connections:
-        type: string
-      devRelationship:
-        type: string
-      devRelationContact:
-        type: string
-      womensreport:
-        type: boolean
-      location:
-        type: string
-      photoModDate:
-        type: string
-      displayChinese:
-        type: string
-      devOrganization:
-        type: string
-      roleChangedate:
-        type: string
-        format: date-time
-      cVentID:
-        type: string
-      phoneticName:
-        type: string
-      needsfinaledit:
-        type: string
-      scheduleNotes:
-        type: string
-      linkedin:
-        type: string
-      speakerLiaison:
-        type: string
-      Facebook:
-        type: string
-      FacebookFollowers:
-        type: string
-      salesForceID:
-        type: string
-      instaGram:
-        type: string
   Event_relation:
     type: object
     properties:
@@ -1924,6 +2834,69 @@ definitions:
         minimum: 1
         description: 'Event ID'
         example: 69
+  PanelRooms:
+    type: object
+    properties:
+      type:
+        type: string
+      datecreated:
+        type: string
+      datemodified:
+        type: string
+  PanelRoom:
+    type: object
+    properties:
+      type:
+        type: string
+      datecreated:
+        type: string
+      datemodified:
+        type: string
+  Room_relation:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - rooms
+        example: rooms
+      id:
+        type: integer
+        minimum: 1
+        description: 'Room ID'
+        example: 76
+  PanelSpeaker:
+    type: object
+    properties: {  }
+  PanelTrack:
+    type: object
+    properties: {  }
+  Panel_relation:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - panels
+        example: panels
+      id:
+        type: integer
+        minimum: 1
+        description: 'Panel ID'
+        example: 69
+  Track_relation:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - tracks
+        example: tracks
+      id:
+        type: integer
+        minimum: 1
+        description: 'Track ID'
+        example: 76
 externalDocs:
   description: 'Find out more about Swagger'
   url: 'http://swagger.io'

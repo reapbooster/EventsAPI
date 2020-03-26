@@ -7,16 +7,22 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
- * @ORM\Table(name="Events")
+ * @ORM\Entity(repositoryClass="App\Repository\EventRepository", readOnly=TRUE)
+ * @ORM\Table(name="Events",
+ *   indexes={
+ *     @ORM\Index(name="EventID", columns={"EventID"})
+ *   }
+ * )
+ * @property int $EventID
+ * @property string $Name
  */
 class Event {
 
 
   /**
-   * @ORM\Id()
    * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="EventID", type="string", nullable=true, unique=false)
+   * @ORM\Id
    */
   private $EventID;
 
@@ -42,20 +48,16 @@ class Event {
 
   /**
    * @ORM\OneToMany(targetEntity="Panel", mappedBy="event")
-   * @ORM\JoinColumn(name="EventID", fieldName="EventID")
+   * @ORM\JoinColumn(name="EventID", fieldName="EventID", referencedColumnName="EventID")
+   * @var Collection
    */
   private $panels;
 
-  /**
-   * @ORM\OneToMany(targetEntity="Speaker", mappedBy="event")
-   * @ORM\JoinColumn(name="EventID", fieldName="EventID")
-   */
+
+
   private $speakers;
 
-  /**
-   * @ORM\OneToMany(targetEntity="Track", mappedBy="event")
-   * @ORM\JoinColumn(name="EventID", fieldName="EventID", referencedColumnName="event_ID")
-   */
+
   private $tracks;
 
   public function __construct() {

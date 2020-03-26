@@ -6,15 +6,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
- * @ORM\Table(name="gcHiltonRooms")
+ * @ORM\Entity(repositoryClass="App\Repository\RoomRepository", readOnly=TRUE)
+ * @ORM\Table(name="gcHiltonRooms",
+ *   indexes={
+ *     @ORM\Index(name="id", columns={"room_id"}),
+ *   }
+ * )
+ * @property int $room_id
+ * @property string $rName
  */
 class Room {
 
   /**
-   * @ORM\Id()
-   * @ORM\GeneratedValue()
+   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="room_id", type="integer")
+   * @ORM\Id
    */
   private $room_id;
 
@@ -103,6 +109,14 @@ class Room {
    */
   private $uShape;
 
+  /**
+   * @ORM\ManyToOne(targetEntity="Panel", inversedBy="room")
+   * @ORM\JoinTable(name="gcroomlinks",
+   *  joinColumns={@ORM\JoinColumn(name="panel_id", referencedColumnName="ID", fieldName="id")},
+   *  inverseJoinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")}
+   * )
+   * @var \Doctrine\Common\Collections\Collection
+   */
   private $panels;
 
   function __construct() {

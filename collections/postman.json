@@ -551,7 +551,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"data\": {\n        \"type\": \"panels\",\n        \"attributes\": {\n            \"sess\": \"string\",\n            \"Description\": \"string\",\n            \"pDate\": \"string\",\n            \"pTime\": \"string\",\n            \"Pday\": \"string\",\n            \"youTubeURL\": \"string\",\n            \"why\": \"string\",\n            \"VOG\": \"string\",\n            \"video\": \"boolean\",\n            \"vdfile4\": \"string\",\n            \"vdfile3\": \"string\",\n            \"vdfile2\": \"string\",\n            \"vdfile1\": \"string\",\n            \"twitterHandle\": \"string\",\n            \"tweeter\": \"string\",\n            \"tumblr\": \"string\",\n            \"summ\": \"string\",\n            \"startTimed\": \"datetime\",\n            \"stafflinked\": \"string\",\n            \"srrTime\": \"datetime\",\n            \"spons\": \"string\",\n            \"slide\": \"string\",\n            \"showTimeline\": \"string\",\n            \"showNotes\": \"string\",\n            \"showflownotes\": \"string\",\n            \"shorturl\": \"string\",\n            \"shortTitle\": \"string\",\n            \"seniorStaff\": \"string\",\n            \"publish\": \"boolean\",\n            \"progNotes\": \"string\",\n            \"private\": \"boolean\",\n            \"printedProgram\": \"integer\",\n            \"ppsetup\": \"string\",\n            \"pic2\": \"string\",\n            \"pic1\": \"string\",\n            \"pFinal\": \"boolean\",\n            \"paneltypeid\": \"integer\",\n            \"paneltxt\": \"string\",\n            \"PanelSeating\": \"string\",\n            \"panel\": \"string\",\n            \"onStage\": \"string\",\n            \"onSreens\": \"string\",\n            \"nonMI\": \"string\",\n            \"microphones\": \"string\",\n            \"md5\": \"string\",\n            \"md4\": \"string\",\n            \"md3\": \"string\",\n            \"md2\": \"string\",\n            \"md1\": \"string\",\n            \"lktxt10\": \"string\",\n            \"lktxt9\": \"string\",\n            \"lktxt8\": \"string\",\n            \"lktxt7\": \"string\",\n            \"lktxt6\": \"string\",\n            \"lktxt5\": \"string\",\n            \"lktxt4\": \"string\",\n            \"lktxt3\": \"string\",\n            \"lktxt2\": \"string\",\n            \"lktxt1\": \"string\",\n            \"livetweet\": \"string\",\n            \"liveStream\": \"string\",\n            \"link10\": \"string\",\n            \"link9\": \"string\",\n            \"link8\": \"string\",\n            \"link7\": \"string\",\n            \"link6\": \"string\",\n            \"link5\": \"string\",\n            \"link4\": \"string\",\n            \"link3\": \"string\",\n            \"link2\": \"string\",\n            \"link1\": \"string\",\n            \"itinDescription\": \"string\",\n            \"hideDescSF\": \"string\",\n            \"hideDesc\": \"string\",\n            \"hashtags\": \"string\",\n            \"EventIDnum\": \"string\",\n            \"EventID\": \"string\",\n            \"Etime\": \"string\",\n            \"epday\": \"string\",\n            \"endTimed\": \"string\",\n            \"DVDset\": \"string\",\n            \"descStatusTS\": \"string\",\n            \"descStatus\": \"string\",\n            \"descFinal\": \"string\",\n            \"deptGroup\": \"string\",\n            \"datemodified\": \"datetime\",\n            \"datecreated\": \"datetime\",\n            \"commNotes\": \"string\",\n            \"CameraType\": \"string\",\n            \"audioRecording\": \"string\",\n            \"audio\": \"string\",\n            \"AttendeePCT\": \"string\",\n            \"AttendeeCount\": \"string\",\n            \"assignedRA\": \"string\",\n            \"adfile\": \"string\"\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"type\": \"events\",\n                    \"id\": \"1\"\n                }\n            }\n        }\n    }\n}"
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panels\",\n        \"attributes\": {\n            \"PID\": \"integer\",\n            \"sess\": \"string\",\n            \"Description\": \"string\",\n            \"pDate\": \"string\",\n            \"pTime\": \"string\",\n            \"Pday\": \"string\",\n            \"youTubeURL\": \"string\",\n            \"why\": \"string\",\n            \"VOG\": \"string\",\n            \"video\": \"boolean\",\n            \"vdfile4\": \"string\",\n            \"vdfile3\": \"string\",\n            \"vdfile2\": \"string\",\n            \"vdfile1\": \"string\",\n            \"twitterHandle\": \"string\",\n            \"tweeter\": \"string\",\n            \"tumblr\": \"string\",\n            \"summ\": \"string\",\n            \"startTimed\": \"datetime\",\n            \"stafflinked\": \"string\",\n            \"srrTime\": \"datetime\",\n            \"spons\": \"string\",\n            \"slide\": \"string\",\n            \"showTimeline\": \"string\",\n            \"showNotes\": \"string\",\n            \"showflownotes\": \"string\",\n            \"shorturl\": \"string\",\n            \"shortTitle\": \"string\",\n            \"seniorStaff\": \"string\",\n            \"publish\": \"boolean\",\n            \"progNotes\": \"string\",\n            \"private\": \"boolean\",\n            \"printedProgram\": \"integer\",\n            \"ppsetup\": \"string\",\n            \"pic2\": \"string\",\n            \"pic1\": \"string\",\n            \"pFinal\": \"boolean\",\n            \"paneltypeid\": \"integer\",\n            \"paneltxt\": \"string\",\n            \"PanelSeating\": \"string\",\n            \"panel\": \"string\",\n            \"onStage\": \"string\",\n            \"onSreens\": \"string\",\n            \"nonMI\": \"string\",\n            \"microphones\": \"string\",\n            \"md5\": \"string\",\n            \"md4\": \"string\",\n            \"md3\": \"string\",\n            \"md2\": \"string\",\n            \"md1\": \"string\",\n            \"lktxt10\": \"string\",\n            \"lktxt9\": \"string\",\n            \"lktxt8\": \"string\",\n            \"lktxt7\": \"string\",\n            \"lktxt6\": \"string\",\n            \"lktxt5\": \"string\",\n            \"lktxt4\": \"string\",\n            \"lktxt3\": \"string\",\n            \"lktxt2\": \"string\",\n            \"lktxt1\": \"string\",\n            \"livetweet\": \"string\",\n            \"liveStream\": \"string\",\n            \"link10\": \"string\",\n            \"link9\": \"string\",\n            \"link8\": \"string\",\n            \"link7\": \"string\",\n            \"link6\": \"string\",\n            \"link5\": \"string\",\n            \"link4\": \"string\",\n            \"link3\": \"string\",\n            \"link2\": \"string\",\n            \"link1\": \"string\",\n            \"itinDescription\": \"string\",\n            \"hideDescSF\": \"string\",\n            \"hideDesc\": \"string\",\n            \"hashtags\": \"string\",\n            \"EventIDnum\": \"string\",\n            \"EventID\": \"string\",\n            \"Etime\": \"string\",\n            \"epday\": \"string\",\n            \"endTimed\": \"string\",\n            \"DVDset\": \"string\",\n            \"descStatusTS\": \"string\",\n            \"descStatus\": \"string\",\n            \"descFinal\": \"string\",\n            \"deptGroup\": \"string\",\n            \"datemodified\": \"datetime\",\n            \"datecreated\": \"datetime\",\n            \"commNotes\": \"string\",\n            \"CameraType\": \"string\",\n            \"audioRecording\": \"string\",\n            \"audio\": \"string\",\n            \"AttendeePCT\": \"string\",\n            \"AttendeeCount\": \"string\",\n            \"assignedRA\": \"string\",\n            \"adfile\": \"string\"\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"type\": \"events\",\n                    \"id\": \"1\"\n                }\n            },\n            \"room\": {\n                \"data\": {\n                    \"type\": \"rooms\",\n                    \"id\": \"1\"\n                }\n            }\n        }\n    }\n}"
                         },
                         "url": {
                             "raw": "{{host}}\/panels\/",
@@ -577,7 +577,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"data\": {\n        \"type\": \"panels\",\n        \"id\": \"1\",\n        \"attributes\": {\n            \"sess\": \"string\",\n            \"Description\": \"string\",\n            \"pDate\": \"string\",\n            \"pTime\": \"string\",\n            \"Pday\": \"string\",\n            \"youTubeURL\": \"string\",\n            \"why\": \"string\",\n            \"VOG\": \"string\",\n            \"video\": \"boolean\",\n            \"vdfile4\": \"string\",\n            \"vdfile3\": \"string\",\n            \"vdfile2\": \"string\",\n            \"vdfile1\": \"string\",\n            \"twitterHandle\": \"string\",\n            \"tweeter\": \"string\",\n            \"tumblr\": \"string\",\n            \"summ\": \"string\",\n            \"startTimed\": \"datetime\",\n            \"stafflinked\": \"string\",\n            \"srrTime\": \"datetime\",\n            \"spons\": \"string\",\n            \"slide\": \"string\",\n            \"showTimeline\": \"string\",\n            \"showNotes\": \"string\",\n            \"showflownotes\": \"string\",\n            \"shorturl\": \"string\",\n            \"shortTitle\": \"string\",\n            \"seniorStaff\": \"string\",\n            \"publish\": \"boolean\",\n            \"progNotes\": \"string\",\n            \"private\": \"boolean\",\n            \"printedProgram\": \"integer\",\n            \"ppsetup\": \"string\",\n            \"pic2\": \"string\",\n            \"pic1\": \"string\",\n            \"pFinal\": \"boolean\",\n            \"paneltypeid\": \"integer\",\n            \"paneltxt\": \"string\",\n            \"PanelSeating\": \"string\",\n            \"panel\": \"string\",\n            \"onStage\": \"string\",\n            \"onSreens\": \"string\",\n            \"nonMI\": \"string\",\n            \"microphones\": \"string\",\n            \"md5\": \"string\",\n            \"md4\": \"string\",\n            \"md3\": \"string\",\n            \"md2\": \"string\",\n            \"md1\": \"string\",\n            \"lktxt10\": \"string\",\n            \"lktxt9\": \"string\",\n            \"lktxt8\": \"string\",\n            \"lktxt7\": \"string\",\n            \"lktxt6\": \"string\",\n            \"lktxt5\": \"string\",\n            \"lktxt4\": \"string\",\n            \"lktxt3\": \"string\",\n            \"lktxt2\": \"string\",\n            \"lktxt1\": \"string\",\n            \"livetweet\": \"string\",\n            \"liveStream\": \"string\",\n            \"link10\": \"string\",\n            \"link9\": \"string\",\n            \"link8\": \"string\",\n            \"link7\": \"string\",\n            \"link6\": \"string\",\n            \"link5\": \"string\",\n            \"link4\": \"string\",\n            \"link3\": \"string\",\n            \"link2\": \"string\",\n            \"link1\": \"string\",\n            \"itinDescription\": \"string\",\n            \"hideDescSF\": \"string\",\n            \"hideDesc\": \"string\",\n            \"hashtags\": \"string\",\n            \"EventIDnum\": \"string\",\n            \"EventID\": \"string\",\n            \"Etime\": \"string\",\n            \"epday\": \"string\",\n            \"endTimed\": \"string\",\n            \"DVDset\": \"string\",\n            \"descStatusTS\": \"string\",\n            \"descStatus\": \"string\",\n            \"descFinal\": \"string\",\n            \"deptGroup\": \"string\",\n            \"datemodified\": \"datetime\",\n            \"datecreated\": \"datetime\",\n            \"commNotes\": \"string\",\n            \"CameraType\": \"string\",\n            \"audioRecording\": \"string\",\n            \"audio\": \"string\",\n            \"AttendeePCT\": \"string\",\n            \"AttendeeCount\": \"string\",\n            \"assignedRA\": \"string\",\n            \"adfile\": \"string\"\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"type\": \"events\",\n                    \"id\": \"1\"\n                }\n            }\n        }\n    }\n}"
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panels\",\n        \"id\": \"1\",\n        \"attributes\": {\n            \"PID\": \"integer\",\n            \"sess\": \"string\",\n            \"Description\": \"string\",\n            \"pDate\": \"string\",\n            \"pTime\": \"string\",\n            \"Pday\": \"string\",\n            \"youTubeURL\": \"string\",\n            \"why\": \"string\",\n            \"VOG\": \"string\",\n            \"video\": \"boolean\",\n            \"vdfile4\": \"string\",\n            \"vdfile3\": \"string\",\n            \"vdfile2\": \"string\",\n            \"vdfile1\": \"string\",\n            \"twitterHandle\": \"string\",\n            \"tweeter\": \"string\",\n            \"tumblr\": \"string\",\n            \"summ\": \"string\",\n            \"startTimed\": \"datetime\",\n            \"stafflinked\": \"string\",\n            \"srrTime\": \"datetime\",\n            \"spons\": \"string\",\n            \"slide\": \"string\",\n            \"showTimeline\": \"string\",\n            \"showNotes\": \"string\",\n            \"showflownotes\": \"string\",\n            \"shorturl\": \"string\",\n            \"shortTitle\": \"string\",\n            \"seniorStaff\": \"string\",\n            \"publish\": \"boolean\",\n            \"progNotes\": \"string\",\n            \"private\": \"boolean\",\n            \"printedProgram\": \"integer\",\n            \"ppsetup\": \"string\",\n            \"pic2\": \"string\",\n            \"pic1\": \"string\",\n            \"pFinal\": \"boolean\",\n            \"paneltypeid\": \"integer\",\n            \"paneltxt\": \"string\",\n            \"PanelSeating\": \"string\",\n            \"panel\": \"string\",\n            \"onStage\": \"string\",\n            \"onSreens\": \"string\",\n            \"nonMI\": \"string\",\n            \"microphones\": \"string\",\n            \"md5\": \"string\",\n            \"md4\": \"string\",\n            \"md3\": \"string\",\n            \"md2\": \"string\",\n            \"md1\": \"string\",\n            \"lktxt10\": \"string\",\n            \"lktxt9\": \"string\",\n            \"lktxt8\": \"string\",\n            \"lktxt7\": \"string\",\n            \"lktxt6\": \"string\",\n            \"lktxt5\": \"string\",\n            \"lktxt4\": \"string\",\n            \"lktxt3\": \"string\",\n            \"lktxt2\": \"string\",\n            \"lktxt1\": \"string\",\n            \"livetweet\": \"string\",\n            \"liveStream\": \"string\",\n            \"link10\": \"string\",\n            \"link9\": \"string\",\n            \"link8\": \"string\",\n            \"link7\": \"string\",\n            \"link6\": \"string\",\n            \"link5\": \"string\",\n            \"link4\": \"string\",\n            \"link3\": \"string\",\n            \"link2\": \"string\",\n            \"link1\": \"string\",\n            \"itinDescription\": \"string\",\n            \"hideDescSF\": \"string\",\n            \"hideDesc\": \"string\",\n            \"hashtags\": \"string\",\n            \"EventIDnum\": \"string\",\n            \"EventID\": \"string\",\n            \"Etime\": \"string\",\n            \"epday\": \"string\",\n            \"endTimed\": \"string\",\n            \"DVDset\": \"string\",\n            \"descStatusTS\": \"string\",\n            \"descStatus\": \"string\",\n            \"descFinal\": \"string\",\n            \"deptGroup\": \"string\",\n            \"datemodified\": \"datetime\",\n            \"datecreated\": \"datetime\",\n            \"commNotes\": \"string\",\n            \"CameraType\": \"string\",\n            \"audioRecording\": \"string\",\n            \"audio\": \"string\",\n            \"AttendeePCT\": \"string\",\n            \"AttendeeCount\": \"string\",\n            \"assignedRA\": \"string\",\n            \"adfile\": \"string\"\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"type\": \"events\",\n                    \"id\": \"1\"\n                }\n            },\n            \"room\": {\n                \"data\": {\n                    \"type\": \"rooms\",\n                    \"id\": \"1\"\n                }\n            }\n        }\n    }\n}"
                         },
                         "url": {
                             "raw": "{{host}}\/panels\/1",
@@ -759,6 +759,514 @@
                             ],
                             "path": [
                                 "\/tracks",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "PanelRooms",
+            "description": "",
+            "item": [
+                {
+                    "name": "PanelRooms List",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add PanelRooms",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_rooms\",\n        \"attributes\": {\n            \"type\": \"string\",\n            \"datecreated\": \"string\",\n            \"datemodified\": \"string\"\n        },\n        \"relationships\": {\n            \"panel\": {\n                \"data\": {\n                    \"type\": \"panels\",\n                    \"id\": \"1\"\n                }\n            },\n            \"room\": {\n                \"data\": [\n                    {\n                        \"type\": \"rooms\",\n                        \"id\": \"1\"\n                    }\n                ]\n            }\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Edit PanelRooms",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_rooms\",\n        \"id\": \"1\",\n        \"attributes\": {\n            \"type\": \"string\",\n            \"datecreated\": \"string\",\n            \"datemodified\": \"string\"\n        },\n        \"relationships\": {\n            \"panel\": {\n                \"data\": {\n                    \"type\": \"panels\",\n                    \"id\": \"1\"\n                }\n            },\n            \"room\": {\n                \"data\": [\n                    {\n                        \"type\": \"rooms\",\n                        \"id\": \"1\"\n                    }\n                ]\n            }\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete PanelRooms",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get PanelRooms",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "PanelRoom",
+            "description": "",
+            "item": [
+                {
+                    "name": "PanelRoom List",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add PanelRoom",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_rooms\",\n        \"attributes\": {\n            \"type\": \"string\",\n            \"datecreated\": \"string\",\n            \"datemodified\": \"string\"\n        },\n        \"relationships\": {\n            \"panels\": {\n                \"data\": {\n                    \"type\": \"panels\",\n                    \"id\": \"1\"\n                }\n            },\n            \"room\": {\n                \"data\": [\n                    {\n                        \"type\": \"rooms\",\n                        \"id\": \"1\"\n                    }\n                ]\n            }\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Edit PanelRoom",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_rooms\",\n        \"id\": \"1\",\n        \"attributes\": {\n            \"type\": \"string\",\n            \"datecreated\": \"string\",\n            \"datemodified\": \"string\"\n        },\n        \"relationships\": {\n            \"panels\": {\n                \"data\": {\n                    \"type\": \"panels\",\n                    \"id\": \"1\"\n                }\n            },\n            \"room\": {\n                \"data\": [\n                    {\n                        \"type\": \"rooms\",\n                        \"id\": \"1\"\n                    }\n                ]\n            }\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete PanelRoom",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get PanelRoom",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/rooms\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/rooms",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "PanelSpeaker",
+            "description": "",
+            "item": [
+                {
+                    "name": "PanelSpeaker List",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/speakers\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/speakers",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add PanelSpeaker",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_speakers\",\n        \"attributes\": [],\n        \"relationships\": []\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/speakers\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/speakers",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Edit PanelSpeaker",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_speakers\",\n        \"id\": \"1\",\n        \"attributes\": [],\n        \"relationships\": []\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/speakers\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/speakers",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete PanelSpeaker",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/speakers\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/speakers",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get PanelSpeaker",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/speakers\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/speakers",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "PanelTrack",
+            "description": "",
+            "item": [
+                {
+                    "name": "PanelTrack List",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/tracks\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/tracks",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add PanelTrack",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_tracks\",\n        \"attributes\": [],\n        \"relationships\": {\n            \"panel\": {\n                \"data\": [\n                    {\n                        \"type\": \"panels\",\n                        \"id\": \"1\"\n                    }\n                ]\n            },\n            \"track\": {\n                \"data\": {\n                    \"type\": \"tracks\",\n                    \"id\": \"1\"\n                }\n            }\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/tracks\/",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/tracks",
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Edit PanelTrack",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"type\": \"panel_tracks\",\n        \"id\": \"1\",\n        \"attributes\": [],\n        \"relationships\": {\n            \"panel\": {\n                \"data\": [\n                    {\n                        \"type\": \"panels\",\n                        \"id\": \"1\"\n                    }\n                ]\n            },\n            \"track\": {\n                \"data\": {\n                    \"type\": \"tracks\",\n                    \"id\": \"1\"\n                }\n            }\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{host}}\/panel\/tracks\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/tracks",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete PanelTrack",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/tracks\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/tracks",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get PanelTrack",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/panel\/tracks\/1",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "\/panel\/tracks",
                                 "1"
                             ]
                         }

@@ -5,21 +5,24 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PanelRepository")
- * @ORM\Table(name="panel")
- *
+ * @ORM\Entity(repositoryClass="App\Repository\PanelRepository", readOnly=TRUE)
+ * @ORM\Table(name="panel",
+ *   indexes={
+ *      @ORM\Index(name="ID", columns={"ID"}),
+ *   }
+ * )
+ * @property int $ID
  */
 class Panel {
 
   /**
-   * @ORM\Id()
    * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="ID", type="integer", unique=true, nullable=false)
+   * @ORM\Id()
    */
-  private $id;
+  private $ID;
 
   /**
    * @ORM\Column(name="PID", type="integer", unique=false, nullable=true)
@@ -501,22 +504,32 @@ class Panel {
    */
   private $adfile;
 
+  /**
+   * @ORM\ManyToOne(targetEntity="Event", inversedBy="panels")
+   * @ORM\JoinColumn(name="EventID", referencedColumnName="EventID")
+   * @var \App\Entity\Event
+   */
   private $event;
 
-  private $speakers;
-
+  /**
+   * @ORM\ManyToOne(targetEntity="Room", inversedBy="room_id")
+   * @ORM\JoinTable(name="gcroomlinks",
+   *  joinColumns={
+   *    @ORM\JoinColumn(name="room_id", referencedColumnName="room_id", fieldName="room_id")
+   *  }
+   * )
+   * @var \App\Entity\Room
+   */
   private $room;
 
-  function __construct($EventID = null, $PID = null) {
-    $this->setEventID($EventID);
-    $this->setPid($PID);
+  function __construct() {
     $this->speakers = new ArrayCollection();
     $this->event = new Event();
     $this->room = new Room();
   }
 
   public function getId(): string {
-    return $this->id;
+    return $this->ID;
   }
 
   /**
@@ -1882,7 +1895,7 @@ class Panel {
   /**
    * @return mixed
    */
-  public function getEvent() {
+  public function getEvent() : ? Event {
     return $this->event;
   }
 
@@ -1891,7 +1904,6 @@ class Panel {
    */
   public function setEvent($event) {
     $this->event = $event;
-
     return $this;
   }
 

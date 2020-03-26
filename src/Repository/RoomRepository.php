@@ -24,25 +24,14 @@ class RoomRepository extends ServiceEntityRepository
     }
 
   public function find($id, $lockMode = null, $lockVersion = null): Panel {
-    [$EventID, $PID] = explode("::", $id);
-    $room = $this->createQueryBuilder('r')
+    return $this->createQueryBuilder('r')
       ->andWhere('r.room_id = :ROOMID')
       ->setParameter("ROOMID", $id)
       ->setMaxResults(1)
       ->getQuery()
       ->getSingleResult();
-    if ($room instanceof Room) {
-      $panels = $this->getEntityManager()
-        ->getRepository('panel')
-        ->findPanelsForRoom($room);
-
-      if (!empty($panels)) {
-        $room->setPanels($panels);
-      }
-      return $toReturn;
-    }
   }
-
+  /*
   public function findRoomForPanel(Panel $panel) {
     $rsm = new ResultSetMappingBuilder($this->getEntityManager());
     $rsm->addRootEntityFromClassMetadata("App\Entity\Room","r");
