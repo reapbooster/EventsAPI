@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "JSONAPI interface to Milken Events database",
   "main": "index.js",
+  "directories": {
+    "bin": "./bin",
+    "doc": "./doc",
+    "lib": "./lib",
+    "man": "./man"
+  },
   "dependencies": {
     "newman": "^4.6.0"
   },

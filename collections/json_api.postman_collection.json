@@ -1,0 +1,535 @@
+{
+	"info": {
+		"_postman_id": "2328f2e5-bd73-42f6-b0a4-091b05fc0181",
+		"name": "json_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Event List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "361417c0-d814-4d57-9be6-c86f11341057",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test Events Index List\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.be.an(\"array\");",
+									"    pm.expect(jsonData.data[0]).to.be.an(\"object\");",
+									"    pm.expect(jsonData.data[0].id).to.be.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/events/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET 2001 GLOBAL CONFERENCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a831af25-93ca-444b-b12d-bff16f7d2d97",
+								"exec": [
+									"tests[\"response code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test 2001 Global Conference Response\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.be.an(\"object\");",
+									"    pm.expect(jsonData.data.id).to.be.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/events/gc01",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events",
+								"gc01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET 2002 GLOBAL CONFERENCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8939d5fe-4a6b-4467-ae4d-9adde1a115e9",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test 2002 Global Conference Response\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.be.an(\"object\");",
+									"    pm.expect(jsonData.data.id).to.be.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/events/gc02",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events",
+								"gc02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET 2005 GLOBAL CONFERENCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "590a90b3-cc42-4c6e-960f-f574a8359bac",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test 2005 global conf response.\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.be.an(\"object\");",
+									"    pm.expect(jsonData.data.id).to.be.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/events/gc05",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events",
+								"gc05"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "Rooms List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ebe0b61-c1c6-4a9d-a736-929438761fe5",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test Rooms Index List\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.be.an(\"array\");",
+									"    pm.expect(jsonData.data[0]).to.be.an(\"object\");",
+									"    pm.expect(jsonData.data[0].id).to.be.an(\"string\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/rooms/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rooms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get INTERNATIONAL BALLROOM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7a478e7-1533-4f6a-85b5-75e5e2b757fe",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test International Ballroom Response\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.have.property('id').and.be.an(\"object\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/rooms/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BEVERLY HILLS BALLROOM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9b8890d-aa54-4ac5-b123-4280a9ab50f8",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"pm.test(\"Test Beverly Hills Ballroom Response\", function () {",
+									"    let jsonData = pm.response.json()",
+									"    pm.expect(jsonData.data).to.have.property('id').and.be.an(\"object\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/rooms/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rooms",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Speaker",
+			"item": [
+				{
+					"name": "Speaker List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4cbc8090-d2a5-48c7-8151-e36561cb6a25",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/speakers/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"speakers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3b6b284-65a6-4b2c-a73f-5b1fec371e77",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/speakers/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"speakers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Panel",
+			"item": [
+				{
+					"name": "Panel List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c221a340-b911-4123-884a-a671cc6a1fa3",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/panels/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"panels",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bd068194-c7d9-4575-82b3-5512c93dc64b",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/panels/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"panels",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Track",
+			"item": [
+				{
+					"name": "Track List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "95df57d0-87ff-4c0a-a2a6-2a7f280cc1fb",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/tracks/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tracks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get PanelRooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "759f93d7-0d88-408e-b619-063943b32ff4",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/panel/rooms/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"panel",
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

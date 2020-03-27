@@ -52,6 +52,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "test": [
+            "node_modules/.bin/newman run ./collections/json_api.postman_collection.json -e ./collections/${APP_ENV}.postman_environment.json"
         ]
     },
     "conflict": {

@@ -25,14 +25,14 @@
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/events",
+                                "events",
                                 ""
                             ]
                         }
                     }
                 },
                 {
-                    "name": "Get Event",
+                    "name": "GET 2001 GLOBAL CONFERENCE",
                     "request": {
                         "method": "GET",
                         "header": [
@@ -43,13 +43,59 @@
                         ],
                         "body": "",
                         "url": {
-                            "raw": "{{host}}\/events\/1",
+                            "raw": "{{host}}\/events\/gc01",
                             "host": [
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/events",
-                                "1"
+                                "events",
+                                "gc01"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "GET 2002 GLOBAL CONFERENCE",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/events\/gc02",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "events",
+                                "gc02"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "GET 2005 GLOBAL CONFERENCE",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": "",
+                        "url": {
+                            "raw": "{{host}}\/events\/gc05",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "events",
+                                "gc05"
                             ]
                         }
                     }
@@ -77,14 +123,14 @@
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/rooms",
+                                "rooms",
                                 ""
                             ]
                         }
                     }
                 },
                 {
-                    "name": "Get Rooms",
+                    "name": "Get INTERNATIONAL BALLROOM",
                     "request": {
                         "method": "GET",
                         "header": [
@@ -100,43 +146,14 @@
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/rooms",
+                                "rooms",
                                 "1"
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "Room",
-            "description": "",
-            "item": [
-                {
-                    "name": "Room List",
-                    "request": {
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": "",
-                        "url": {
-                            "raw": "{{host}}\/rooms\/",
-                            "host": [
-                                "{{host}}"
-                            ],
-                            "path": [
-                                "\/rooms",
-                                ""
                             ]
                         }
                     }
                 },
                 {
-                    "name": "Get Room",
+                    "name": "Get INTERNATIONAL BALLROOM",
                     "request": {
                         "method": "GET",
                         "header": [
@@ -152,8 +169,8 @@
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/rooms",
-                                "1"
+                                "rooms",
+                                "2"
                             ]
                         }
                     }
@@ -181,7 +198,7 @@
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/speakers",
+                                "speakers",
                                 ""
                             ]
                         }
@@ -204,8 +221,8 @@
                                 "{{host}}"
                             ],
                             "path": [
-                                "\/speakers",
-                                "1"
+                                "speakers",
+                                "4"
                             ]
                         }
                     }

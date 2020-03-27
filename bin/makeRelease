@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+docker build -t "milken/events-api:latest" .
+
+docker push milken/events-api:latest
