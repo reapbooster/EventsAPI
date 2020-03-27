@@ -5,10 +5,8 @@ namespace App\JsonApi\Hydrator\Panel;
 use App\Entity\Panel;
 use Paknahad\JsonApiBundle\Hydrator\AbstractHydrator;
 use Paknahad\JsonApiBundle\Hydrator\ValidatorTrait;
-use Paknahad\JsonApiBundle\Exception\InvalidRelationshipValueException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WoohooLabs\Yin\JsonApi\Exception\ExceptionFactoryInterface;
-use WoohooLabs\Yin\JsonApi\Hydrator\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Request\JsonApiRequestInterface;
 
 /**
@@ -79,40 +77,6 @@ abstract class AbstractPanelHydrator extends AbstractHydrator
     protected function getRelationshipHydrator($panel): array
     {
         return [
-            'event' => function (Panel $panel, ToOneRelationship $event, $data, $relationshipName) {
-                $this->validateRelationType($event, ['events']);
-
-
-                $association = null;
-                $identifier = $event->getResourceIdentifier();
-                if ($identifier) {
-                    $association = $this->objectManager->getRepository('App\Entity\Event')
-                        ->find($identifier->getId());
-
-                    if (is_null($association)) {
-                        throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
-                    }
-                }
-
-                $panel->setEvent($association);
-            },
-            'room' => function (Panel $panel, ToOneRelationship $room, $data, $relationshipName) {
-                $this->validateRelationType($room, ['rooms']);
-
-
-                $association = null;
-                $identifier = $room->getResourceIdentifier();
-                if ($identifier) {
-                    $association = $this->objectManager->getRepository('App\Entity\Room')
-                        ->find($identifier->getId());
-
-                    if (is_null($association)) {
-                        throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
-                    }
-                }
-
-                $panel->setRoom($association);
-            },
         ];
     }
 }

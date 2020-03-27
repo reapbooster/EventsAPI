@@ -5,10 +5,8 @@ namespace App\JsonApi\Hydrator\Speaker;
 use App\Entity\Speaker;
 use Paknahad\JsonApiBundle\Hydrator\AbstractHydrator;
 use Paknahad\JsonApiBundle\Hydrator\ValidatorTrait;
-use Paknahad\JsonApiBundle\Exception\InvalidRelationshipValueException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WoohooLabs\Yin\JsonApi\Exception\ExceptionFactoryInterface;
-use WoohooLabs\Yin\JsonApi\Hydrator\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Request\JsonApiRequestInterface;
 
 /**
@@ -79,23 +77,6 @@ abstract class AbstractSpeakerHydrator extends AbstractHydrator
     protected function getRelationshipHydrator($speaker): array
     {
         return [
-            'event' => function (Speaker $speaker, ToOneRelationship $event, $data, $relationshipName) {
-                $this->validateRelationType($event, ['events']);
-
-
-                $association = null;
-                $identifier = $event->getResourceIdentifier();
-                if ($identifier) {
-                    $association = $this->objectManager->getRepository('App\Entity\Event')
-                        ->find($identifier->getId());
-
-                    if (is_null($association)) {
-                        throw new InvalidRelationshipValueException($relationshipName, [$identifier->getId()]);
-                    }
-                }
-
-                $speaker->setEvent($association);
-            },
         ];
     }
 }

@@ -18,41 +18,44 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'salutation' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setSalutation($attribute);
             },
-            'SpkrNm' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpkrNm($attribute);
+            'spkrnm' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSpkrnm($attribute);
             },
-            'Mname' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+            'mname' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setMname($attribute);
             },
-            'Lname' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+            'lname' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setLname($attribute);
             },
             'suffix' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setSuffix($attribute);
             },
-            'Description' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+            'description' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setDescription($attribute);
             },
-            'BioLink' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setBioLink($attribute);
+            'biolink' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setBiolink($attribute);
             },
-            'bioPic' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setBioPic($attribute);
+            'biopic' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setBiopic($attribute);
             },
-            'BioText' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setBioText($attribute);
+            'biotext' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setBiotext($attribute);
             },
             'speakertype' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setSpeakertype($attribute);
             },
-            'Status' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+            'status' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setStatus($attribute);
             },
-            'PgTitle' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setPgTitle($attribute);
+            'pgid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPgid($attribute);
             },
-            'EventID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setEventID($attribute);
+            'pgtitle' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPgtitle($attribute);
+            },
+            'eventid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setEventid($attribute);
             },
             'sortorder' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setSortorder($attribute);
@@ -60,14 +63,14 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'cancelled' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setCancelled($attribute);
             },
-            'rawFileType' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRawFileType($attribute);
+            'rawfiletype' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRawfiletype($attribute);
             },
-            'printFileType' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setPrintFileType($attribute);
+            'printfiletype' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPrintfiletype($attribute);
             },
-            'WebFileType' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setWebFileType($attribute);
+            'webfiletype' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setWebfiletype($attribute);
             },
             'notes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setNotes($attribute);
@@ -78,47 +81,53 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'datemodified' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setDatemodified(new \DateTime($attribute));
             },
-            'createdbyID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setCreatedbyID($attribute);
+            'createdbyid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setCreatedbyid($attribute);
             },
-            'modifiedbyID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setModifiedbyID($attribute);
+            'modifiedbyid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setModifiedbyid($attribute);
             },
             'ipnum' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setIpnum($attribute);
             },
-            'attendeeID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setAttendeeID($attribute);
+            'attendeeid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setAttendeeid($attribute);
             },
-            'panelID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setPanelID($attribute);
+            'contactid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setContactid($attribute);
             },
-            'whoSuggested' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setWhoSuggested($attribute);
+            'panelid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPanelid($attribute);
             },
-            'whoEntered' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setWhoEntered($attribute);
+            'whosuggested' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setWhosuggested($attribute);
             },
-            'dateSuggested' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setDateSuggested(new \DateTime($attribute));
+            'whoentered' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setWhoentered($attribute);
             },
-            'recBio' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRecBio($attribute);
+            'datesuggested' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setDatesuggested(new \DateTime($attribute));
             },
-            'recBioDate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRecBioDate($attribute);
+            'recbio' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRecbio($attribute);
             },
-            'recPhoto' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRecPhoto($attribute);
+            'recbiodate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRecbiodate(new \DateTime($attribute));
             },
-            'recPhotoDate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRecPhotoDate(new \DateTime($attribute));
+            'recphoto' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRecphoto($attribute);
             },
-            'recWaiverDate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRecWaiverDate(new \DateTime($attribute));
+            'recphotodate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRecphotodate(new \DateTime($attribute));
             },
-            'spkEmail' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpkEmail($attribute);
+            'recwaiver' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRecwaiver($attribute);
+            },
+            'recwaiverdate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRecwaiverdate(new \DateTime($attribute));
+            },
+            'spkemail' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSpkemail($attribute);
             },
             'twitter' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setTwitter($attribute);
@@ -126,17 +135,17 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'twitter2' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setTwitter2($attribute);
             },
-            'twitterNotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setTwitterNotes($attribute);
+            'twitternotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setTwitternotes($attribute);
             },
             'invitationextend' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setInvitationextend($attribute);
             },
-            'invitationWhom' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setInvitationWhom($attribute);
+            'invitationwhom' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setInvitationwhom($attribute);
             },
             'spideremaildate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpideremaildate(new \DateTime($attribute));
+                $speaker->setSpideremaildate($attribute);
             },
             'whoconfirmed' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setWhoconfirmed($attribute);
@@ -144,32 +153,32 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'city' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setCity($attribute);
             },
-            'developmentPriority' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setDevelopmentPriority($attribute);
+            'developmentpriority' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setDevelopmentpriority($attribute);
             },
-            'speakerRole' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpeakerRole($attribute);
+            'speakerrole' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSpeakerrole($attribute);
             },
-            'speakerTopics' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpeakerTopics($attribute);
+            'speakertopics' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSpeakertopics($attribute);
             },
-            'primaryTrack' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setPrimaryTrack($attribute);
+            'primarytrack' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPrimarytrack($attribute);
             },
-            'secondaryTrack' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSecondaryTrack($attribute);
+            'secondarytrack' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSecondarytrack($attribute);
             },
-            'topicNotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setTopicNotes($attribute);
+            'topicnotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setTopicnotes($attribute);
             },
             'connections' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setConnections($attribute);
             },
-            'devRelationship' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setDevRelationship($attribute);
+            'devrelationship' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setDevrelationship($attribute);
             },
-            'devRelationContact' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setDevRelationContact($attribute);
+            'devrelationcontact' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setDevrelationcontact($attribute);
             },
             'womensreport' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setWomensreport($attribute);
@@ -177,47 +186,50 @@ class CreateSpeakerHydrator extends AbstractSpeakerHydrator
             'location' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setLocation($attribute);
             },
-            'photoModDate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setPhotoModDate($attribute);
+            'photomoddate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPhotomoddate(new \DateTime($attribute));
             },
-            'displayChinese' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setDisplayChinese($attribute);
+            'displaychinese' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setDisplaychinese($attribute);
             },
-            'devOrganization' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setDevOrganization($attribute);
+            'devorganization' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setDevorganization($attribute);
             },
-            'roleChangedate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setRoleChangedate(new \DateTime($attribute));
+            'rolechangedate' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setRolechangedate(new \DateTime($attribute));
             },
-            'cVentID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setCVentID($attribute);
+            'cventid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setCventid($attribute);
             },
-            'phoneticName' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setPhoneticName($attribute);
+            'phoneticname' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setPhoneticname($attribute);
             },
             'needsfinaledit' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setNeedsfinaledit($attribute);
             },
-            'scheduleNotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setScheduleNotes($attribute);
+            'schedulenotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSchedulenotes($attribute);
+            },
+            'showflownotes' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setShowflownotes($attribute);
             },
             'linkedin' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setLinkedin($attribute);
             },
-            'speakerLiaison' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSpeakerLiaison($attribute);
+            'speakerliaison' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSpeakerliaison($attribute);
             },
-            'Facebook' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+            'facebook' => function (Speaker $speaker, $attribute, $data, $attributeName) {
                 $speaker->setFacebook($attribute);
             },
-            'FacebookFollowers' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setFacebookFollowers($attribute);
+            'facebookfollowers' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setFacebookfollowers($attribute);
             },
-            'salesForceID' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setSalesForceID($attribute);
+            'salesforceid' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setSalesforceid($attribute);
             },
-            'instaGram' => function (Speaker $speaker, $attribute, $data, $attributeName) {
-                $speaker->setInstaGram($attribute);
+            'instagram' => function (Speaker $speaker, $attribute, $data, $attributeName) {
+                $speaker->setInstagram($attribute);
             },
         ];
     }

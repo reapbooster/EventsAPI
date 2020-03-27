@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="panel")
  * @ORM\Entity(repositoryClass="App\Repository\PanelRepository", readOnly=TRUE)
  * @property int $id
+ * @property string $panel
+ * @property int $pid
  */
 class Panel {
 
@@ -26,15 +28,13 @@ class Panel {
    * @var string|null
    *
    * @ORM\Column(name="panel", type="string", length=0, nullable=true)
-   * @ORM\GeneratedValue(strategy="NONE")
    */
   private $panel;
 
   /**
    * @var int|null
-   * @ORM\Id
+   *
    * @ORM\Column(name="PID", type="integer", nullable=true)
-   * @ORM\GeneratedValue(strategy="NONE")
    */
   private $pid;
 
@@ -321,7 +321,6 @@ class Panel {
   /**
    * @var string|null
    *
-   * @ORM\Id
    * @ORM\Column(name="EventID", type="string", length=255, nullable=true)
    */
   private $eventid;
@@ -699,26 +698,6 @@ class Panel {
    * @ORM\Column(name="liveStream", type="boolean", nullable=true)
    */
   private $livestream;
-
-  /**
-   * @var \App\Entity\Room
-   *
-   * @ORM\ManyToOne(targetEntity="Room")
-   * @ORM\JoinTable(name="gcroomlinks",
-   *  joinColumns={
-   *    @ORM\JoinColumn(name="room_id", referencedColumnName="room_id", fieldName="room_id")
-   *  }
-   * )
-   */
-  private $room;
-
-  /**
-   * @var \App\Entity\Event
-   *
-   * @ORM\ManyToOne(targetEntity="Event", inversedBy="panels")
-   * @ORM\JoinColumn(name="EventID", referencedColumnName="EventID")
-   */
-  private $event;
 
   /**
    * @return int

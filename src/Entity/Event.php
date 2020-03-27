@@ -3,13 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository", readOnly=TRUE)
  * @ORM\Table(name="Events")
+ * @UniqueEntity("EventID")
  * @property int $id
+ * @property string $EventID
  */
 class Event {
 
@@ -25,6 +27,7 @@ class Event {
 
   /**
    * @var string|null
+   *
    *
    * @ORM\Column(name="EventID", type="string", length=255, nullable=true, unique=FALSE)
    * @ORM\GeneratedValue(strategy="NONE")
@@ -353,13 +356,6 @@ class Event {
    */
   private $cventid;
 
-
-
-  /**
-   * @ORM\OneToMany(targetEntity="Panel", mappedBy="EventID")
-   * @ORM\JoinColumn(name="EventID", fieldName="EventID", referencedColumnName="EventID")
-   * @var Collection
-   */
   private $panels;
 
   private $tracks;
@@ -1045,7 +1041,7 @@ class Event {
   /**
    * @return \Doctrine\Common\Collections\Collection
    */
-  public function getPanels(): \Doctrine\Common\Collections\Collection {
+  public function getPanels(): ? \Doctrine\Common\Collections\Collection {
     return $this->panels;
   }
 
@@ -1059,7 +1055,7 @@ class Event {
   /**
    * @return \Doctrine\Common\Collections\ArrayCollection
    */
-  public function getTracks(): \Doctrine\Common\Collections\ArrayCollection {
+  public function getTracks(): ? \Doctrine\Common\Collections\ArrayCollection {
     return $this->tracks;
   }
 

@@ -6,11 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrackRepository", readOnly=true)
- * @ORM\Table(name="gcTracks",
- *   indexes={@ORM\Index(name="track_ID", columns={"track_ID"})}
- * )
+ * @ORM\Table(name="gcTracks")
  * @property int $trackId
- * @property int $trackName
+ * @property string $trackname
  */
 class Track {
 
@@ -65,15 +63,6 @@ class Track {
    */
   private $tracktype;
 
-  /**
-   * @ORM\OneToOne(targetEntity="Event", mappedBy="EventID")
-   * @ORM\JoinColumn(name="EventID", referencedColumnName="EventID")
-   * @var \App\Entity\Event
-   */
-  private $event;
-
-  private $panels;
-
   function __construct() {
     $this->event = new Event();
   }
@@ -84,102 +73,105 @@ class Track {
   }
 
   /**
-   * @return mixed
+   * @return int
    */
-  public function getTrackName() {
-    return $this->trackName;
+  public function getTrackId(): int {
+    return $this->trackId;
   }
 
   /**
-   * @param mixed $trackName
+   * @param int $trackId
    */
-  public function setTrackName($trackName): void {
-    $this->trackName = $trackName;
+  public function setTrackId(int $trackId): void {
+    $this->trackId = $trackId;
   }
 
   /**
-   * @return mixed
+   * @return int
    */
-  public function getTrackDescription() {
-    return $this->trackDescription;
+  public function getTrackname(): string {
+    return $this->trackname;
   }
 
   /**
-   * @param mixed $trackDescription
+   * @param int $trackname
    */
-  public function setTrackDescription($trackDescription): void {
-    $this->trackDescription = $trackDescription;
+  public function setTrackname(string $trackname): void {
+    $this->trackname = $trackname;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getEventID() {
-    return $this->event_ID;
+  public function getTrackdescription(): ?string {
+    return $this->trackdescription;
   }
 
   /**
-   * @param mixed $event_ID
+   * @param string|null $trackdescription
    */
-  public function setEventID($event_ID): void {
-    $this->event_ID = $event_ID;
+  public function setTrackdescription(?string $trackdescription): void {
+    $this->trackdescription = $trackdescription;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getDatecreated() {
+  public function getEventId(): ?string {
+    return $this->eventId;
+  }
+
+  /**
+   * @param string|null $eventId
+   */
+  public function setEventId(?string $eventId): void {
+    $this->eventId = $eventId;
+  }
+
+  /**
+   * @return \DateTime|null
+   */
+  public function getDatecreated(): ?\DateTime {
     return $this->datecreated;
   }
 
   /**
-   * @param mixed $datecreated
+   * @param \DateTime|null $datecreated
    */
-  public function setDatecreated($datecreated): void {
+  public function setDatecreated(?\DateTime $datecreated): void {
     $this->datecreated = $datecreated;
   }
 
   /**
-   * @return mixed
+   * @return \DateTime|null
    */
-  public function getDatemodified() {
+  public function getDatemodified(): ?\DateTime {
     return $this->datemodified;
   }
 
   /**
-   * @param mixed $datemodified
+   * @param \DateTime|null $datemodified
    */
-  public function setDatemodified($datemodified): void {
+  public function setDatemodified(?\DateTime $datemodified): void {
     $this->datemodified = $datemodified;
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public function getTracktype() {
+  public function getTracktype(): ?string {
     return $this->tracktype;
   }
 
   /**
-   * @param mixed $tracktype
+   * @param string|null $tracktype
    */
-  public function setTracktype($tracktype): void {
+  public function setTracktype(?string $tracktype): void {
     $this->tracktype = $tracktype;
   }
 
-  /**
-   * @return mixed
-   */
-  public function getEvent() {
-    return $this->event;
-  }
 
-  /**
-   * @param mixed $event
-   */
-  public function setEvent($event): void {
-    $this->event = $event;
-  }
+
 
 
 }

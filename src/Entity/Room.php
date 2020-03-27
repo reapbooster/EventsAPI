@@ -7,11 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository", readOnly=TRUE)
- * @ORM\Table(name="gcHiltonRooms",
- *   indexes={
- *     @ORM\Index(name="primary", columns={"room_id"}),
- *   }
- * )
+ * @ORM\Table(name="gcHiltonRooms")
+ *
  * @property int $roomId
  * @property string $rname
  */
@@ -144,18 +141,6 @@ class Room {
    * @ORM\Column(name="uShape", type="integer", nullable=true)
    */
   private $ushape;
-
-
-
-  /**
-   * @ORM\OneToMany(targetEntity="Panel", mappedBy="room")
-   * @ORM\JoinTable(name="gcroomlinks",
-   *  joinColumns={@ORM\JoinColumn(name="panel_id", referencedColumnName="ID", fieldName="ID")},
-   *  inverseJoinColumns={@ORM\JoinColumn(name="room_id", referencedColumnName="room_id")}
-   * )
-   * @var \Doctrine\Common\Collections\Collection
-   */
-  private $panels;
 
   function __construct() {
     $this->panels = new ArrayCollection();

@@ -63,7 +63,7 @@ class TrackController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="tracks_show", methods="GET")
+     * @Route("/{trackId}", name="tracks_show", methods="GET")
      */
     public function show(Track $track): ResponseInterface
     {
@@ -74,7 +74,7 @@ class TrackController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="tracks_edit", methods="PATCH")
+     * @Route("/{trackId}", name="tracks_edit", methods="PATCH")
      */
     public function edit(Track $track, ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
     {
@@ -97,7 +97,7 @@ class TrackController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="tracks_delete", methods="DELETE")
+     * @Route("/{trackId}", name="tracks_delete", methods="DELETE")
      */
     public function delete(Request $request, Track $track): ResponseInterface
     {

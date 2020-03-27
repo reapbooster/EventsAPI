@@ -15,8 +15,8 @@ class UpdateRoomHydrator extends AbstractRoomHydrator
     protected function getAttributeHydrator($room): array
     {
         return [
-            'rName' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setRName($attribute);
+            'rname' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setRname($attribute);
             },
             'schoolhousecap' => function (Room $room, $attribute, $data, $attributeName) {
                 $room->setSchoolhousecap($attribute);
@@ -27,8 +27,8 @@ class UpdateRoomHydrator extends AbstractRoomHydrator
             'theatercap' => function (Room $room, $attribute, $data, $attributeName) {
                 $room->setTheatercap($attribute);
             },
-            'hollowSquare' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setHollowSquare($attribute);
+            'hollowsquare' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setHollowsquare($attribute);
             },
             'conference' => function (Room $room, $attribute, $data, $attributeName) {
                 $room->setConference($attribute);
@@ -36,20 +36,20 @@ class UpdateRoomHydrator extends AbstractRoomHydrator
             'notes' => function (Room $room, $attribute, $data, $attributeName) {
                 $room->setNotes($attribute);
             },
-            'sortOrder' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setSortOrder($attribute);
+            'sortorder' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setSortorder($attribute);
             },
-            'roomGroup' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setRoomGroup($attribute);
+            'roomgroup' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setRoomgroup($attribute);
             },
             'datecreated' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setDatecreated($attribute);
+                $room->setDatecreated(new \DateTime($attribute));
             },
             'datemodified' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setDatemodified($attribute);
+                $room->setDatemodified(new \DateTime($attribute));
             },
-            'eventType' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setEventType($attribute);
+            'eventtype' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setEventtype($attribute);
             },
             'lounge' => function (Room $room, $attribute, $data, $attributeName) {
                 $room->setLounge($attribute);
@@ -60,11 +60,11 @@ class UpdateRoomHydrator extends AbstractRoomHydrator
             'tour' => function (Room $room, $attribute, $data, $attributeName) {
                 $room->setTour($attribute);
             },
-            'hollowCircle' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setHollowCircle($attribute);
+            'hollowcircle' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setHollowcircle($attribute);
             },
-            'uShape' => function (Room $room, $attribute, $data, $attributeName) {
-                $room->setUShape($attribute);
+            'ushape' => function (Room $room, $attribute, $data, $attributeName) {
+                $room->setUshape($attribute);
             },
         ];
     }

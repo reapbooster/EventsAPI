@@ -15,14 +15,14 @@ class CreateTrackHydrator extends AbstractTrackHydrator
     protected function getAttributeHydrator($track): array
     {
         return [
-            'trackName' => function (Track $track, $attribute, $data, $attributeName) {
-                $track->setTrackName($attribute);
+            'trackname' => function (Track $track, $attribute, $data, $attributeName) {
+                $track->setTrackname($attribute);
             },
-            'trackDescription' => function (Track $track, $attribute, $data, $attributeName) {
-                $track->setTrackDescription($attribute);
+            'trackdescription' => function (Track $track, $attribute, $data, $attributeName) {
+                $track->setTrackdescription($attribute);
             },
-            'event_ID' => function (Track $track, $attribute, $data, $attributeName) {
-                $track->setEventID($attribute);
+            'eventId' => function (Track $track, $attribute, $data, $attributeName) {
+                $track->setEventId($attribute);
             },
             'datecreated' => function (Track $track, $attribute, $data, $attributeName) {
                 $track->setDatecreated(new \DateTime($attribute));

@@ -26,16 +26,12 @@ class PanelSpeaker {
   private $id;
 
   /**
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="speaker_id", type="integer")
    * @var int
    */
   private $speaker_id;
 
   /**
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="panel_id", type="integer")
    * @var int
    */

@@ -21,16 +21,12 @@ class PanelTrack {
   private $id;
 
   /**
-   * @ORM\Id()
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="panel_id")
    * @var integer
    */
   private $panel_id;
 
   /**
-   * @ORM\Id()
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="track_id")
    * @var integer
    */

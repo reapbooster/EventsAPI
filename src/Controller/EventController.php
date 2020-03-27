@@ -48,4 +48,5 @@ class EventController extends Controller
             $event
         );
     }
+
 }

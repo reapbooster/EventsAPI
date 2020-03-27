@@ -13,8 +13,6 @@ use Doctrine\ORM\Mapping\JoinColumn;
  */
 class Speaker {
 
-
-
   /**
    * @var int
    *
@@ -528,26 +526,10 @@ class Speaker {
    */
   private $instagram;
 
-  private $event;
-
   public function __construct()
   {
     $this->panels = new ArrayCollection();
     $this->event = new Event();
-  }
-
-  /**
-   * @return \Doctrine\Common\Collections\ArrayCollection
-   */
-  public function getPanels(): \Doctrine\Common\Collections\ArrayCollection {
-    return $this->panels;
-  }
-
-  /**
-   * @param \Doctrine\Common\Collections\ArrayCollection $panels
-   */
-  public function setPanels(\Doctrine\Common\Collections\ArrayCollection $panels): void {
-    $this->panels = $panels;
   }
 
   public function getId(): ?int {
@@ -1576,19 +1558,7 @@ class Speaker {
     $this->instagram = $instagram;
   }
 
-  /**
-   * @return \App\Entity\Event
-   */
-  public function getEvent(): \App\Entity\Event {
-    return $this->event;
-  }
 
-  /**
-   * @param \App\Entity\Event $event
-   */
-  public function setEvent(\App\Entity\Event $event): void {
-    $this->event = $event;
-  }
 
 
 

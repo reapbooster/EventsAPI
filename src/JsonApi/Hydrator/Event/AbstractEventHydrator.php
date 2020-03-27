@@ -3,12 +3,10 @@
 namespace App\JsonApi\Hydrator\Event;
 
 use App\Entity\Event;
-use Doctrine\ORM\Query\Expr;
 use Paknahad\JsonApiBundle\Hydrator\AbstractHydrator;
 use Paknahad\JsonApiBundle\Hydrator\ValidatorTrait;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WoohooLabs\Yin\JsonApi\Exception\ExceptionFactoryInterface;
-use WoohooLabs\Yin\JsonApi\Hydrator\Relationship\ToManyRelationship;
 use WoohooLabs\Yin\JsonApi\Request\JsonApiRequestInterface;
 
 /**
@@ -79,30 +77,6 @@ abstract class AbstractEventHydrator extends AbstractHydrator
     protected function getRelationshipHydrator($event): array
     {
         return [
-            'panels' => function (Event $event, ToManyRelationship $panels, $data, $relationshipName) {
-                $this->validateRelationType($panels, ['panels']);
-                if (count($panels->getResourceIdentifierIds()) > 0) {
-                    $association = $this->objectManager->getRepository('App\Entity\Panel')
-                        ->createQueryBuilder('p')
-                        ->where("p.EventID = :val")
-                        ->setParameter("val", $event->getId())
-                        ->getQuery()
-                        ->getResult();
-                    $this->validateRelationValues($association, $panels->getResourceIdentifierIds(), $relationshipName);
-                } else {
-                    $association = [];
-                }
-
-                if ($event->getPanels()->count() > 0) {
-                    foreach ($event->getPanels() as $panel) {
-                        $event->removePanel($panel);
-                    }
-                }
-
-                foreach ($association as $panel) {
-                    $event->addPanel($panel);
-                }
-            },
         ];
     }
 }

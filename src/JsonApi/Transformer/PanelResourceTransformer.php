@@ -5,7 +5,6 @@ namespace App\JsonApi\Transformer;
 use App\Entity\Panel;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
-use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -51,68 +50,125 @@ class PanelResourceTransformer extends AbstractResource
     public function getAttributes($panel): array
     {
         return [
-            'PID' => function (Panel $panel) {
-                return $panel->getPID();
+            'panel' => function (Panel $panel) {
+                return $panel->getPanel();
+            },
+            'pid' => function (Panel $panel) {
+                return $panel->getPid();
             },
             'sess' => function (Panel $panel) {
                 return $panel->getSess();
             },
-            'Description' => function (Panel $panel) {
+            'description' => function (Panel $panel) {
                 return $panel->getDescription();
             },
-            'pDate' => function (Panel $panel) {
-                return $panel->getPDate();
+            'pdate' => function (Panel $panel) {
+                return $panel->getPdate();
             },
-            'pTime' => function (Panel $panel) {
-                return $panel->getPTime();
+            'ptime' => function (Panel $panel) {
+                return $panel->getPtime();
             },
-            'Pday' => function (Panel $panel) {
+            'pday' => function (Panel $panel) {
                 return $panel->getPday();
             },
-            'youTubeURL' => function (Panel $panel) {
-                return $panel->getYouTubeURL();
+            'etime' => function (Panel $panel) {
+                return $panel->getEtime();
             },
-            'why' => function (Panel $panel) {
-                return $panel->getWhy();
+            'epday' => function (Panel $panel) {
+                return $panel->getEpday();
             },
-            'VOG' => function (Panel $panel) {
-                return $panel->getVOG();
+            'lktxt1' => function (Panel $panel) {
+                return $panel->getLktxt1();
+            },
+            'link1' => function (Panel $panel) {
+                return $panel->getLink1();
+            },
+            'lktxt2' => function (Panel $panel) {
+                return $panel->getLktxt2();
+            },
+            'link2' => function (Panel $panel) {
+                return $panel->getLink2();
+            },
+            'lktxt3' => function (Panel $panel) {
+                return $panel->getLktxt3();
+            },
+            'link3' => function (Panel $panel) {
+                return $panel->getLink3();
+            },
+            'lktxt4' => function (Panel $panel) {
+                return $panel->getLktxt4();
+            },
+            'link4' => function (Panel $panel) {
+                return $panel->getLink4();
+            },
+            'lktxt5' => function (Panel $panel) {
+                return $panel->getLktxt5();
+            },
+            'link5' => function (Panel $panel) {
+                return $panel->getLink5();
+            },
+            'lktxt6' => function (Panel $panel) {
+                return $panel->getLktxt6();
+            },
+            'link6' => function (Panel $panel) {
+                return $panel->getLink6();
+            },
+            'lktxt7' => function (Panel $panel) {
+                return $panel->getLktxt7();
+            },
+            'link7' => function (Panel $panel) {
+                return $panel->getLink7();
+            },
+            'lktxt8' => function (Panel $panel) {
+                return $panel->getLktxt8();
+            },
+            'link8' => function (Panel $panel) {
+                return $panel->getLink8();
+            },
+            'lktxt9' => function (Panel $panel) {
+                return $panel->getLktxt9();
+            },
+            'link9' => function (Panel $panel) {
+                return $panel->getLink9();
+            },
+            'lktxt10' => function (Panel $panel) {
+                return $panel->getLktxt10();
+            },
+            'link10' => function (Panel $panel) {
+                return $panel->getLink10();
             },
             'video' => function (Panel $panel) {
                 return $panel->getVideo();
             },
-            'vdfile4' => function (Panel $panel) {
-                return $panel->getVdfile4();
-            },
-            'vdfile3' => function (Panel $panel) {
-                return $panel->getVdfile3();
+            'vdfile1' => function (Panel $panel) {
+                return $panel->getVdfile1();
             },
             'vdfile2' => function (Panel $panel) {
                 return $panel->getVdfile2();
             },
-            'vdfile1' => function (Panel $panel) {
-                return $panel->getVdfile1();
+            'vdfile3' => function (Panel $panel) {
+                return $panel->getVdfile3();
             },
-            'twitterHandle' => function (Panel $panel) {
-                return $panel->getTwitterHandle();
+            'vdfile4' => function (Panel $panel) {
+                return $panel->getVdfile4();
             },
-            'tweeter' => function (Panel $panel) {
-                return $panel->getTweeter();
+            'audio' => function (Panel $panel) {
+                return $panel->getAudio();
             },
-            'tumblr' => function (Panel $panel) {
-                return $panel->getTumblr();
+            'adfile' => function (Panel $panel) {
+                return $panel->getAdfile();
+            },
+            'why' => function (Panel $panel) {
+                return $panel->getWhy();
             },
             'summ' => function (Panel $panel) {
                 return $panel->getSumm();
             },
-            'startTimed' => function (Panel $panel) {
-                return ($panel->getStartTimed()) ? $panel->getStartTimed()->format(DATE_ATOM) : null;
+            'pic1' => function (Panel $panel) {
+                return $panel->getPic1();
             },
-            'stafflinked' => function (Panel $panel) {
-                return $panel->getStafflinked();
-            },
-            'srrTime' => function (Panel $panel) {
-                return ($panel->getSrrTime()) ? $panel->getSrrTime()->format(DATE_ATOM) : null;
+            'pic2' => function (Panel $panel) {
+                return $panel->getPic2();
             },
             'spons' => function (Panel $panel) {
                 return $panel->getSpons();
@@ -120,224 +176,167 @@ class PanelResourceTransformer extends AbstractResource
             'slide' => function (Panel $panel) {
                 return $panel->getSlide();
             },
-            'showTimeline' => function (Panel $panel) {
-                return $panel->getShowTimeline();
+            'eventid' => function (Panel $panel) {
+                return $panel->getEventid();
             },
-            'showNotes' => function (Panel $panel) {
-                return $panel->getShowNotes();
-            },
-            'showflownotes' => function (Panel $panel) {
-                return $panel->getShowflownotes();
-            },
-            'shorturl' => function (Panel $panel) {
-                return $panel->getShorturl();
-            },
-            'shortTitle' => function (Panel $panel) {
-                return $panel->getShortTitle();
-            },
-            'seniorStaff' => function (Panel $panel) {
-                return $panel->getSeniorStaff();
-            },
-            'publish' => function (Panel $panel) {
-                return $panel->getPublish();
-            },
-            'progNotes' => function (Panel $panel) {
-                return $panel->getProgNotes();
-            },
-            'private' => function (Panel $panel) {
-                return $panel->getPrivate();
-            },
-            'printedProgram' => function (Panel $panel) {
-                return $panel->getPrintedProgram();
-            },
-            'ppsetup' => function (Panel $panel) {
-                return $panel->getPpsetup();
-            },
-            'pic2' => function (Panel $panel) {
-                return $panel->getPic2();
-            },
-            'pic1' => function (Panel $panel) {
-                return $panel->getPic1();
-            },
-            'pFinal' => function (Panel $panel) {
-                return $panel->getPFinal();
-            },
-            'paneltypeid' => function (Panel $panel) {
-                return $panel->getPaneltypeid();
-            },
-            'paneltxt' => function (Panel $panel) {
-                return $panel->getPaneltxt();
-            },
-            'PanelSeating' => function (Panel $panel) {
-                return $panel->getPanelSeating();
-            },
-            'panel' => function (Panel $panel) {
-                return $panel->getPanel();
-            },
-            'onStage' => function (Panel $panel) {
-                return $panel->getOnStage();
-            },
-            'onSreens' => function (Panel $panel) {
-                return $panel->getOnSreens();
-            },
-            'nonMI' => function (Panel $panel) {
-                return $panel->getNonMI();
-            },
-            'microphones' => function (Panel $panel) {
-                return $panel->getMicrophones();
-            },
-            'md5' => function (Panel $panel) {
-                return $panel->getMd5();
-            },
-            'md4' => function (Panel $panel) {
-                return $panel->getMd4();
-            },
-            'md3' => function (Panel $panel) {
-                return $panel->getMd3();
-            },
-            'md2' => function (Panel $panel) {
-                return $panel->getMd2();
+            'eventidnum' => function (Panel $panel) {
+                return $panel->getEventidnum();
             },
             'md1' => function (Panel $panel) {
                 return $panel->getMd1();
             },
-            'lktxt10' => function (Panel $panel) {
-                return $panel->getLktxt10();
+            'md2' => function (Panel $panel) {
+                return $panel->getMd2();
             },
-            'lktxt9' => function (Panel $panel) {
-                return $panel->getLktxt9();
+            'md3' => function (Panel $panel) {
+                return $panel->getMd3();
             },
-            'lktxt8' => function (Panel $panel) {
-                return $panel->getLktxt8();
+            'md4' => function (Panel $panel) {
+                return $panel->getMd4();
             },
-            'lktxt7' => function (Panel $panel) {
-                return $panel->getLktxt7();
+            'md5' => function (Panel $panel) {
+                return $panel->getMd5();
             },
-            'lktxt6' => function (Panel $panel) {
-                return $panel->getLktxt6();
+            'publish' => function (Panel $panel) {
+                return $panel->getPublish();
             },
-            'lktxt5' => function (Panel $panel) {
-                return $panel->getLktxt5();
+            'private' => function (Panel $panel) {
+                return $panel->getPrivate();
             },
-            'lktxt4' => function (Panel $panel) {
-                return $panel->getLktxt4();
+            'paneltxt' => function (Panel $panel) {
+                return $panel->getPaneltxt();
             },
-            'lktxt3' => function (Panel $panel) {
-                return $panel->getLktxt3();
+            'starttimed' => function (Panel $panel) {
+                return ($panel->getStarttimed()) ? $panel->getStarttimed()->format(DATE_ATOM) : NULL;
             },
-            'lktxt2' => function (Panel $panel) {
-                return $panel->getLktxt2();
+            'endtimed' => function (Panel $panel) {
+                return ($panel->getEndtimed()) ? $panel->getEndtimed()->format(DATE_ATOM) : NULL;
             },
-            'lktxt1' => function (Panel $panel) {
-                return $panel->getLktxt1();
+            'paneltypeid' => function (Panel $panel) {
+                return $panel->getPaneltypeid();
+            },
+            'prognotes' => function (Panel $panel) {
+                return $panel->getPrognotes();
+            },
+            'shorttitle' => function (Panel $panel) {
+                return $panel->getShorttitle();
+            },
+            'panelseating' => function (Panel $panel) {
+                return $panel->getPanelseating();
+            },
+            'microphones' => function (Panel $panel) {
+                return $panel->getMicrophones();
+            },
+            'assignedra' => function (Panel $panel) {
+                return $panel->getAssignedra();
+            },
+            'cameratype' => function (Panel $panel) {
+                return $panel->getCameratype();
+            },
+            'dvdset' => function (Panel $panel) {
+                return $panel->getDvdset();
+            },
+            'audiorecording' => function (Panel $panel) {
+                return $panel->getAudiorecording();
+            },
+            'ppsetup' => function (Panel $panel) {
+                return $panel->getPpsetup();
+            },
+            'stafflinked' => function (Panel $panel) {
+                return $panel->getStafflinked();
+            },
+            'seniorstaff' => function (Panel $panel) {
+                return $panel->getSeniorstaff();
+            },
+            'deptgroup' => function (Panel $panel) {
+                return $panel->getDeptgroup();
+            },
+            'showflownotes' => function (Panel $panel) {
+                return $panel->getShowflownotes();
+            },
+            'datecreated' => function (Panel $panel) {
+                return ($panel->getDatecreated()) ? $panel->getDatecreated()->format(DATE_ATOM) : NULL;
+            },
+            'datemodified' => function (Panel $panel) {
+                return ($panel->getDatemodified()) ? $panel->getDatemodified()->format(DATE_ATOM) : NULL;
+            },
+            'youtubeurl' => function (Panel $panel) {
+                return $panel->getYoutubeurl();
+            },
+            'printedprogram' => function (Panel $panel) {
+                return $panel->getPrintedprogram();
+            },
+            'tumblr' => function (Panel $panel) {
+                return $panel->getTumblr();
             },
             'livetweet' => function (Panel $panel) {
                 return $panel->getLivetweet();
             },
-            'liveStream' => function (Panel $panel) {
-                return $panel->getLiveStream();
+            'tweeter' => function (Panel $panel) {
+                return $panel->getTweeter();
             },
-            'link10' => function (Panel $panel) {
-                return $panel->getLink10();
+            'twitterhandle' => function (Panel $panel) {
+                return $panel->getTwitterhandle();
             },
-            'link9' => function (Panel $panel) {
-                return $panel->getLink9();
-            },
-            'link8' => function (Panel $panel) {
-                return $panel->getLink8();
-            },
-            'link7' => function (Panel $panel) {
-                return $panel->getLink7();
-            },
-            'link6' => function (Panel $panel) {
-                return $panel->getLink6();
-            },
-            'link5' => function (Panel $panel) {
-                return $panel->getLink5();
-            },
-            'link4' => function (Panel $panel) {
-                return $panel->getLink4();
-            },
-            'link3' => function (Panel $panel) {
-                return $panel->getLink3();
-            },
-            'link2' => function (Panel $panel) {
-                return $panel->getLink2();
-            },
-            'link1' => function (Panel $panel) {
-                return $panel->getLink1();
-            },
-            'itinDescription' => function (Panel $panel) {
-                return $panel->getItinDescription();
-            },
-            'hideDescSF' => function (Panel $panel) {
-                return $panel->getHideDescSF();
-            },
-            'hideDesc' => function (Panel $panel) {
-                return $panel->getHideDesc();
+            'shorturl' => function (Panel $panel) {
+                return $panel->getShorturl();
             },
             'hashtags' => function (Panel $panel) {
                 return $panel->getHashtags();
             },
-            'EventIDnum' => function (Panel $panel) {
-                return $panel->getEventIDnum();
+            'commnotes' => function (Panel $panel) {
+                return $panel->getCommnotes();
             },
-            'EventID' => function (Panel $panel) {
-                return $panel->getEventID();
+            'itindescription' => function (Panel $panel) {
+                return $panel->getItindescription();
             },
-            'Etime' => function (Panel $panel) {
-                return $panel->getEtime();
+            'pfinal' => function (Panel $panel) {
+                return $panel->getPfinal();
             },
-            'epday' => function (Panel $panel) {
-                return $panel->getEpday();
+            'descfinal' => function (Panel $panel) {
+                return $panel->getDescfinal();
             },
-            'endTimed' => function (Panel $panel) {
-                return $panel->getEndTimed();
+            'descstatus' => function (Panel $panel) {
+                return $panel->getDescstatus();
             },
-            'DVDset' => function (Panel $panel) {
-                return $panel->getDVDset();
+            'descstatusts' => function (Panel $panel) {
+                return ($panel->getDescstatusts()) ? $panel->getDescstatusts()->format(DATE_ATOM) : NULL;
             },
-            'descStatusTS' => function (Panel $panel) {
-                return $panel->getDescStatusTS();
+            'hidedesc' => function (Panel $panel) {
+                return $panel->getHidedesc();
             },
-            'descStatus' => function (Panel $panel) {
-                return $panel->getDescStatus();
+            'hidedescsf' => function (Panel $panel) {
+                return $panel->getHidedescsf();
             },
-            'descFinal' => function (Panel $panel) {
-                return $panel->getDescFinal();
+            'srrtime' => function (Panel $panel) {
+                return $panel->getSrrtime();
             },
-            'deptGroup' => function (Panel $panel) {
-                return $panel->getDeptGroup();
+            'onsreens' => function (Panel $panel) {
+                return $panel->getOnsreens();
             },
-            'datemodified' => function (Panel $panel) {
-                return ($panel->getDatemodified()) ? $panel->getDatemodified()->format(DATE_ATOM) : null;
+            'vog' => function (Panel $panel) {
+                return $panel->getVog();
             },
-            'datecreated' => function (Panel $panel) {
-                return ($panel->getDatecreated()) ? $panel->getDatecreated()->format(DATE_ATOM) : null;
+            'onstage' => function (Panel $panel) {
+                return $panel->getOnstage();
             },
-            'commNotes' => function (Panel $panel) {
-                return $panel->getCommNotes();
+            'showtimeline' => function (Panel $panel) {
+                return $panel->getShowtimeline();
             },
-            'CameraType' => function (Panel $panel) {
-                return $panel->getCameraType();
+            'shownotes' => function (Panel $panel) {
+                return $panel->getShownotes();
             },
-            'audioRecording' => function (Panel $panel) {
-                return $panel->getAudioRecording();
+            'attendeecount' => function (Panel $panel) {
+                return $panel->getAttendeecount();
             },
-            'audio' => function (Panel $panel) {
-                return $panel->getAudio();
+            'attendeepct' => function (Panel $panel) {
+                return $panel->getAttendeepct();
             },
-            'AttendeePCT' => function (Panel $panel) {
-                return $panel->getAttendeePCT();
+            'nonmi' => function (Panel $panel) {
+                return $panel->getNonmi();
             },
-            'AttendeeCount' => function (Panel $panel) {
-                return $panel->getAttendeeCount();
-            },
-            'assignedRA' => function (Panel $panel) {
-                return $panel->getAssignedRA();
-            },
-            'adfile' => function (Panel $panel) {
-                return $panel->getAdfile();
+            'livestream' => function (Panel $panel) {
+                return $panel->getLivestream();
             },
         ];
     }
@@ -356,26 +355,6 @@ class PanelResourceTransformer extends AbstractResource
     public function getRelationships($panel): array
     {
         return [
-            'event' => function (Panel $panel) {
-                return ToOneRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($panel) {
-                            return $panel->getEvent();
-                        },
-                        new EventResourceTransformer()
-                    )
-                    ->omitDataWhenNotIncluded();
-            },
-            'room' => function (Panel $panel) {
-                return ToOneRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($panel) {
-                            return $panel->getRoom();
-                        },
-                        new RoomResourceTransformer()
-                    )
-                    ->omitDataWhenNotIncluded();
-            },
         ];
     }
 }

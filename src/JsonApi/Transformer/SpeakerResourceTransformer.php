@@ -5,7 +5,6 @@ namespace App\JsonApi\Transformer;
 use App\Entity\Speaker;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
-use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -54,41 +53,44 @@ class SpeakerResourceTransformer extends AbstractResource
             'salutation' => function (Speaker $speaker) {
                 return $speaker->getSalutation();
             },
-            'SpkrNm' => function (Speaker $speaker) {
-                return $speaker->getSpkrNm();
+            'spkrnm' => function (Speaker $speaker) {
+                return $speaker->getSpkrnm();
             },
-            'Mname' => function (Speaker $speaker) {
+            'mname' => function (Speaker $speaker) {
                 return $speaker->getMname();
             },
-            'Lname' => function (Speaker $speaker) {
+            'lname' => function (Speaker $speaker) {
                 return $speaker->getLname();
             },
             'suffix' => function (Speaker $speaker) {
                 return $speaker->getSuffix();
             },
-            'Description' => function (Speaker $speaker) {
+            'description' => function (Speaker $speaker) {
                 return $speaker->getDescription();
             },
-            'BioLink' => function (Speaker $speaker) {
-                return $speaker->getBioLink();
+            'biolink' => function (Speaker $speaker) {
+                return $speaker->getBiolink();
             },
-            'bioPic' => function (Speaker $speaker) {
-                return $speaker->getBioPic();
+            'biopic' => function (Speaker $speaker) {
+                return $speaker->getBiopic();
             },
-            'BioText' => function (Speaker $speaker) {
-                return $speaker->getBioText();
+            'biotext' => function (Speaker $speaker) {
+                return $speaker->getBiotext();
             },
             'speakertype' => function (Speaker $speaker) {
                 return $speaker->getSpeakertype();
             },
-            'Status' => function (Speaker $speaker) {
+            'status' => function (Speaker $speaker) {
                 return $speaker->getStatus();
             },
-            'PgTitle' => function (Speaker $speaker) {
-                return $speaker->getPgTitle();
+            'pgid' => function (Speaker $speaker) {
+                return $speaker->getPgid();
             },
-            'EventID' => function (Speaker $speaker) {
-                return $speaker->getEventID();
+            'pgtitle' => function (Speaker $speaker) {
+                return $speaker->getPgtitle();
+            },
+            'eventid' => function (Speaker $speaker) {
+                return $speaker->getEventid();
             },
             'sortorder' => function (Speaker $speaker) {
                 return $speaker->getSortorder();
@@ -96,70 +98,71 @@ class SpeakerResourceTransformer extends AbstractResource
             'cancelled' => function (Speaker $speaker) {
                 return $speaker->getCancelled();
             },
-            'rawFileType' => function (Speaker $speaker) {
-                return $speaker->getRawFileType();
+            'rawfiletype' => function (Speaker $speaker) {
+                return $speaker->getRawfiletype();
             },
-            'printFileType' => function (Speaker $speaker) {
-                return $speaker->getPrintFileType();
+            'printfiletype' => function (Speaker $speaker) {
+                return $speaker->getPrintfiletype();
             },
-            'WebFileType' => function (Speaker $speaker) {
-                return $speaker->getWebFileType();
+            'webfiletype' => function (Speaker $speaker) {
+                return $speaker->getWebfiletype();
             },
             'notes' => function (Speaker $speaker) {
                 return $speaker->getNotes();
             },
             'datecreated' => function (Speaker $speaker) {
-                return ($speaker->getDatecreated())
-                  ? $speaker->getDatecreated()->format(DATE_ATOM) : NULL;
+                return ($speaker->getDatecreated()) ? $speaker->getDatecreated()->format(DATE_ATOM) : NULL;
             },
             'datemodified' => function (Speaker $speaker) {
-                return ($speaker->getDatemodified())
-                  ? $speaker->getDatemodified()->format(DATE_ATOM) : NULL;
+                return ($speaker->getDatemodified()) ? $speaker->getDatemodified()->format(DATE_ATOM) : NULL;
             },
-            'createdbyID' => function (Speaker $speaker) {
-                return $speaker->getCreatedbyID();
+            'createdbyid' => function (Speaker $speaker) {
+                return $speaker->getCreatedbyid();
             },
-            'modifiedbyID' => function (Speaker $speaker) {
-                return $speaker->getModifiedbyID();
+            'modifiedbyid' => function (Speaker $speaker) {
+                return $speaker->getModifiedbyid();
             },
             'ipnum' => function (Speaker $speaker) {
                 return $speaker->getIpnum();
             },
-            'attendeeID' => function (Speaker $speaker) {
-                return $speaker->getAttendeeID();
+            'attendeeid' => function (Speaker $speaker) {
+                return $speaker->getAttendeeid();
             },
-            'panelID' => function (Speaker $speaker) {
-                return $speaker->getPanelID();
+            'contactid' => function (Speaker $speaker) {
+                return $speaker->getContactid();
             },
-            'whoSuggested' => function (Speaker $speaker) {
-                return $speaker->getWhoSuggested();
+            'panelid' => function (Speaker $speaker) {
+                return $speaker->getPanelid();
             },
-            'whoEntered' => function (Speaker $speaker) {
-                return $speaker->getWhoEntered();
+            'whosuggested' => function (Speaker $speaker) {
+                return $speaker->getWhosuggested();
             },
-            'dateSuggested' => function (Speaker $speaker) {
-                return ($speaker->getDateSuggested()) ?
-                  $speaker->getDateSuggested()->format(DATE_ATOM) : NULL;
+            'whoentered' => function (Speaker $speaker) {
+                return $speaker->getWhoentered();
             },
-            'recBio' => function (Speaker $speaker) {
-                return $speaker->getRecBio();
+            'datesuggested' => function (Speaker $speaker) {
+                return ($speaker->getDatesuggested()) ? $speaker->getDatesuggested()->format(DATE_ATOM) : NULL;
             },
-            'recBioDate' => function (Speaker $speaker) {
-                return $speaker->getRecBioDate();
+            'recbio' => function (Speaker $speaker) {
+                return $speaker->getRecbio();
             },
-            'recPhoto' => function (Speaker $speaker) {
-                return $speaker->getRecPhoto();
+            'recbiodate' => function (Speaker $speaker) {
+                return ($speaker->getRecbiodate()) ? $speaker->getRecbiodate()->format(DATE_ATOM) : NULL;
             },
-            'recPhotoDate' => function (Speaker $speaker) {
-                return ($speaker->getRecPhotoDate())
-                  ? $speaker->getRecPhotoDate()->format(DATE_ATOM) : NULL;
+            'recphoto' => function (Speaker $speaker) {
+                return $speaker->getRecphoto();
             },
-            'recWaiverDate' => function (Speaker $speaker) {
-                return ($speaker->getRecWaiverDate())
-                  ? $speaker->getRecWaiverDate()->format(DATE_ATOM) : NULL;
+            'recphotodate' => function (Speaker $speaker) {
+                return ($speaker->getRecphotodate()) ? $speaker->getRecphotodate()->format(DATE_ATOM) : NULL;
             },
-            'spkEmail' => function (Speaker $speaker) {
-                return $speaker->getSpkEmail();
+            'recwaiver' => function (Speaker $speaker) {
+                return $speaker->getRecwaiver();
+            },
+            'recwaiverdate' => function (Speaker $speaker) {
+                return ($speaker->getRecwaiverdate()) ? $speaker->getRecwaiverdate()->format(DATE_ATOM) : NULL;
+            },
+            'spkemail' => function (Speaker $speaker) {
+                return $speaker->getSpkemail();
             },
             'twitter' => function (Speaker $speaker) {
                 return $speaker->getTwitter();
@@ -167,18 +170,17 @@ class SpeakerResourceTransformer extends AbstractResource
             'twitter2' => function (Speaker $speaker) {
                 return $speaker->getTwitter2();
             },
-            'twitterNotes' => function (Speaker $speaker) {
-                return $speaker->getTwitterNotes();
+            'twitternotes' => function (Speaker $speaker) {
+                return $speaker->getTwitternotes();
             },
             'invitationextend' => function (Speaker $speaker) {
                 return $speaker->getInvitationextend();
             },
-            'invitationWhom' => function (Speaker $speaker) {
-                return $speaker->getInvitationWhom();
+            'invitationwhom' => function (Speaker $speaker) {
+                return $speaker->getInvitationwhom();
             },
             'spideremaildate' => function (Speaker $speaker) {
-                return ($speaker->getSpideremaildate())
-                  ? $speaker->getSpideremaildate()->format(DATE_ATOM) : NULL;
+                return $speaker->getSpideremaildate();
             },
             'whoconfirmed' => function (Speaker $speaker) {
                 return $speaker->getWhoconfirmed();
@@ -186,32 +188,32 @@ class SpeakerResourceTransformer extends AbstractResource
             'city' => function (Speaker $speaker) {
                 return $speaker->getCity();
             },
-            'developmentPriority' => function (Speaker $speaker) {
-                return $speaker->getDevelopmentPriority();
+            'developmentpriority' => function (Speaker $speaker) {
+                return $speaker->getDevelopmentpriority();
             },
-            'speakerRole' => function (Speaker $speaker) {
-                return $speaker->getSpeakerRole();
+            'speakerrole' => function (Speaker $speaker) {
+                return $speaker->getSpeakerrole();
             },
-            'speakerTopics' => function (Speaker $speaker) {
-                return $speaker->getSpeakerTopics();
+            'speakertopics' => function (Speaker $speaker) {
+                return $speaker->getSpeakertopics();
             },
-            'primaryTrack' => function (Speaker $speaker) {
-                return $speaker->getPrimaryTrack();
+            'primarytrack' => function (Speaker $speaker) {
+                return $speaker->getPrimarytrack();
             },
-            'secondaryTrack' => function (Speaker $speaker) {
-                return $speaker->getSecondaryTrack();
+            'secondarytrack' => function (Speaker $speaker) {
+                return $speaker->getSecondarytrack();
             },
-            'topicNotes' => function (Speaker $speaker) {
-                return $speaker->getTopicNotes();
+            'topicnotes' => function (Speaker $speaker) {
+                return $speaker->getTopicnotes();
             },
             'connections' => function (Speaker $speaker) {
                 return $speaker->getConnections();
             },
-            'devRelationship' => function (Speaker $speaker) {
-                return $speaker->getDevRelationship();
+            'devrelationship' => function (Speaker $speaker) {
+                return $speaker->getDevrelationship();
             },
-            'devRelationContact' => function (Speaker $speaker) {
-                return $speaker->getDevRelationContact();
+            'devrelationcontact' => function (Speaker $speaker) {
+                return $speaker->getDevrelationcontact();
             },
             'womensreport' => function (Speaker $speaker) {
                 return $speaker->getWomensreport();
@@ -219,48 +221,50 @@ class SpeakerResourceTransformer extends AbstractResource
             'location' => function (Speaker $speaker) {
                 return $speaker->getLocation();
             },
-            'photoModDate' => function (Speaker $speaker) {
-                return $speaker->getPhotoModDate();
+            'photomoddate' => function (Speaker $speaker) {
+                return ($speaker->getPhotomoddate()) ? $speaker->getPhotomoddate()->format(DATE_ATOM) : NULL;
             },
-            'displayChinese' => function (Speaker $speaker) {
-                return $speaker->getDisplayChinese();
+            'displaychinese' => function (Speaker $speaker) {
+                return $speaker->getDisplaychinese();
             },
-            'devOrganization' => function (Speaker $speaker) {
-                return $speaker->getDevOrganization();
+            'devorganization' => function (Speaker $speaker) {
+                return $speaker->getDevorganization();
             },
-            'roleChangedate' => function (Speaker $speaker) {
-                return $speaker->getRoleChangedate()
-                  ? $speaker->getRoleChangedate()->format(DATE_ATOM) : NULL;
+            'rolechangedate' => function (Speaker $speaker) {
+                return ($speaker->getRolechangedate()) ? $speaker->getRolechangedate()->format(DATE_ATOM) : NULL;
             },
-            'cVentID' => function (Speaker $speaker) {
-                return $speaker->getCVentID();
+            'cventid' => function (Speaker $speaker) {
+                return $speaker->getCventid();
             },
-            'phoneticName' => function (Speaker $speaker) {
-                return $speaker->getPhoneticName();
+            'phoneticname' => function (Speaker $speaker) {
+                return $speaker->getPhoneticname();
             },
             'needsfinaledit' => function (Speaker $speaker) {
                 return $speaker->getNeedsfinaledit();
             },
-            'scheduleNotes' => function (Speaker $speaker) {
-                return $speaker->getScheduleNotes();
+            'schedulenotes' => function (Speaker $speaker) {
+                return $speaker->getSchedulenotes();
+            },
+            'showflownotes' => function (Speaker $speaker) {
+                return $speaker->getShowflownotes();
             },
             'linkedin' => function (Speaker $speaker) {
                 return $speaker->getLinkedin();
             },
-            'speakerLiaison' => function (Speaker $speaker) {
-                return $speaker->getSpeakerLiaison();
+            'speakerliaison' => function (Speaker $speaker) {
+                return $speaker->getSpeakerliaison();
             },
-            'Facebook' => function (Speaker $speaker) {
+            'facebook' => function (Speaker $speaker) {
                 return $speaker->getFacebook();
             },
-            'FacebookFollowers' => function (Speaker $speaker) {
-                return $speaker->getFacebookFollowers();
+            'facebookfollowers' => function (Speaker $speaker) {
+                return $speaker->getFacebookfollowers();
             },
-            'salesForceID' => function (Speaker $speaker) {
-                return $speaker->getSalesForceID();
+            'salesforceid' => function (Speaker $speaker) {
+                return $speaker->getSalesforceid();
             },
-            'instaGram' => function (Speaker $speaker) {
-                return $speaker->getInstaGram();
+            'instagram' => function (Speaker $speaker) {
+                return $speaker->getInstagram();
             },
         ];
     }
@@ -270,7 +274,7 @@ class SpeakerResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($speaker): array
     {
-        return ['event'];
+        return [];
     }
 
     /**
@@ -279,15 +283,6 @@ class SpeakerResourceTransformer extends AbstractResource
     public function getRelationships($speaker): array
     {
         return [
-            'event' => function (Speaker $speaker) {
-                return ToOneRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($speaker) {
-                            return $speaker->getEvent();
-                        },
-                        new EventResourceTransformer()
-                    );
-            },
         ];
     }
 }

@@ -39,7 +39,31 @@ class SpeakerController extends Controller
     }
 
     /**
-     * @Route("/{SpkrID}", name="speakers_show", methods="GET")
+     * @Route("/", name="speakers_new", methods="POST")
+     */
+    public function new(ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $speaker = $this->jsonApi()->hydrate(new CreateSpeakerHydrator($entityManager, $exceptionFactory), new Speaker());
+
+        /** @var ConstraintViolationList $errors */
+        $errors = $validator->validate($speaker);
+        if ($errors->count() > 0) {
+            return $this->validationErrorResponse($errors);
+        }
+
+        $entityManager->persist($speaker);
+        $entityManager->flush();
+
+        return $this->jsonApi()->respond()->ok(
+            new SpeakerDocument(new SpeakerResourceTransformer()),
+            $speaker
+        );
+    }
+
+    /**
+     * @Route("/{spkrid}", name="speakers_show", methods="GET")
      */
     public function show(Speaker $speaker): ResponseInterface
     {
@@ -49,4 +73,38 @@ class SpeakerController extends Controller
         );
     }
 
+    /**
+     * @Route("/{spkrid}", name="speakers_edit", methods="PATCH")
+     */
+    public function edit(Speaker $speaker, ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $speaker = $this->jsonApi()->hydrate(new UpdateSpeakerHydrator($entityManager, $exceptionFactory), $speaker);
+
+        /** @var ConstraintViolationList $errors */
+        $errors = $validator->validate($speaker);
+        if ($errors->count() > 0) {
+            return $this->validationErrorResponse($errors);
+        }
+
+        $entityManager->flush();
+
+        return $this->jsonApi()->respond()->ok(
+            new SpeakerDocument(new SpeakerResourceTransformer()),
+            $speaker
+        );
+    }
+
+    /**
+     * @Route("/{spkrid}", name="speakers_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Speaker $speaker): ResponseInterface
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($speaker);
+        $entityManager->flush();
+
+        return $this->jsonApi()->respond()->genericSuccess(204);
+    }
 }

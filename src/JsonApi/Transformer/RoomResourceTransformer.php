@@ -2,11 +2,9 @@
 
 namespace App\JsonApi\Transformer;
 
-use App\Entity\Panel;
 use App\Entity\Room;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
-use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToManyRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -52,8 +50,8 @@ class RoomResourceTransformer extends AbstractResource
     public function getAttributes($room): array
     {
         return [
-            'rName' => function (Room $room) {
-                return $room->getRName();
+            'rname' => function (Room $room) {
+                return $room->getRname();
             },
             'schoolhousecap' => function (Room $room) {
                 return $room->getSchoolhousecap();
@@ -64,8 +62,8 @@ class RoomResourceTransformer extends AbstractResource
             'theatercap' => function (Room $room) {
                 return $room->getTheatercap();
             },
-            'hollowSquare' => function (Room $room) {
-                return $room->getHollowSquare();
+            'hollowsquare' => function (Room $room) {
+                return $room->getHollowsquare();
             },
             'conference' => function (Room $room) {
                 return $room->getConference();
@@ -73,20 +71,20 @@ class RoomResourceTransformer extends AbstractResource
             'notes' => function (Room $room) {
                 return $room->getNotes();
             },
-            'sortOrder' => function (Room $room) {
-                return $room->getSortOrder();
+            'sortorder' => function (Room $room) {
+                return $room->getSortorder();
             },
-            'roomGroup' => function (Room $room) {
-                return $room->getRoomGroup();
+            'roomgroup' => function (Room $room) {
+                return $room->getRoomgroup();
             },
             'datecreated' => function (Room $room) {
-                return $room->getDatecreated();
+                return ($room->getDatecreated()) ? $room->getDatecreated()->format(DATE_ATOM) : NULL;
             },
             'datemodified' => function (Room $room) {
-                return $room->getDatemodified();
+                return ($room->getDatemodified()) ? $room->getDatemodified()->format(DATE_ATOM) : NULL;
             },
-            'eventType' => function (Room $room) {
-                return $room->getEventType();
+            'eventtype' => function (Room $room) {
+                return $room->getEventtype();
             },
             'lounge' => function (Room $room) {
                 return $room->getLounge();
@@ -97,11 +95,11 @@ class RoomResourceTransformer extends AbstractResource
             'tour' => function (Room $room) {
                 return $room->getTour();
             },
-            'hollowCircle' => function (Room $room) {
-                return $room->getHollowCircle();
+            'hollowcircle' => function (Room $room) {
+                return $room->getHollowcircle();
             },
-            'uShape' => function (Room $room) {
-                return $room->getUShape();
+            'ushape' => function (Room $room) {
+                return $room->getUshape();
             },
         ];
     }
@@ -120,15 +118,6 @@ class RoomResourceTransformer extends AbstractResource
     public function getRelationships($room): array
     {
         return [
-          'panels' => function (Room $room) {
-            return ToManyRelationship::create()
-              ->setDataAsCallable(
-                function () use ($room) {
-                  return $room->getPanels();
-                },
-                new PanelResourceTransformer()
-              );
-          },
         ];
     }
 }

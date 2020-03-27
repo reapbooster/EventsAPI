@@ -26,16 +26,12 @@ class PanelRoom {
   private $id;
 
   /**
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="panel_id", type="integer", nullable=TRUE)
-   * @ORM\Id
    */
   private $panel_id;
 
   /**
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="room_id", type="integer", nullable=TRUE)
-   * @ORM\Id
    */
   private $room_id;
 
