@@ -25,7 +25,7 @@ class EventResourceTransformer extends AbstractResource
      */
     public function getId($event): string
     {
-        return (string) $event->getId();
+        return (string) $event->getEventid();
     }
 
     /**
@@ -41,7 +41,7 @@ class EventResourceTransformer extends AbstractResource
      */
     public function getLinks($event): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/events/'.$this->getId($event)));
+        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/jsonapi/events/'.$this->getId($event)));
     }
 
     /**
@@ -50,6 +50,9 @@ class EventResourceTransformer extends AbstractResource
     public function getAttributes($event): array
     {
         return [
+            'id' => function(Event $event) {
+              return $event->getId();
+            },
             'eventid' => function (Event $event) {
                 return $event->getEventid();
             },

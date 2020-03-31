@@ -35,7 +35,7 @@ class TrackDocument extends AbstractSingleResourceDocument
     {
         return DocumentLinks::createWithoutBaseUri(
             [
-                'self' => new Link('/tracks/'.$this->getResourceId()),
+                'self' => new Link('/jsonapi/tracks/'.$this->getResourceId()),
             ]
         );
     }

@@ -35,7 +35,7 @@ class PanelTrackDocument extends AbstractSingleResourceDocument
     {
         return DocumentLinks::createWithoutBaseUri(
             [
-                'self' => new Link('/panel/tracks/'.$this->getResourceId()),
+                'self' => new Link('/jsonapi/panel/tracks/'.$this->getResourceId()),
             ]
         );
     }

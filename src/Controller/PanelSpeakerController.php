@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
- * @Route("/panel/speakers")
+ * @Route("/jsonapi/panel/speakers")
  */
 class PanelSpeakerController extends Controller
 {

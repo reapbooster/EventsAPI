@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
- * @Route("/tracks")
+ * @Route("/jsonapi/tracks")
  */
 class TrackController extends Controller
 {
@@ -38,29 +38,6 @@ class TrackController extends Controller
         );
     }
 
-    /**
-     * @Route("/", name="tracks_new", methods="POST")
-     */
-    public function new(ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $track = $this->jsonApi()->hydrate(new CreateTrackHydrator($entityManager, $exceptionFactory), new Track());
-
-        /** @var ConstraintViolationList $errors */
-        $errors = $validator->validate($track);
-        if ($errors->count() > 0) {
-            return $this->validationErrorResponse($errors);
-        }
-
-        $entityManager->persist($track);
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->ok(
-            new TrackDocument(new TrackResourceTransformer()),
-            $track
-        );
-    }
 
     /**
      * @Route("/{trackId}", name="tracks_show", methods="GET")
@@ -73,38 +50,4 @@ class TrackController extends Controller
         );
     }
 
-    /**
-     * @Route("/{trackId}", name="tracks_edit", methods="PATCH")
-     */
-    public function edit(Track $track, ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $track = $this->jsonApi()->hydrate(new UpdateTrackHydrator($entityManager, $exceptionFactory), $track);
-
-        /** @var ConstraintViolationList $errors */
-        $errors = $validator->validate($track);
-        if ($errors->count() > 0) {
-            return $this->validationErrorResponse($errors);
-        }
-
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->ok(
-            new TrackDocument(new TrackResourceTransformer()),
-            $track
-        );
-    }
-
-    /**
-     * @Route("/{trackId}", name="tracks_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Track $track): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($track);
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->genericSuccess(204);
-    }
 }

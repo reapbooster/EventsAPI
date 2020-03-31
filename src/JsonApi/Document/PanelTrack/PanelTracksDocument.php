@@ -33,6 +33,6 @@ class PanelTracksDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
         return DocumentLinks::createWithoutBaseUri()
-            ->setPagination('/panel/tracks', $this->object);
+            ->setPagination('/jsonapi/panel/tracks', $this->object);
     }
 }

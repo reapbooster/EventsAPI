@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
- * @Route("/rooms")
+ * @Route("/jsonapi/rooms")
  */
 class RoomController extends Controller
 {
@@ -38,29 +38,7 @@ class RoomController extends Controller
         );
     }
 
-    /**
-     * @Route("/", name="rooms_new", methods="POST")
-     */
-    public function new(ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
 
-        $room = $this->jsonApi()->hydrate(new CreateRoomHydrator($entityManager, $exceptionFactory), new Room());
-
-        /** @var ConstraintViolationList $errors */
-        $errors = $validator->validate($room);
-        if ($errors->count() > 0) {
-            return $this->validationErrorResponse($errors);
-        }
-
-        $entityManager->persist($room);
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->ok(
-            new RoomDocument(new RoomResourceTransformer()),
-            $room
-        );
-    }
 
     /**
      * @Route("/{roomId}", name="rooms_show", methods="GET")
@@ -73,38 +51,5 @@ class RoomController extends Controller
         );
     }
 
-    /**
-     * @Route("/{roomId}", name="rooms_edit", methods="PATCH")
-     */
-    public function edit(Room $room, ValidatorInterface $validator, DefaultExceptionFactory $exceptionFactory): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
 
-        $room = $this->jsonApi()->hydrate(new UpdateRoomHydrator($entityManager, $exceptionFactory), $room);
-
-        /** @var ConstraintViolationList $errors */
-        $errors = $validator->validate($room);
-        if ($errors->count() > 0) {
-            return $this->validationErrorResponse($errors);
-        }
-
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->ok(
-            new RoomDocument(new RoomResourceTransformer()),
-            $room
-        );
-    }
-
-    /**
-     * @Route("/{roomId}", name="rooms_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Room $room): ResponseInterface
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($room);
-        $entityManager->flush();
-
-        return $this->jsonApi()->respond()->genericSuccess(204);
-    }
 }

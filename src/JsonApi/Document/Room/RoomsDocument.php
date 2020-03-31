@@ -33,6 +33,6 @@ class RoomsDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
         return DocumentLinks::createWithoutBaseUri()
-            ->setPagination('/rooms', $this->object);
+            ->setPagination('/jsonapi/rooms', $this->object);
     }
 }

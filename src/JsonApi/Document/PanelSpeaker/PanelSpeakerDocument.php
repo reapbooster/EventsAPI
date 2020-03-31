@@ -35,7 +35,7 @@ class PanelSpeakerDocument extends AbstractSingleResourceDocument
     {
         return DocumentLinks::createWithoutBaseUri(
             [
-                'self' => new Link('/panel/speakers/'.$this->getResourceId()),
+                'self' => new Link('/jsonapi/panel/speakers/'.$this->getResourceId()),
             ]
         );
     }

@@ -35,7 +35,7 @@ class SpeakerDocument extends AbstractSingleResourceDocument
     {
         return DocumentLinks::createWithoutBaseUri(
             [
-                'self' => new Link('/speakers/'.$this->getResourceId()),
+                'self' => new Link('/jsonapi/speakers/'.$this->getResourceId()),
             ]
         );
     }

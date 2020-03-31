@@ -35,7 +35,7 @@ class RoomDocument extends AbstractSingleResourceDocument
     {
         return DocumentLinks::createWithoutBaseUri(
             [
-                'self' => new Link('/rooms/'.$this->getResourceId()),
+                'self' => new Link('/jsonapi/rooms/' . $this->getResourceId()),
             ]
         );
     }

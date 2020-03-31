@@ -33,7 +33,7 @@ class DefaultDocument extends AbstractCollectionDocument {
   {
     return DocumentLinks::createWithoutBaseUri(
       [
-        'self' => new Link('/'),
+        'self' => new Link('/jsonapi'),
       ]
     );
   }

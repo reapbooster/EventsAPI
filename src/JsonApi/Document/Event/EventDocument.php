@@ -35,7 +35,7 @@ class EventDocument extends AbstractSingleResourceDocument
     {
         return DocumentLinks::createWithoutBaseUri(
             [
-                'self' => new Link('/events/'.$this->getResourceId()),
+                'self' => new Link('/jsonapi/events/'. $this->object->getEventid()),
             ]
         );
     }

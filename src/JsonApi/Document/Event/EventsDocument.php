@@ -33,6 +33,6 @@ class EventsDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
         return DocumentLinks::createWithoutBaseUri()
-            ->setPagination('/events', $this->object);
+            ->setPagination('/jsonapi/events', $this->object);
     }
 }

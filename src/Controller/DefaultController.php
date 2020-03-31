@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller {
 
   /**
-   * @Route("/", name="index", methods="GET");
+   * @Route("/jsonapi", name="index", methods="GET");
    *
    * @param \Doctrine\ORM\EntityManagerInterface $entityManager
    *
@@ -19,8 +19,6 @@ class DefaultController extends Controller {
    */
   function index(EntityManagerInterface $entityManager) {
     $metas = $entityManager->getMetadataFactory()->getAllMetadata();
-    print_r($metas);
-    exit();
     return $this->jsonApi()->respond()->ok(
       new DefaultDocument(new DefaultResourceTransformer() ),
       $metas

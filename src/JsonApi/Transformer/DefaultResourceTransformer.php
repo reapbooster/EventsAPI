@@ -23,7 +23,9 @@ class DefaultResourceTransformer extends AbstractResource {
 
   public function getLinks($object): ?ResourceLinks {
     // TODO: Use $object to derive this.
-    return ResourceLinks::createWithoutBaseUri( new Link('/events') );
+    print_r($object);
+    exit();
+    return ResourceLinks::createWithBaseUri( '/jsonapi/', new Link($object->name));
   }
 
   public function getAttributes($object): array {

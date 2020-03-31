@@ -33,6 +33,6 @@ class PanelSpeakersDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
         return DocumentLinks::createWithoutBaseUri()
-            ->setPagination('/panel/speakers', $this->object);
+            ->setPagination('/jsonapi/panel/speakers', $this->object);
     }
 }

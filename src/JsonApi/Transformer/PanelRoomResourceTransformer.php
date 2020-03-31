@@ -43,7 +43,7 @@ class PanelRoomResourceTransformer extends AbstractResource
      */
     public function getLinks($panelRoom): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/panel/rooms/'.$this->getId($panelRoom)));
+        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/jsonapi/panel/rooms/'.$this->getId($panelRoom)));
     }
 
     /**
