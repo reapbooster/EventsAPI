@@ -23,7 +23,6 @@ services:
       - '9000'
       - '4444'
     environment:
-      - DATABASE_URL=sqlsrv://sa:drupal^99^DRUPAL@grid:1433/mishop?CharacterSet=UTF-8
       - APP_DEBUG=true
     volumes:
       - ".:/var/www"
@@ -35,6 +34,7 @@ services:
       - grid
     env_file:
       - .env
+      - .env.local
 
 
 #  mysql:
