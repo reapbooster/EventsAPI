@@ -41,7 +41,7 @@ class EventResourceTransformer extends AbstractResource
      */
     public function getLinks($event): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/jsonapi/events/'.$this->getId($event)));
+        return ResourceLinks::createWithoutBaseUri()->setLink("href", new Link('/jsonapi/events/'.$this->getId($event)));
     }
 
     /**

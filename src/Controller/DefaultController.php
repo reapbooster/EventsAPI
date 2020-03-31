@@ -18,10 +18,21 @@ class DefaultController extends Controller {
    * @return \Psr\Http\Message\ResponseInterface
    */
   function index(EntityManagerInterface $entityManager) {
-    $metas = $entityManager->getMetadataFactory()->getAllMetadata();
-    return $this->jsonApi()->respond()->ok(
+    $router = $this->container->get('router');
+    $collection = $router->getRouteCollection();
+    $allRoutes = $collection->all();
+    $toSerialize = [];
+    foreach ($allRoutes as $routeName => $route) {
+      if (strpos($routeName, '_index') !== false) {
+        $toSerialize[] = [
+          'route' => $route,
+          'id' => $routeName,
+        ];
+      }
+    }
+     return $this->jsonApi()->respond()->ok(
       new DefaultDocument(new DefaultResourceTransformer() ),
-      $metas
+       $toSerialize
     );
   }
 
