@@ -32,7 +32,8 @@ class SpeakersDocument extends AbstractCollectionDocument
      */
     public function getLinks(): ?DocumentLinks
     {
-        return DocumentLinks::createWithoutBaseUri()
+      $uri = $this->request->getUri()->withPath("");
+      return DocumentLinks::createWithBaseUri($uri)
             ->setPagination('/jsonapi/speakers', $this->object);
     }
 }

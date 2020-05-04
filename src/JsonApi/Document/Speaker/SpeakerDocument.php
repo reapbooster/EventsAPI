@@ -10,33 +10,33 @@ use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 /**
  * Speaker Document.
  */
-class SpeakerDocument extends AbstractSingleResourceDocument
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function getJsonApi(): ?JsonApiObject
-    {
-        return new JsonApiObject('1.0');
-    }
+class SpeakerDocument extends AbstractSingleResourceDocument {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getMeta(): array
-    {
-        return [];
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getJsonApi(): ?JsonApiObject {
+    return new JsonApiObject('1.0');
+  }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getLinks(): ?DocumentLinks
-    {
-        return DocumentLinks::createWithoutBaseUri(
-            [
-                'self' => new Link('/jsonapi/speakers/'.$this->getResourceId()),
-            ]
-        );
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getMeta(): array {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLinks(): ?DocumentLinks {
+    $uri = $this->request->getUri()->withPath("");
+    return DocumentLinks::createWithBaseUri(
+      $uri,
+      [
+        'self' => new Link('/jsonapi/speakers/' . $this->getResourceId()),
+      ]
+    );
+  }
+
 }

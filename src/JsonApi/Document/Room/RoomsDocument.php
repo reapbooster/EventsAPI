@@ -9,30 +9,29 @@ use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
 /**
  * Rooms Document.
  */
-class RoomsDocument extends AbstractCollectionDocument
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function getJsonApi(): ?JsonApiObject
-    {
-        return new JsonApiObject('1.0');
-    }
+class RoomsDocument extends AbstractCollectionDocument {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getMeta(): array
-    {
-        return [];
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getJsonApi(): ?JsonApiObject {
+    return new JsonApiObject('1.0');
+  }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getLinks(): ?DocumentLinks
-    {
-        return DocumentLinks::createWithoutBaseUri()
-            ->setPagination('/jsonapi/rooms', $this->object);
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getMeta(): array {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLinks(): ?DocumentLinks {
+    $uri = $this->request->getUri()->withPath("");
+    return DocumentLinks::createWithBaseUri($uri)
+      ->setPagination('/jsonapi/rooms', $this->object);
+  }
+
 }

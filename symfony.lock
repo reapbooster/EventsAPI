@@ -105,6 +105,12 @@
     "paknahad/jsonapi-bundle": {
         "version": "v4.1.2"
     },
+    "paknahad/jsonapi-querifier-bundle": {
+        "version": "v0.2.1"
+    },
+    "paknahad/querifier": {
+        "version": "v0.2.2"
+    },
     "phootwork/collection": {
         "version": "v2.0.1"
     },

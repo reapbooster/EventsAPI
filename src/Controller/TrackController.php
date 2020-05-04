@@ -21,33 +21,37 @@ use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 /**
  * @Route("/jsonapi/tracks")
  */
-class TrackController extends Controller
-{
-    /**
-     * @Route("/", name="tracks_index", methods="GET")
-     */
-    public function index(TrackRepository $trackRepository, ResourceCollection $resourceCollection): ResponseInterface
-    {
-        $resourceCollection->setRepository($trackRepository);
+class TrackController extends Controller {
 
-        $resourceCollection->handleIndexRequest();
+  /**
+   * @Route("/", name="tracks_index", methods="GET")
+   */
+  public function index(TrackRepository $trackRepository, ResourceCollection $resourceCollection): ResponseInterface {
+    $resourceCollection->setRepository($trackRepository);
+    $this->query = $this->container->get('request_stack')
+      ->getCurrentRequest()->query;
+    $page = array_merge([
+      "number" => 1,
+      "size" => 50,
+    ], $this->query->get('page', []));
+    $this->query->set('page', $page);
+    $resourceCollection->handleIndexRequest();
 
-        return $this->jsonApi()->respond()->ok(
-            new TracksDocument(new TrackResourceTransformer()),
-            $resourceCollection
-        );
-    }
+    return $this->jsonApi()->respond()->ok(
+      new TracksDocument(new TrackResourceTransformer()),
+      $resourceCollection
+    );
+  }
 
 
-    /**
-     * @Route("/{trackId}", name="tracks_show", methods="GET")
-     */
-    public function show(Track $track): ResponseInterface
-    {
-        return $this->jsonApi()->respond()->ok(
-            new TrackDocument(new TrackResourceTransformer()),
-            $track
-        );
-    }
+  /**
+   * @Route("/{trackId}", name="tracks_show", methods="GET")
+   */
+  public function show(Track $track): ResponseInterface {
+    return $this->jsonApi()->respond()->ok(
+      new TrackDocument(new TrackResourceTransformer()),
+      $track
+    );
+  }
 
 }

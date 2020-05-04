@@ -21,35 +21,38 @@ use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 /**
  * @Route("/jsonapi/rooms")
  */
-class RoomController extends Controller
-{
-    /**
-     * @Route("/", name="rooms_index", methods="GET")
-     */
-    public function index(RoomRepository $roomRepository, ResourceCollection $resourceCollection): ResponseInterface
-    {
-        $resourceCollection->setRepository($roomRepository);
+class RoomController extends Controller {
 
-        $resourceCollection->handleIndexRequest();
+  /**
+   * @Route("/", name="rooms_index", methods="GET")
+   */
+  public function index(RoomRepository $roomRepository, ResourceCollection $resourceCollection): ResponseInterface {
+    $resourceCollection->setRepository($roomRepository);
+    $this->query = $this->container->get('request_stack')
+      ->getCurrentRequest()->query;
+    $page = array_merge([
+      "number" => 1,
+      "size" => 50,
+    ], $this->query->get('page', []));
+    $this->query->set('page', $page);
+    $resourceCollection->handleIndexRequest();
 
-        return $this->jsonApi()->respond()->ok(
-            new RoomsDocument(new RoomResourceTransformer()),
-            $resourceCollection
-        );
-    }
+    return $this->jsonApi()->respond()->ok(
+      new RoomsDocument(new RoomResourceTransformer()),
+      $resourceCollection
+    );
+  }
 
 
-
-    /**
-     * @Route("/{roomId}", name="rooms_show", methods="GET")
-     */
-    public function show(Room $room): ResponseInterface
-    {
-        return $this->jsonApi()->respond()->ok(
-            new RoomDocument(new RoomResourceTransformer()),
-            $room
-        );
-    }
+  /**
+   * @Route("/{roomId}", name="rooms_show", methods="GET")
+   */
+  public function show(Room $room): ResponseInterface {
+    return $this->jsonApi()->respond()->ok(
+      new RoomDocument(new RoomResourceTransformer()),
+      $room
+    );
+  }
 
 
 }

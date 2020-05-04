@@ -21,32 +21,36 @@ use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 /**
  * @Route("/jsonapi/speakers")
  */
-class SpeakerController extends Controller
-{
-    /**
-     * @Route("/", name="speakers_index", methods="GET")
-     */
-    public function index(SpeakerRepository $speakerRepository, ResourceCollection $resourceCollection): ResponseInterface
-    {
-        $resourceCollection->setRepository($speakerRepository);
+class SpeakerController extends Controller {
 
-        $resourceCollection->handleIndexRequest();
+  /**
+   * @Route("/", name="speakers_index", methods="GET")
+   */
+  public function index(SpeakerRepository $speakerRepository, ResourceCollection $resourceCollection): ResponseInterface {
+    $resourceCollection->setRepository($speakerRepository);
+    $this->query = $this->container->get('request_stack')
+      ->getCurrentRequest()->query;
+    $page = array_merge([
+      "number" => 1,
+      "size" => 50,
+    ], $this->query->get('page', []));
+    $this->query->set('page', $page);
+    $resourceCollection->handleIndexRequest();
 
-        return $this->jsonApi()->respond()->ok(
-            new SpeakersDocument(new SpeakerResourceTransformer()),
-            $resourceCollection
-        );
-    }
+    return $this->jsonApi()->respond()->ok(
+      new SpeakersDocument(new SpeakerResourceTransformer()),
+      $resourceCollection
+    );
+  }
 
-    /**
-     * @Route("/{spkrid}", name="speakers_show", methods="GET")
-     */
-    public function show(Speaker $speaker): ResponseInterface
-    {
-        return $this->jsonApi()->respond()->ok(
-            new SpeakerDocument(new SpeakerResourceTransformer()),
-            $speaker
-        );
-    }
+  /**
+   * @Route("/{spkrid}", name="speakers_show", methods="GET")
+   */
+  public function show(Speaker $speaker): ResponseInterface {
+    return $this->jsonApi()->respond()->ok(
+      new SpeakerDocument(new SpeakerResourceTransformer()),
+      $speaker
+    );
+  }
 
 }

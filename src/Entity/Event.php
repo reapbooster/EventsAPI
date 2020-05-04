@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\UUID;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -15,6 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Event {
 
+  use UUID;
 
   /**
    * @var int
@@ -373,17 +375,14 @@ class Event {
     return $this->id;
   }
 
-  /**
-   * @param int $id
-   */
-  public function setId(int $id): void {
-    $this->id = $id;
+  public function getUUID() {
+    return self::seedUUID($this->getId(), $this->getEventid(), $this->getName(), $this->getType(), $this->getDatecreated()->getTimestamp(), $this->getDateevent()->getTimestamp(), $this->getDateasnum(), $this->getEventid() );
   }
 
   /**
    * @return string
    */
-  public function getEventid(): string {
+  public function getEventid(): ?string {
     return $this->eventid;
   }
 
