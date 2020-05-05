@@ -33,11 +33,10 @@ class PanelDocument extends AbstractSingleResourceDocument
      */
     public function getLinks(): ?DocumentLinks
     {
-      $uri = $this->request->getUri()->withPath("");
         return DocumentLinks::createWithBaseUri(
-          $uri,
+          $this->request->getUri(),
             [
-                'self' => new Link('/jsonapi/panels/' . $this->getResourceId()),
+                'self' => new Link($this->getResourceId()),
             ]
         );
     }

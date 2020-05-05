@@ -29,9 +29,8 @@ class RoomsDocument extends AbstractCollectionDocument {
    * {@inheritdoc}
    */
   public function getLinks(): ?DocumentLinks {
-    $uri = $this->request->getUri()->withPath("");
-    return DocumentLinks::createWithBaseUri($uri)
-      ->setPagination('/jsonapi/rooms', $this->object);
+    return DocumentLinks::createWithBaseUri($this->request->getUri())
+      ->setPagination('', $this->object);
   }
 
 }

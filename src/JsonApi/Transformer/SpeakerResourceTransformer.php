@@ -41,7 +41,7 @@ class SpeakerResourceTransformer extends AbstractResource
      */
     public function getLinks($speaker): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/jsonapi/speakers/'.$this->getId($speaker)));
+        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link($this->getId($speaker)));
     }
 
     /**

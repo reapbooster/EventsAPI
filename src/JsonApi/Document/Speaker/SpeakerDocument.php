@@ -30,11 +30,10 @@ class SpeakerDocument extends AbstractSingleResourceDocument {
    * {@inheritdoc}
    */
   public function getLinks(): ?DocumentLinks {
-    $uri = $this->request->getUri()->withPath("");
     return DocumentLinks::createWithBaseUri(
-      $uri,
+      $this->request->getUri(),
       [
-        'self' => new Link('/jsonapi/speakers/' . $this->getResourceId()),
+        'self' => new Link($this->getResourceId()),
       ]
     );
   }

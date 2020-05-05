@@ -41,7 +41,7 @@ class PanelSpeakerResourceTransformer extends AbstractResource
      */
     public function getLinks($panelSpeaker): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/jsonapi/panel/speakers/'.$this->getId($panelSpeaker)));
+        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link($this->getId($panelSpeaker)));
     }
 
     /**

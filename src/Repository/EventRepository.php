@@ -28,6 +28,19 @@ class EventRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+  /**
+   * Finds all entities in the repository.
+   *
+   * @return array The entities.
+   */
+  public function findAll()
+  {
+    return $this->createQueryBuilder('e')
+      ->groupBy('e.eventid')
+      ->getQuery()
+      ->execute();
+  }
+
     // /**
     //  * @return Event[] Returns an array of Event objects
     //  */

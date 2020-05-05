@@ -33,11 +33,10 @@ class EventDocument extends AbstractSingleResourceDocument
      */
     public function getLinks(): ?DocumentLinks
     {
-      $uri = $this->request->getUri()->withPath("");
         return DocumentLinks::createWithBaseUri(
-          $uri,
+          $this->request->getUri(),
             [
-                'self' => new Link('/jsonapi/events/'. $this->object->getEventid()),
+                'self' => new Link($this->getResourceId()),
             ]
         );
     }

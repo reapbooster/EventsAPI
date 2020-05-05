@@ -30,7 +30,9 @@ class DefaultResourceTransformer extends AbstractResource {
   }
 
   public function getLinks($object): ?ResourceLinks {
-    return ResourceLinks::createWithoutBaseUri()->setLink("href", new Link($object['route']->getPath()));
+
+    return ResourceLinks::createWithBaseUri(APP_BASE_URI)
+      ->setLink("href", new Link($object['route']->getPath()));
   }
 
   public function getAttributes($object): array {

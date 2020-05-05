@@ -33,12 +33,10 @@ class TrackDocument extends AbstractSingleResourceDocument
      */
     public function getLinks(): ?DocumentLinks
     {
-      $uri = $this->request->getUri()->withPath("");
-
       return DocumentLinks::createWithBaseUri(
-          $uri,
+        $this->request->getUri(),
             [
-                'self' => new Link('/jsonapi/tracks/'.$this->getResourceId()),
+                'self' => new Link($this->getResourceId()),
             ]
         );
     }

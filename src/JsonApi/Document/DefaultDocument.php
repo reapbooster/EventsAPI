@@ -31,7 +31,7 @@ class DefaultDocument extends AbstractCollectionDocument {
    */
   public function getLinks(): ?DocumentLinks
   {
-    return DocumentLinks::createWithBaseUri( $this->request->getUri()->withPath(""),
+    return DocumentLinks::createWithBaseUri( $this->request->getUri(),
       [
         'self' => new Link('/jsonapi'),
       ]

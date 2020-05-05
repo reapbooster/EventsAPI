@@ -41,7 +41,7 @@ class RoomResourceTransformer extends AbstractResource
      */
     public function getLinks($room): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link('/jsonapi/rooms/'.$this->getId($room)));
+        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link($this->getId($room)));
     }
 
     /**
