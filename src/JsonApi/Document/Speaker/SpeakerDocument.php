@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Document\Speaker;
 
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Document\AbstractSingleResourceDocument;
 use WoohooLabs\Yin\JsonApi\Schema\JsonApiObject;
 use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
@@ -30,8 +31,8 @@ class SpeakerDocument extends AbstractSingleResourceDocument {
    * {@inheritdoc}
    */
   public function getLinks(): ?DocumentLinks {
-    return DocumentLinks::createWithBaseUri(
-      $this->request->getUri(),
+    $url = new URLParser($this->request->getUri());
+    return DocumentLinks::createWithBaseUri($url->getBaseURI(),
       [
         'self' => new Link($this->getResourceId()),
       ]

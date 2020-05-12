@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Document\PanelRoom;
 
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Document\AbstractSingleResourceDocument;
 use WoohooLabs\Yin\JsonApi\Schema\JsonApiObject;
 use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
@@ -33,8 +34,8 @@ class PanelRoomDocument extends AbstractSingleResourceDocument
      */
     public function getLinks(): ?DocumentLinks
     {
-        return DocumentLinks::createWithBaseUri(
-          $this->request->getUri(),
+      $url = new URLParser($this->request->getUri());
+      return DocumentLinks::createWithBaseUri($url->getBaseURI(),
             [
                 'self' => new Link($this->getResourceId()),
             ]

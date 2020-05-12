@@ -41,7 +41,7 @@ class TrackResourceTransformer extends AbstractResource
      */
     public function getLinks($track): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link($this->getId($track)));
+        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($track)));
     }
 
     /**

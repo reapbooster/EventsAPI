@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Document\Event;
 
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Document\AbstractCollectionDocument;
 use WoohooLabs\Yin\JsonApi\Schema\JsonApiObject;
 use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
@@ -29,9 +30,8 @@ class EventsDocument extends AbstractCollectionDocument {
    * {@inheritdoc}
    */
   public function getLinks(): ?DocumentLinks {
-    return DocumentLinks::createWithBaseUri(
-      $this->request->getUri()->withPath("/jsonapi")
-    )
+    $url = new URLParser($this->request->getUri());
+    return DocumentLinks::createWithBaseUri($url->getBaseURI())
       ->setPagination('/events', $this->object);
   }
 

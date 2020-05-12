@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Document\Track;
 
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Document\AbstractCollectionDocument;
 use WoohooLabs\Yin\JsonApi\Schema\JsonApiObject;
 use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
@@ -32,7 +33,8 @@ class TracksDocument extends AbstractCollectionDocument
      */
     public function getLinks(): ?DocumentLinks
     {
-      return DocumentLinks::createWithBaseUri($this->request->getUri())
+      $url = new URLParser($this->request->getUri());
+      return DocumentLinks::createWithBaseUri($url->getBaseURI())
             ->setPagination('', $this->object);
     }
 }

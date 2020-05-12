@@ -43,7 +43,7 @@ class PanelTrackResourceTransformer extends AbstractResource
      */
     public function getLinks($panelTrack): ?ResourceLinks
     {
-        return ResourceLinks::createWithoutBaseUri()->setSelf(new Link($this->getId($panelTrack)));
+        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($panelTrack)));
     }
 
     /**

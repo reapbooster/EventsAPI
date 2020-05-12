@@ -10,7 +10,7 @@
     "man": "./man"
   },
   "dependencies": {
-    "newman": "^4.6.0"
+    "newman": "^4.6.1"
   },
   "devDependencies": {},
   "scripts": {

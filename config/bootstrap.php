@@ -23,4 +23,4 @@ $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'
 //$_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], FILTER_VALIDATE_BOOLEAN) ? '1' : '0';
 $_SERVER['APP_DEBUG'] = TRUE;
 $port = (in_array($_SERVER['SERVER_PORT'], [443, 80]) !== true) ? ":" . $_SERVER['SERVER_PORT'] : "";
-define("APP_BASE_URI", $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $port );
+define("APP_BASE_URI", $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $port . "/jsonapi" );

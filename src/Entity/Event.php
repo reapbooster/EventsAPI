@@ -6,6 +6,7 @@ use App\Traits\UUID;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository", readOnly=TRUE)
@@ -872,8 +873,8 @@ class Event {
   /**
    * @return \DateTime|null
    */
-  public function getDatecreated(): ?\DateTime {
-    return $this->datecreated;
+  public function getDatecreated(): \DateTime {
+    return $this->datecreated instanceof \DateTime ? $this->datecreated : new \DateTime();
   }
 
   /**
@@ -886,8 +887,8 @@ class Event {
   /**
    * @return \DateTime|null
    */
-  public function getDatemodified(): ?\DateTime {
-    return $this->datemodified;
+  public function getDatemodified(): \DateTime {
+    return $this->datemodified instanceof \DateTime? $this->datemodified : new \DateTime();
   }
 
   /**
@@ -900,8 +901,8 @@ class Event {
   /**
    * @return \DateTime|null
    */
-  public function getDateevent(): ?\DateTime {
-    return $this->dateevent;
+  public function getDateevent(): \DateTime {
+    return $this->dateevent instanceof \DateTime ? $this->dateevent : new \DateTime();
   }
 
   /**

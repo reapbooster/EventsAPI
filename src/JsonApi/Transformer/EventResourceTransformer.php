@@ -3,6 +3,7 @@
 namespace App\JsonApi\Transformer;
 
 use App\Entity\Event;
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
@@ -38,8 +39,14 @@ class EventResourceTransformer extends AbstractResource {
    * {@inheritdoc}
    */
   public function getLinks($event): ?ResourceLinks {
-    return ResourceLinks::createWithBaseUri($this->request->getUri())
-      ->setSelf(new Link($event->getEventid()));
+    $url = new URLParser($this->request->getUri());
+    $eventID = $event->getEventid();
+    if (!empty($eventID) && !empty($url)) {
+      $thisUri = str_replace($eventID, "", $url->getThisURI());
+      return ResourceLinks::createWithBaseUri($thisUri)
+        ->setSelf(new Link($eventID));
+    }
+    return null;
   }
 
   /**
