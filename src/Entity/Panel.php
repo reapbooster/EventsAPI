@@ -321,7 +321,12 @@ class Panel {
   /**
    * @var string|null
    *
-   * @ORM\Column(name="EventID", type="string", length=255, nullable=true)
+   * @ORM\Column(
+   *   name="eventid",
+   *   type="string",
+   *   length=255,
+   *   nullable=true
+   * )
    */
   private $eventid;
 

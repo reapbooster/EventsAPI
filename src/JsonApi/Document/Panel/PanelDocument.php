@@ -35,9 +35,8 @@ class PanelDocument extends AbstractSingleResourceDocument
     public function getLinks(): ?DocumentLinks
     {
       $url = new URLParser($this->request->getUri());
-
         return DocumentLinks::createWithBaseUri(
-          $url->getBaseURI(),
+          $url->getThisURI(),
             [
                 'self' => new Link($this->getResourceId()),
             ]

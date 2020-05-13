@@ -35,6 +35,6 @@ class PanelRoomsDocument extends AbstractCollectionDocument
     {
       $url = new URLParser($this->request->getUri());
       return DocumentLinks::createWithBaseUri($url->getBaseURI())
-            ->setPagination('', $this->object);
+            ->setPagination('/panel/rooms', $this->object);
     }
 }

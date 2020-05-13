@@ -3,8 +3,11 @@
 namespace App\JsonApi\Transformer;
 
 use App\Entity\Panel;
+use App\Entity\PanelRoom;
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
 /**
@@ -41,7 +44,14 @@ class PanelResourceTransformer extends AbstractResource
      */
     public function getLinks($panel): ?ResourceLinks
     {
-        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($panel)));
+      $url = new URLParser($this->request->getUri());
+      $panelID = $panel->getId();
+      if (!empty($panelID) && !empty($url)) {
+        $thisUri = str_replace($panelID, "", $url->getThisURI());
+        return ResourceLinks::createWithBaseUri($thisUri)
+          ->setSelf(new Link($panelID));
+      }
+      return null;
     }
 
     /**
@@ -346,7 +356,7 @@ class PanelResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($panel): array
     {
-        return [];
+        return [ ];
     }
 
     /**

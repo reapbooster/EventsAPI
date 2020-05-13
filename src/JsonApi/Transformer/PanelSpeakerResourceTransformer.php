@@ -41,7 +41,8 @@ class PanelSpeakerResourceTransformer extends AbstractResource
      */
     public function getLinks($panelSpeaker): ?ResourceLinks
     {
-        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($panelSpeaker)));
+        return ResourceLinks::createWithBaseUri($this->request->getUri())
+          ->setSelf(new Link($this->getId($panelSpeaker)));
     }
 
     /**

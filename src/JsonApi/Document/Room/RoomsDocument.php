@@ -32,7 +32,7 @@ class RoomsDocument extends AbstractCollectionDocument {
   public function getLinks(): ?DocumentLinks {
     $url = new URLParser($this->request->getUri());
     return DocumentLinks::createWithBaseUri($url->getBaseURI())
-      ->setPagination('', $this->object);
+      ->setPagination('/rooms', $this->object);
   }
 
 }

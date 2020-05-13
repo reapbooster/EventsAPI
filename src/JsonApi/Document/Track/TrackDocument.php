@@ -35,7 +35,7 @@ class TrackDocument extends AbstractSingleResourceDocument
     public function getLinks(): ?DocumentLinks
     {
       $url = new URLParser($this->request->getUri());
-      return DocumentLinks::createWithBaseUri($url->getBaseURI(),
+      return DocumentLinks::createWithBaseUri($url->getThisURI(),
             [
                 'self' => new Link($this->getResourceId()),
             ]
