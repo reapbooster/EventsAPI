@@ -4,23 +4,26 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Panel
  *
  * @ORM\Table(name="panel")
- * @ORM\Entity(repositoryClass="App\Repository\PanelRepository", readOnly=TRUE)
+ * @ORM\Entity(
+ *   repositoryClass="App\Repository\PanelRepository",
+ *   readOnly=TRUE
+ * )
  * @property int $id
- * @property string $panel
- * @property int $pid
+ * @property string $eventid
  */
 class Panel {
 
   /**
-   * @var int
+   * @var int $id
    *
-   * @ORM\Column(name="ID", type="integer", nullable=false)
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="IDENTITY")
+   * @ORM\Id()
+   * @ORM\Column(name="ID", type="integer", nullable=FALSE, unique=TRUE)
+   * @ORM\GeneratedValue(strategy="NONE")
    */
   private $id;
 
@@ -703,6 +706,20 @@ class Panel {
    * @ORM\Column(name="liveStream", type="boolean", nullable=true)
    */
   private $livestream;
+
+  /**
+   * @var \App\Entity\PanelRoom $panelRoom
+   *
+   */
+  private $panelRoom;
+
+  /**
+   * @var array $panelSpeakers
+   *
+   * @ORM\OneToMany(targetEntity="App\Entity\PanelSpeaker", mappedBy="panel")
+   * @ORM\JoinColumn(name="ID", referencedColumnName="panel_id")
+   */
+  private $panelSpeakers;
 
   /**
    * @return int
@@ -2062,5 +2079,20 @@ class Panel {
     $this->livestream = $livestream;
   }
 
+  public function getPanelRoom(): PanelRoom {
+    return $this->panelRoom;
+  }
+
+  public function setPanelRoom($panelRoom) {
+    $this->panelRoom = $panelRoom;
+  }
+
+  public function getPanelSpeakers() {
+    return $this->panelSpeakers;
+  }
+
+  public function setPanelSpeakers($panelSpeakers) {
+    $this->panelSpeakers = $panelSpeakers;
+  }
 
 }

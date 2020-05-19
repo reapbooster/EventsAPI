@@ -6,53 +6,53 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanelSpeakerRepository", readOnly=TRUE)
- * @ORM\Table(name="gcspeakerlinks",
- *   indexes={
- *      @ORM\Index(name="panel_id", columns={"panel_id"}),
- *      @ORM\Index(name="speaker_id", columns={"speaker_id"}),
- *   }
- * )
+ * @ORM\Table(name="gcspeakerlinks")
  * @property int $speaker_id;
  * @property int $panel_id;
+ * @property string $role;
  */
 class PanelSpeaker {
 
   /**
-   * @ORM\Id
-   * @ORM\GeneratedValue()
-   * @ORM\Column(type="integer")
-   * @var int
+   * @ORM\Column(type="integer", nullable=FALSE, unique=TRUE)
    */
   private $id;
 
   /**
-   * @ORM\Column(name="speaker_id", type="integer")
    * @var int
+   * @ORM\Column(name="speaker_id", type="integer", nullable=FALSE, unique=TRUE)
    */
   private $speaker_id;
 
   /**
-   * @ORM\Column(name="panel_id", type="integer")
    * @var int
+   *
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="NONE")
+   * @ORM\Column(name="panel_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $panel_id;
 
   /**
+   *
+   * @ORM\Column(name="role", type="string")
    * @var string
    */
   private $role;
 
   /**
+   * @ORM\Column(name="showfloworder", type="integer")
    * @var int
    */
   private $showfloworder;
 
   /**
-   * @var int
+   * @ORM\Column(name="datecreated", type="datetime")
    */
   private $datecreated;
 
   /**
+   * @ORM\Column(name="datemodified", type="datetime")
    * @var int
    */
   private $datemodified;
@@ -63,18 +63,22 @@ class PanelSpeaker {
   private $micontactidMod;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Speaker", mappedBy="panels")
-   * @ORM\JoinColumn(name="speaker_id", referencedColumnName="SpkrID")
-   * @var \App\Entity\Speaker
-   */
-  private $speaker;
-
-  /**
-   * @ORM\ManyToMany(targetEntity="Panel", mappedBy="speakers")
-   * @ORM\JoinColumn(name="panel_id", referencedColumnName="id")
-   * @var \App\Entity\Panel
+   * @var \App\Entity\Panel $panel
+   *
+   * @ORM\ManyToOne(targetEntity="App\Entity\Panel")
+   * @ORM\JoinColumn(name="panel_id", referencedColumnName="ID")
    */
   private $panel;
+
+
+  /**
+   * @var \App\Entity\Speaker $speaker
+   *
+   * @ORM\OneToOne(targetEntity="App\Entity\Speaker");
+   * @ORM\JoinColumn(name="speaker_id", referencedColumnName="SpkrID")
+
+  private $speaker;
+   */
 
   /**
    * @return int|null
@@ -181,5 +185,16 @@ class PanelSpeaker {
     $this->micontactidMod = $micontactidMod;
   }
 
+  public function getSpeaker(): Speaker {
+    return new Speaker();
+  }
+
+  public function getPanelUrl(): ?string {
+    return (!empty($this->panel_id)) ? "/panels/" . $this->getPanelId() : NULL;
+  }
+
+  public function getSpeakerUrl(): ?string {
+    return (!empty($this->speaker_id)) ? "/speakers/" . $this->getSpeakerId() : NULL;
+  }
 
 }

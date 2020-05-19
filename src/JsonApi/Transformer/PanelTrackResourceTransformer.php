@@ -2,7 +2,9 @@
 
 namespace App\JsonApi\Transformer;
 
+use App\Entity\PanelSpeaker;
 use App\Entity\PanelTrack;
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToManyRelationship;
@@ -43,7 +45,9 @@ class PanelTrackResourceTransformer extends AbstractResource
      */
     public function getLinks($panelTrack): ?ResourceLinks
     {
-        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($panelTrack)));
+      $url = new URLParser($this->request->getUri());
+      return ResourceLinks::createWithBaseUri($url->getThisURI())
+        ->setSelf(new Link($panelTrack->getId()));
     }
 
     /**
@@ -51,8 +55,14 @@ class PanelTrackResourceTransformer extends AbstractResource
      */
     public function getAttributes($panelTrack): array
     {
-        return [
-        ];
+      return [
+        'panel_id' => function (PanelTrack $panelTrack) {
+          return $panelTrack->getPanelId();
+        },
+        'track_id' => function (PanelTrack $panelTrack) {
+          return $panelTrack->getTrackId();
+        },
+      ];
     }
 
     /**

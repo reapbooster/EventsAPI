@@ -29,20 +29,34 @@ class URLParser {
   /**
    * @return string
    */
-  public function getBaseURI() {
+  public function getBaseURI() : string {
     if (defined('APP_BASE_URI')) {
       return APP_BASE_URI;
     }
     else return $this->getThisURI();
   }
 
-  public function getThisURI() {
+  /**
+   * @return string
+   */
+  public function getThisURI() : string {
     return $this->getScheme() .
       $this->getUser() .
       $this->getPass() .
       $this->getHost() .
       $this->getPort() .
       $this->getPath();
+  }
+
+  /**
+   * @return string
+   */
+  public function getUriNoPath() : string {
+    return $this->getScheme() .
+      $this->getUser() .
+      $this->getPass() .
+      $this->getHost() .
+      $this->getPort();
   }
 
   /**

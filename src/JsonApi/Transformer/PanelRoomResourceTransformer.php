@@ -3,6 +3,7 @@
 namespace App\JsonApi\Transformer;
 
 use App\Entity\PanelRoom;
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToManyRelationship;
@@ -27,7 +28,7 @@ class PanelRoomResourceTransformer extends AbstractResource
      */
     public function getId($panelRoom): string
     {
-        return (string) $panelRoom->getId();
+        return (string) $this->object->getId();
     }
 
     /**
@@ -43,7 +44,9 @@ class PanelRoomResourceTransformer extends AbstractResource
      */
     public function getLinks($panelRoom): ?ResourceLinks
     {
-        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($panelRoom)));
+      $url = new URLParser($this->request->getUri());
+      return ResourceLinks::createWithBaseUri($url->getBaseURI())
+        ->setSelf(new Link($panelRoom->getPanelId()));
     }
 
     /**
@@ -52,6 +55,12 @@ class PanelRoomResourceTransformer extends AbstractResource
     public function getAttributes($panelRoom): array
     {
         return [
+            'panel_id' => function(PanelRoom $panelRoom) {
+              return $panelRoom->getPanelId();
+            },
+            'room_id' => function(PanelRoom $panelRoom) {
+              return $panelRoom->getRoomId();
+            },
             'type' => function (PanelRoom $panelRoom) {
                 return $panelRoom->getType();
             },
@@ -77,27 +86,6 @@ class PanelRoomResourceTransformer extends AbstractResource
      */
     public function getRelationships($panelRoom): array
     {
-        return [
-            'panels' => function (PanelRoom $panelRoom) {
-                return ToOneRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($panelRoom) {
-                            return $panelRoom->getPanels();
-                        },
-                        new PanelResourceTransformer()
-                    )
-                    ->omitDataWhenNotIncluded();
-            },
-            'room' => function (PanelRoom $panelRoom) {
-                return ToManyRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($panelRoom) {
-                            return $panelRoom->getRoom();
-                        },
-                        new RoomResourceTransformer()
-                    )
-                    ->omitDataWhenNotIncluded();
-            },
-        ];
+        return [ ];
     }
 }

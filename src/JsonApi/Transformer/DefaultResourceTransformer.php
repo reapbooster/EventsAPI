@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Transformer;
 
+use App\Utility\URLParser;
 use Symfony\Component\Routing\Route;
 use WoohooLabs\Yin\JsonApi\Schema\Link\DocumentLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
@@ -30,8 +31,9 @@ class DefaultResourceTransformer extends AbstractResource {
   }
 
   public function getLinks($object): ?ResourceLinks {
+    $url = new URLParser($this->request->getUri());
 
-    return ResourceLinks::createWithBaseUri(APP_BASE_URI)
+    return ResourceLinks::createWithBaseUri($url->getUriNoPath())
       ->setLink("href", new Link($object['route']->getPath()));
   }
 

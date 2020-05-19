@@ -19,22 +19,21 @@ class PanelRoomRepository extends ServiceEntityRepository
         parent::__construct($registry, PanelRoom::class);
     }
 
-    // /**
-    //  * @return PanelRooms[] Returns an array of PanelRooms objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    function find($id, $lockMode = null, $lockVersion = null) {
+      return $this->findByPanelId($id);
+    }
+
+    public function findByPanelId($value)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.panel_id = :PANELID')
+            ->setParameter('PANELID', $value)
             ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?PanelRooms

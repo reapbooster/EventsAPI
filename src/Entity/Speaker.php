@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SpeakerRepository", readOnly=TRUE)
@@ -16,7 +15,7 @@ class Speaker {
   /**
    * @var int
    *
-   * @ORM\Column(name="SpkrID", type="integer", nullable=false)
+   * @ORM\Column(name="SpkrID", type="integer", nullable=false, unique=true)
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="IDENTITY")
    */

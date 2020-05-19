@@ -4,9 +4,14 @@ namespace App\JsonApi\Transformer;
 
 use App\Entity\Panel;
 use App\Entity\PanelRoom;
+use App\Entity\PanelSpeaker;
+use App\Entity\PanelTrack;
+use App\JsonApi\Document\PanelRoom\PanelRoomDocument;
 use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
+use WoohooLabs\Yin\JsonApi\Schema\Link\RelationshipLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
+use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToManyRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Relationship\ToOneRelationship;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
 
@@ -356,7 +361,11 @@ class PanelResourceTransformer extends AbstractResource
      */
     public function getDefaultIncludedRelationships($panel): array
     {
-        return [ ];
+      //$panel_id = $panel->getId();
+      //if (is_numeric($panel_id) && $panel_id >=2 ) {
+      //  $toReturn[] = 'room';
+      //}
+      return [ 'speakers' ];
     }
 
     /**
@@ -365,6 +374,16 @@ class PanelResourceTransformer extends AbstractResource
     public function getRelationships($panel): array
     {
         return [
+          'speakers' => function (Panel $panel) {
+            return ToManyRelationship::create()
+              ->setDataAsCallable(
+                function() use ($panel) {
+                  return $panel->getPanelSpeakers();
+                },
+                new PanelSpeakerResourceTransformer()
+              )
+              ->omitDataWhenNotIncluded();
+          }
         ];
     }
 }

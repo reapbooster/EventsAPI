@@ -6,12 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanelRoomRepository", readOnly=TRUE)
- * @ORM\Table(name="gcroomlinks",
- *   indexes={
- *      @ORM\Index(name="panel_id", columns={"panel_id"}),
- *      @ORM\Index(name="room_id", columns={"room_id"}),
- *   }
- * )
+ * @ORM\Table(name="gcroomlinks")
  * @property int $id
  * @property int $panel_id
  * @property int $room_id
@@ -19,24 +14,30 @@ use Doctrine\ORM\Mapping as ORM;
 class PanelRoom {
 
   /**
-   * @ORM\Id()
-   * @ORM\GeneratedValue(strategy="NONE")
-   * @ORM\Column(name="id", type="integer")
+   * @var int $id
+   *
+   * @ORM\Column(name="id", type="integer", nullable=FALSE, unique=TRUE)
    */
   private $id;
 
   /**
-   * @ORM\Column(name="panel_id", type="integer", nullable=TRUE)
+   * @var int $panel_id
+   *
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="NONE")
+   * @ORM\Column(name="panel_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $panel_id;
 
   /**
-   * @ORM\Column(name="room_id", type="integer", nullable=TRUE)
+   * @var int $room_id
+   *
+   * @ORM\Column(name="room_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $room_id;
 
   /**
-   * @ORM\Column(type="string")
+   * @ORM\Column(name="type", type="string")
    */
   private $type;
 
@@ -51,24 +52,10 @@ class PanelRoom {
   private $datemodified;
 
   /**
-   * @ORM\OneToOne(targetEntity="Panel", mappedBy="room", inversedBy="room")
-   * @ORM\JoinColumn(name="panel_id", referencedColumnName="ID", fieldName="id")
-   * @var Panel
-   */
-  private $panel;
-
-  /**
-   * @ORM\OneToMany(targetEntity="Room", mappedBy="panels", indexBy="room_id")
-   * @ORM\JoinColumn(name="room_id", referencedColumnName="room_id", fieldName="room_id")
-   * @var Room
-   */
-  private $room;
-
-  /**
    * @return int|null
    */
-  public function getId(): ?int {
-    return $this->id;
+  public function getId(): int {
+    return $this->panel_id;
   }
 
   /**

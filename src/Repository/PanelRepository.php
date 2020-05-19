@@ -28,7 +28,7 @@ class PanelRepository extends ServiceEntityRepository
         ->setParameter('val', $value)
         ->setMaxResults(10)
         ->getQuery()
-        ->getResult();
+        ->getOneOrNullResult();
     }
 
     // /**

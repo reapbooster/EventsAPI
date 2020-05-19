@@ -21,30 +21,18 @@ class PanelTrack {
   private $id;
 
   /**
-   * @ORM\Column(name="panel_id")
    * @var integer
+   *
+   * @ORM\Column(name="panel_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $panel_id;
 
   /**
-   * @ORM\Column(name="track_id")
    * @var integer
+   *
+   * @ORM\Column(name="track_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $track_id;
-
-  /**
-   * @ORM\ManyToMany(targetEntity="Panel", mappedBy="id" )
-   * @ORM\JoinColumn(name="panel_id", referencedColumnName="ID")
-   * @var \App\Entity\Panel
-   */
-  private $panel;
-
-  /**
-   * @ORM\OneToOne(targetEntity="Track", mappedBy="panel")
-   * @ORM\JoinColumn(name="track_id", referencedColumnName="track_ID")
-   * @var \App\Entity\Track
-   */
-  private $track;
 
 
   public function getId(): ?int {
@@ -54,7 +42,7 @@ class PanelTrack {
   /**
    * @return int
    */
-  public function getPanelId(): int {
+  public function getPanelId(): ?int {
     return $this->panel_id;
   }
 
@@ -68,7 +56,7 @@ class PanelTrack {
   /**
    * @return int
    */
-  public function getTrackId(): int {
+  public function getTrackId(): ?int {
     return $this->track_id;
   }
 
@@ -79,33 +67,6 @@ class PanelTrack {
     $this->track_id = $track_id;
   }
 
-  /**
-   * @return mixed
-   */
-  public function getPanel() {
-    return $this->panel;
-  }
-
-  /**
-   * @param mixed $panel
-   */
-  public function setPanel($panel): void {
-    $this->panel = $panel;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getTrack() {
-    return $this->track;
-  }
-
-  /**
-   * @param mixed $track
-   */
-  public function setTrack($track): void {
-    $this->track = $track;
-  }
 
 
 
