@@ -35,6 +35,6 @@ class TracksDocument extends AbstractCollectionDocument
     {
       $url = new URLParser($this->request->getUri());
       return DocumentLinks::createWithBaseUri($url->getBaseURI())
-            ->setPagination('/track', $this->object);
+            ->setPagination('/tracks', $this->object);
     }
 }

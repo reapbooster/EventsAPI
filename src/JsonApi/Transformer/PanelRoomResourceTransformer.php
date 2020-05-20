@@ -45,8 +45,12 @@ class PanelRoomResourceTransformer extends AbstractResource
     public function getLinks($panelRoom): ?ResourceLinks
     {
       $url = new URLParser($this->request->getUri());
-      return ResourceLinks::createWithBaseUri($url->getBaseURI())
-        ->setSelf(new Link($panelRoom->getPanelId()));
+      $id = $panelRoom->getId();
+      if (!empty($id) && !empty($url)) {
+        $thisUri = str_replace($id, "", $url->getThisURI());
+        return ResourceLinks::createWithBaseUri($thisUri)
+          ->setSelf(new Link($id));
+      }
     }
 
     /**

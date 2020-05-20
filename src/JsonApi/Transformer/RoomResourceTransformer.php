@@ -3,6 +3,7 @@
 namespace App\JsonApi\Transformer;
 
 use App\Entity\Room;
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
@@ -42,7 +43,13 @@ class RoomResourceTransformer extends AbstractResource
     public function getLinks($room): ?ResourceLinks
     {
 
-        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($room)));
+      $url = new URLParser($this->request->getUri());
+      $id = $room->getId();
+      if (!empty($id) && !empty($url)) {
+        $thisUri = str_replace($id, "", $url->getThisURI());
+        return ResourceLinks::createWithBaseUri($thisUri)
+          ->setSelf(new Link($id));
+      }
     }
 
     /**

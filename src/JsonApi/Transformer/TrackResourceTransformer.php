@@ -3,6 +3,7 @@
 namespace App\JsonApi\Transformer;
 
 use App\Entity\Track;
+use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
 use WoohooLabs\Yin\JsonApi\Schema\Link\ResourceLinks;
 use WoohooLabs\Yin\JsonApi\Schema\Resource\AbstractResource;
@@ -41,7 +42,14 @@ class TrackResourceTransformer extends AbstractResource
      */
     public function getLinks($track): ?ResourceLinks
     {
-        return ResourceLinks::createWithBaseUri($this->request->getUri())->setSelf(new Link($this->getId($track)));
+
+      $url = new URLParser($this->request->getUri());
+      $id = $track->getId();
+      if (!empty($id) && !empty($url)) {
+        $thisUri = str_replace($id, "", $url->getThisURI());
+        return ResourceLinks::createWithBaseUri($thisUri)
+          ->setSelf(new Link($id));
+      }
     }
 
     /**
