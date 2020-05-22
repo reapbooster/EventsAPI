@@ -25,7 +25,7 @@ class EventResourceTransformer extends AbstractResource {
    * {@inheritdoc}
    */
   public function getId($event): string {
-    return (string) $event->getUUID();
+    return (string) $event->getId();
   }
 
   /**
@@ -40,7 +40,7 @@ class EventResourceTransformer extends AbstractResource {
    */
   public function getLinks($event): ?ResourceLinks {
     $url = new URLParser($this->request->getUri());
-    $eventID = $event->getEventid();
+    $eventID = $event->getId();
     if (!empty($eventID) && !empty($url)) {
       $thisUri = str_replace($eventID, "", $url->getThisURI());
       return ResourceLinks::createWithBaseUri($thisUri)

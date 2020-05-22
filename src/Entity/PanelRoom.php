@@ -16,6 +16,8 @@ class PanelRoom {
   /**
    * @var int $id
    *
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="id", type="integer", nullable=FALSE, unique=TRUE)
    */
   private $id;
@@ -23,8 +25,6 @@ class PanelRoom {
   /**
    * @var int $panel_id
    *
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="panel_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $panel_id;

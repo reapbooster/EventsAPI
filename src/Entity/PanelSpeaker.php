@@ -15,20 +15,21 @@ class PanelSpeaker {
 
   /**
    * @ORM\Column(type="integer", nullable=FALSE, unique=TRUE)
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="NONE")
    */
   private $id;
 
   /**
-   * @var int
+   * @var int $speaker_id
+   *
    * @ORM\Column(name="speaker_id", type="integer", nullable=FALSE, unique=TRUE)
    */
   private $speaker_id;
 
   /**
-   * @var int
+   * @var int $panel_id
    *
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="NONE")
    * @ORM\Column(name="panel_id", type="integer", nullable=FALSE, unique=FALSE)
    */
   private $panel_id;
@@ -62,23 +63,6 @@ class PanelSpeaker {
    */
   private $micontactidMod;
 
-  /**
-   * @var \App\Entity\Panel $panel
-   *
-   * @ORM\ManyToOne(targetEntity="App\Entity\Panel")
-   * @ORM\JoinColumn(name="panel_id", referencedColumnName="ID")
-   */
-  private $panel;
-
-
-  /**
-   * @var \App\Entity\Speaker $speaker
-   *
-   * @ORM\OneToOne(targetEntity="App\Entity\Speaker");
-   * @ORM\JoinColumn(name="speaker_id", referencedColumnName="SpkrID")
-
-  private $speaker;
-   */
 
   /**
    * @return int|null

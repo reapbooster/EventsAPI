@@ -525,12 +525,19 @@ class Speaker {
    */
   private $instagram;
 
+
+  /**
+   * Speaker constructor.
+   */
   public function __construct()
   {
     $this->panels = new ArrayCollection();
     $this->event = new Event();
   }
 
+  /**
+   * @return int|null
+   */
   public function getId(): ?int {
     return $this->spkrid;
   }
@@ -1556,6 +1563,7 @@ class Speaker {
   public function setInstagram(?string $instagram): void {
     $this->instagram = $instagram;
   }
+
 
 
 

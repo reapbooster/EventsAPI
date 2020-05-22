@@ -707,19 +707,7 @@ class Panel {
    */
   private $livestream;
 
-  /**
-   * @var \App\Entity\PanelRoom $panelRoom
-   *
-   */
-  private $panelRoom;
 
-  /**
-   * @var array $panelSpeakers
-   *
-   * @ORM\OneToMany(targetEntity="App\Entity\PanelSpeaker", mappedBy="panel")
-   * @ORM\JoinColumn(name="ID", referencedColumnName="panel_id")
-   */
-  private $panelSpeakers;
 
   /**
    * @return int
@@ -2077,22 +2065,6 @@ class Panel {
    */
   public function setLivestream(?bool $livestream): void {
     $this->livestream = $livestream;
-  }
-
-  public function getPanelRoom(): PanelRoom {
-    return $this->panelRoom;
-  }
-
-  public function setPanelRoom($panelRoom) {
-    $this->panelRoom = $panelRoom;
-  }
-
-  public function getPanelSpeakers() {
-    return $this->panelSpeakers;
-  }
-
-  public function setPanelSpeakers($panelSpeakers) {
-    $this->panelSpeakers = $panelSpeakers;
   }
 
 }

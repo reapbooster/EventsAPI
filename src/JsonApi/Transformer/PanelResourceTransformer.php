@@ -6,6 +6,7 @@ use App\Entity\Panel;
 use App\Entity\PanelRoom;
 use App\Entity\PanelSpeaker;
 use App\Entity\PanelTrack;
+use App\Entity\Speaker;
 use App\JsonApi\Document\PanelRoom\PanelRoomDocument;
 use App\Utility\URLParser;
 use WoohooLabs\Yin\JsonApi\Schema\Link\Link;
@@ -365,7 +366,7 @@ class PanelResourceTransformer extends AbstractResource
       //if (is_numeric($panel_id) && $panel_id >=2 ) {
       //  $toReturn[] = 'room';
       //}
-      return [ 'speakers' ];
+      return [  ];
     }
 
     /**
@@ -373,17 +374,6 @@ class PanelResourceTransformer extends AbstractResource
      */
     public function getRelationships($panel): array
     {
-        return [
-          'speakers' => function (Panel $panel) {
-            return ToManyRelationship::create()
-              ->setDataAsCallable(
-                function() use ($panel) {
-                  return $panel->getPanelSpeakers();
-                },
-                new PanelSpeakerResourceTransformer()
-              )
-              ->omitDataWhenNotIncluded();
-          }
-        ];
+      return [];
     }
 }

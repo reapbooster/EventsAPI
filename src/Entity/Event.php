@@ -23,7 +23,6 @@ class Event {
    * @var int
    *
    * @ORM\Column(name="ID", type="integer", nullable=false)
-   * @ORM\Id
    * @ORM\GeneratedValue(strategy="IDENTITY")
    */
   private $id;
@@ -31,7 +30,7 @@ class Event {
   /**
    * @var string|null
    *
-   *
+   * @ORM\Id
    * @ORM\Column(name="EventID", type="string", length=255, nullable=true, unique=FALSE)
    * @ORM\GeneratedValue(strategy="NONE")
    */
@@ -359,21 +358,11 @@ class Event {
    */
   private $cventid;
 
-  private $panels;
-
-  private $tracks;
-
-  public function __construct() {
-    $this->panels = new ArrayCollection();
-    $this->speakers = new ArrayCollection();
-    $this->tracks = new ArrayCollection();
-  }
-
   /**
    * @return int
    */
-  public function getId(): int {
-    return $this->id;
+  public function getId() {
+    return $this->eventid;
   }
 
   public function getUUID() {

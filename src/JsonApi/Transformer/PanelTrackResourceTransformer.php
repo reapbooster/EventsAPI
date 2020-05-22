@@ -83,26 +83,6 @@ class PanelTrackResourceTransformer extends AbstractResource
     public function getRelationships($panelTrack): array
     {
         return [
-            'panel' => function (PanelTrack $panelTrack) {
-                return ToManyRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($panelTrack) {
-                            return $panelTrack->getPanel();
-                        },
-                        new PanelResourceTransformer()
-                    )
-                    ->omitDataWhenNotIncluded();
-            },
-            'track' => function (PanelTrack $panelTrack) {
-                return ToOneRelationship::create()
-                    ->setDataAsCallable(
-                        function () use ($panelTrack) {
-                            return $panelTrack->getTrack();
-                        },
-                        new TrackResourceTransformer()
-                    )
-                    ->omitDataWhenNotIncluded();
-            },
         ];
     }
 }
