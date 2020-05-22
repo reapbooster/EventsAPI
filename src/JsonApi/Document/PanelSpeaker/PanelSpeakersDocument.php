@@ -34,7 +34,7 @@ class PanelSpeakersDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
       $url = new URLParser($this->request->getUri());
-      return DocumentLinks::createWithBaseUri($url->getBaseURI())
-            ->setPagination('/panel/speakers', $this->object);
+      return DocumentLinks::createWithBaseUri($url->getUriNoPath())
+            ->setPagination('/jsonapi/panel/speakers', $this->object);
     }
 }

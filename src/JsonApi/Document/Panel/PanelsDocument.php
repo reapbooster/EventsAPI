@@ -34,7 +34,7 @@ class PanelsDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
       $url = new URLParser($this->request->getUri());
-      return DocumentLinks::createWithBaseUri($url->getBaseURI())
-            ->setPagination('/panels', $this->object);
+      return DocumentLinks::createWithBaseUri($url->getUriNoPath())
+            ->setPagination('/jsonapi/panels', $this->object);
     }
 }

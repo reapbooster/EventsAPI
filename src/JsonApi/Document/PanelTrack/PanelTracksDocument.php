@@ -34,7 +34,7 @@ class PanelTracksDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
       $url = new URLParser($this->request->getUri());
-      return DocumentLinks::createWithBaseUri($url->getBaseURI())
-            ->setPagination('/panel/track', $this->object);
+      return DocumentLinks::createWithBaseUri($url->getUriNoPath())
+            ->setPagination('/jsonapi/panel/track', $this->object);
     }
 }

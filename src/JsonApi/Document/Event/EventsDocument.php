@@ -31,8 +31,8 @@ class EventsDocument extends AbstractCollectionDocument {
    */
   public function getLinks(): ?DocumentLinks {
     $url = new URLParser($this->request->getUri());
-    return DocumentLinks::createWithBaseUri($url->getUriNoPath() . ":8443/jsonapi")
-      ->setPagination('/events', $this->object);
+    return DocumentLinks::createWithBaseUri($url->getUriNoPath() )
+      ->setPagination('/jsonapi/events', $this->object);
   }
 
 }

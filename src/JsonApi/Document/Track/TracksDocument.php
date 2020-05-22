@@ -34,7 +34,7 @@ class TracksDocument extends AbstractCollectionDocument
     public function getLinks(): ?DocumentLinks
     {
       $url = new URLParser($this->request->getUri());
-      return DocumentLinks::createWithBaseUri($url->getBaseURI())
-            ->setPagination('/tracks', $this->object);
+      return DocumentLinks::createWithBaseUri($url->getUriNoPath())
+            ->setPagination('/jsonapi/tracks', $this->object);
     }
 }
