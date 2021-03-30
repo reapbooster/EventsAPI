@@ -69,6 +69,9 @@ class PanelSpeakerResourceTransformer extends AbstractResource
           'speaker_id' => function (PanelSpeaker $panelSpeaker)  {
             return $panelSpeaker->getSpeakerId();
           },
+          'role' => function (PanelSpeaker $panelSpeaker)  {
+            return $panelSpeaker->getRole();
+          },
         ];
     }
 
