@@ -35,9 +35,9 @@ class PanelSpeaker {
   private $panel_id;
 
   /**
+   * @var string $role
    *
    * @ORM\Column(name="role", type="string")
-   * @var string
    */
   private $role;
 
