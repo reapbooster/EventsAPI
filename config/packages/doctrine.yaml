@@ -1,13 +1,10 @@
 doctrine:
     dbal:
-        driver: sqlsrv
-        host: '%env(resolve:GRID_MSSQL_HOST)%'
-        port: '%env(resolve:GRID_MSSQL_PORT)%'
-        dbname: '%env(resolve:GRID_MSSQL_DBNAME)%'
-        user: '%env(resolve:GRID_MSSQL_USERNAME)%'
-        password: '%env(resolve:GRID_MSSQL_PASSWORD)%'
-        charset: 'UTF-8'
+        url: '%env(resolve:DATABASE_URL)%'
 
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        server_version: '14'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware

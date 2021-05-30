@@ -1,5 +1,13 @@
 #index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
-
+#  methods:
+#    - "get"
+#  path: "/"
+#  controller: App\Controller\DefaultController::index
+#
+#
+#api_index:
+#  methods:
+#    - "get"
+#  path: "/jsonapi/"
+#  controller: App\Controller\DefaultController::index
+#

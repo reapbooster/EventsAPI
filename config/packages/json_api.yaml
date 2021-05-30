@@ -1,0 +1,5 @@
+#config/packages/json_api.yaml
+
+json_api:
+  documentationSchema: 'openapi'
+  controllerNamespace: 'Controller'

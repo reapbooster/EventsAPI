@@ -1,4 +1,7 @@
 {
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -23,32 +26,36 @@
     "doctrine/dbal": {
         "version": "v2.10.1"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
-        "version": "2.0",
+        "version": "2.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "2.0",
-            "ref": "a9f2463b9f73efe74482f831f03a204a41328555"
+            "version": "2.3",
+            "ref": "c9e656a395646ea4fad2bd3e2b3816028baf9026"
         },
         "files": [
             "config/packages/doctrine.yaml",
             "config/packages/prod/doctrine.yaml",
+            "config/packages/test/doctrine.yaml",
             "src/Entity/.gitignore",
             "src/Repository/.gitignore"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
-        "version": "1.2",
+        "version": "2.2",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "1.2",
-            "ref": "c1431086fec31f17fbcfe6d6d7e92059458facc1"
+            "version": "2.2",
+            "ref": "baaa439e3e3179e69e3da84b671f0a3e4a2f56ad"
         },
         "files": [
             "config/packages/doctrine_migrations.yaml",
-            "src/Migrations/.gitignore"
+            "migrations/.gitignore"
         ]
     },
     "doctrine/event-manager": {
@@ -75,11 +82,23 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
     "kint-php/kint": {
         "version": "3.3"
+    },
+    "laminas/laminas-code": {
+        "version": "4.3.0"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.2.0"
     },
     "nikic/php-parser": {
         "version": "v4.3.0"
@@ -90,7 +109,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "1.0",
-            "ref": "7c0a9352a57376f04f5444e74565102c3a23d0c7"
+            "ref": "0cd4d2d0e7f646fda75f9944f747a56e6ed13d4c"
         },
         "files": [
             "config/packages/nyholm_psr7.yaml"
@@ -178,6 +197,9 @@
     "symfony/dependency-injection": {
         "version": "v5.0.5"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.4.0"
+    },
     "symfony/doctrine-bridge": {
         "version": "v5.0.5"
     },
@@ -217,13 +239,14 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "4.4",
-            "ref": "23ecaccc551fe2f74baf613811ae529eb07762fa"
+            "ref": "df1f2fe60b8fbb5cf7e26a7af19445c128a13b90"
         },
         "files": [
             "config/bootstrap.php",
             "config/packages/cache.yaml",
             "config/packages/framework.yaml",
             "config/packages/test/framework.yaml",
+            "config/preload.php",
             "config/routes/dev/framework.yaml",
             "config/services.yaml",
             "public/index.php",
@@ -254,6 +277,9 @@
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.14.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.22.1"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.14.0"
@@ -311,6 +337,9 @@
     },
     "symfony/yaml": {
         "version": "v5.0.5"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.2.0"
     },
     "woohoolabs/yin": {
         "version": "4.1.1"

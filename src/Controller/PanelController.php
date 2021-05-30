@@ -5,18 +5,12 @@ namespace App\Controller;
 use App\Entity\Panel;
 use App\JsonApi\Document\Panel\PanelDocument;
 use App\JsonApi\Document\Panel\PanelsDocument;
-use App\JsonApi\Hydrator\Panel\CreatePanelHydrator;
-use App\JsonApi\Hydrator\Panel\UpdatePanelHydrator;
 use App\JsonApi\Transformer\PanelResourceTransformer;
 use App\Repository\PanelRepository;
 use Paknahad\JsonApiBundle\Controller\Controller;
 use Paknahad\JsonApiBundle\Helper\ResourceCollection;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\ConstraintViolationList;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
  * @Route("/jsonapi/panels")

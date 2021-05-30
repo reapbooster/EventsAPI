@@ -5,19 +5,12 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\JsonApi\Document\Event\EventDocument;
 use App\JsonApi\Document\Event\EventsDocument;
-use App\JsonApi\Hydrator\Event\CreateEventHydrator;
-use App\JsonApi\Hydrator\Event\UpdateEventHydrator;
 use App\JsonApi\Transformer\EventResourceTransformer;
 use App\Repository\EventRepository;
 use Paknahad\JsonApiBundle\Controller\Controller;
 use Paknahad\JsonApiBundle\Helper\ResourceCollection;
 use Psr\Http\Message\ResponseInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\ConstraintViolationList;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
  * @Route("/jsonapi/events")
@@ -56,5 +49,16 @@ class EventController extends Controller
             $event
         );
     }
+
+  /**
+   * @Route("/{eventid}/panels", name="events_show_panels", methods="GET")
+   */
+  public function panels(Event $event): ResponseInterface
+  {
+    return $this->jsonApi()->respond()->ok(
+      new EventDocument(new EventResourceTransformer()),
+      $event
+    );
+  }
 
 }

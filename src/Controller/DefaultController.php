@@ -8,10 +8,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Paknahad\JsonApiBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/")
+ */
 class DefaultController extends Controller {
 
   /**
-   * @Route("/jsonapi", name="index", methods="GET");
+   * @Route("/jsonapi", name="api_index", methods="GET")
    *
    * @param \Doctrine\ORM\EntityManagerInterface $entityManager
    *
@@ -35,6 +38,5 @@ class DefaultController extends Controller {
        $toSerialize
     );
   }
-
 
 }
