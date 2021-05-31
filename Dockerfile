@@ -12,5 +12,5 @@ STOPSIGNAL SIGQUIT
 WORKDIR /var/www
 
 EXPOSE 9000
-ENTRYPOINT [ "/docker-entrypoint.sh"]
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD [ "/usr/bin/supervisord" ]
