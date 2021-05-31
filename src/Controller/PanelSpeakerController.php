@@ -22,6 +22,12 @@ class PanelSpeakerController extends Controller
    */
   public function index(PanelSpeakerRepository $panelSpeakerRepository, ResourceCollection $resourceCollection): ResponseInterface
   {
+    $this->query = $this->container->get('request_stack');
+    $page = array_merge([
+      "number" => 1,
+      "size" => 50,
+    ], $this->query->get('page', []));
+    $this->query->set('page', $page);
     $resourceCollection->setRepository($panelSpeakerRepository);
     $resourceCollection->getQuery()->setMaxResults("10000");
     $resourceCollection->getQuery()->orderBy("r.id", "desc");
