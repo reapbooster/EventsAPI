@@ -25,7 +25,10 @@ use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 class EventController extends Controller
 {
 
-    protected $query;
+  /**
+   * @var
+   */
+  protected $query;
     /**
      * @Route("/", name="events_index", methods="GET")
      */
@@ -34,11 +37,18 @@ class EventController extends Controller
 
         $resourceCollection->setRepository($eventRepository);
         $this->query = $this->container->get('request_stack')->getCurrentRequest()->query;
+        $now = new \DateTime();
+        $interval = new \DateInterval("P2Y");
+        $twoYearsAgo = $now->sub($interval);
         $page = array_merge([
           "number" => 1,
           "size" => 50,
         ], $this->query->get('page', []));
         $this->query->set('page', $page);
+        $query = $resourceCollection->getQuery();
+        $resourceCollection->getQuery()
+          ->where("r.year >= :s1")
+          ->setParameter(":s1", $twoYearsAgo->format("Y"));
         $resourceCollection->handleIndexRequest();
         return $this->jsonApi()->respond()->ok(
             new EventsDocument(new EventResourceTransformer()),

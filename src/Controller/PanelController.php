@@ -28,6 +28,8 @@ class PanelController extends Controller {
    */
   public function index(PanelRepository $panelRepository, ResourceCollection $resourceCollection): ResponseInterface {
     $resourceCollection->setRepository($panelRepository);
+    $resourceCollection->getQuery()->setMaxResults("10000");
+    $resourceCollection->getQuery()->orderBy("r.id", "desc");
     $resourceCollection->handleIndexRequest();
     return $this->jsonApi()->respond()->ok(
       new PanelsDocument(new PanelResourceTransformer()),
