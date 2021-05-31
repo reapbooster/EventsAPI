@@ -36,7 +36,7 @@ class SpeakerController extends Controller {
     ], $this->query->get('page', []));
     $this->query->set('page', $page);
     $resourceCollection->getQuery()->setMaxResults("10000");
-    $resourceCollection->getQuery()->orderBy("spkrid", "desc");
+    $resourceCollection->getQuery()->orderBy("r.spkrid", "desc");
     $resourceCollection->handleIndexRequest();
 
     return $this->jsonApi()->respond()->ok(
