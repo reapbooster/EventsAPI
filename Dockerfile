@@ -1,4 +1,4 @@
-FROM milken/php-dev:latest
+FROM milken/php-dev:composer1
 
 COPY . /var/www
 COPY .env /var/www
