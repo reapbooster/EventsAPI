@@ -22,12 +22,6 @@ class PanelTrackController extends Controller
    */
   public function index(PanelTrackRepository $panelTrackRepository, ResourceCollection $resourceCollection): ResponseInterface
   {
-    $this->query = $this->container->get('request_stack');
-    $page = array_merge([
-      "number" => 1,
-      "size" => 50,
-    ], $this->query->get('page', []));
-    $this->query->set('page', $page);
     $resourceCollection->setRepository($panelTrackRepository);
     $resourceCollection->getQuery()->setMaxResults("10000");
     $resourceCollection->getQuery()->orderBy("r.id", "desc");

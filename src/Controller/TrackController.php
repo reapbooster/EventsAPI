@@ -5,12 +5,18 @@ namespace App\Controller;
 use App\Entity\Track;
 use App\JsonApi\Document\Track\TrackDocument;
 use App\JsonApi\Document\Track\TracksDocument;
+use App\JsonApi\Hydrator\Track\CreateTrackHydrator;
+use App\JsonApi\Hydrator\Track\UpdateTrackHydrator;
 use App\JsonApi\Transformer\TrackResourceTransformer;
 use App\Repository\TrackRepository;
 use Paknahad\JsonApiBundle\Controller\Controller;
 use Paknahad\JsonApiBundle\Helper\ResourceCollection;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
  * @Route("/jsonapi/tracks")
@@ -21,6 +27,7 @@ class TrackController extends Controller {
    * @Route("/", name="tracks_index", methods="GET")
    */
   public function index(TrackRepository $trackRepository, ResourceCollection $resourceCollection): ResponseInterface {
+    $resourceCollection->setRepository($trackRepository);
     $this->query = $this->container->get('request_stack')
       ->getCurrentRequest()->query;
     $page = array_merge([
@@ -28,9 +35,6 @@ class TrackController extends Controller {
       "size" => 50,
     ], $this->query->get('page', []));
     $this->query->set('page', $page);
-    $resourceCollection->setRepository($trackRepository);
-    $resourceCollection->getQuery()->setMaxResults("10000");
-    $resourceCollection->getQuery()->orderBy("r.spkrid", "desc");
     $resourceCollection->handleIndexRequest();
 
     return $this->jsonApi()->respond()->ok(

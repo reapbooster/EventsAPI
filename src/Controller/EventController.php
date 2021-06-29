@@ -5,12 +5,19 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\JsonApi\Document\Event\EventDocument;
 use App\JsonApi\Document\Event\EventsDocument;
+use App\JsonApi\Hydrator\Event\CreateEventHydrator;
+use App\JsonApi\Hydrator\Event\UpdateEventHydrator;
 use App\JsonApi\Transformer\EventResourceTransformer;
 use App\Repository\EventRepository;
 use Paknahad\JsonApiBundle\Controller\Controller;
 use Paknahad\JsonApiBundle\Helper\ResourceCollection;
 use Psr\Http\Message\ResponseInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use WoohooLabs\Yin\JsonApi\Exception\DefaultExceptionFactory;
 
 /**
  * @Route("/jsonapi/events")
