@@ -16,9 +16,10 @@ services:
       - "80:80"
     env_file:
       - .env
+      # - .env.local
 
   php:
-    image: milken/php-dev
+    image: micaelaalvarez/php-events-api:latest
     expose:
       - '9000'
       - '4444'
@@ -35,33 +36,19 @@ services:
     env_file:
       - .env
 
-  #  mysql:
-  #    build: docker/mysql-container
-  #    image: milken/mysql-dev
-  #    expose:
-  #      - '3306'
-  #    ports:
-  #      - '3306:3306'
-  #    volumes:
-  #      - 'db:/var/lib/mysql'
-  #    env_file:
-  #      - .env
+  redis:
+    image: redis
+    expose:
+      - '6379'
 
-    redis:
-      image: redis
-      expose:
-        - '6379'
-
-  # grid:
-  #  image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
-  #  environment:
-  #    - ACCEPT_EULA=Y
-  #    - SA_PASSWORD=drupal^99^DRUPAL
-  #    - MSSQL_PID=developer
-  #  expose:
-  #    - '1433'
-  #  ports:
-  #    - "1433:1433"
+  grid:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+          - ACCEPT_EULA=Y
+    expose:
+      - '1433'
+    ports:
+      - "1433:1433"
 
 volumes:
   web: {}
