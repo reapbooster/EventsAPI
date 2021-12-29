@@ -13,17 +13,17 @@ services:
     volumes:
       - ".:/var/www"
     ports:
-      - "8081:80"
+      - "80:80"
     env_file:
       - .env
 
   php:
-    image: milken/php-dev:composer1
+    image: micaelaalvarez/php-events-api
     expose:
       - '9000'
       - '4444'
-    environment:
-      - APP_DEBUG=true
+    external_links:
+      - solr-ssl_solr-network:milkensolr-nginx
     volumes:
       - ".:/var/www"
       - type: bind
@@ -34,20 +34,18 @@ services:
       - grid
     env_file:
       - .env
-      - .env.local
 
-
-#  mysql:
-#    build: docker/mysql-container
-#    image: milken/mysql-dev
-#    expose:
-#      - '3306'
-#    ports:
-#      - '3306:3306'
-#    volumes:
-#      - 'db:/var/lib/mysql'
-#    env_file:
-#      - .env
+  #  mysql:
+  #    build: docker/mysql-container
+  #    image: milken/mysql-dev
+  #    expose:
+  #      - '3306'
+  #    ports:
+  #      - '3306:3306'
+  #    volumes:
+  #      - 'db:/var/lib/mysql'
+  #    env_file:
+  #      - .env
 
   redis:
     image: redis
@@ -55,15 +53,14 @@ services:
       - '6379'
 
   grid:
-    image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=drupal^99^DRUPAL
-      - MSSQL_PID=developer
-    expose:
-      - '1433'
-    ports:
-      - "1433:1433"
+   image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+   environment:
+     - ACCEPT_EULA=Y
+   expose:
+     - '1433'
+   ports:
+     - "1433:1433"
+
 volumes:
   web: {}
   db: {}
